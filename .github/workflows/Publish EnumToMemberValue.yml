@@ -13,7 +13,7 @@ env:
 jobs:
 
   Miscellaneous-EnumToMemberValue:
-    name: Miscellaneous.EnumToMemberValue
+    name: Miscellaneous-EnumToMemberValue
     runs-on: ubuntu-latest
     steps:
 
