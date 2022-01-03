@@ -1,2 +1,2 @@
 # Miscellaneous
-a collection of mescellaneous nuget packages
+a collection of miscellaneous nuget packages
