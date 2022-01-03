@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>BitzArt</RootNamespace>
+    <AssemblyName>BitzArt.Miscellaneous.$(MSBuildProjectName)</AssemblyName>
+
+	<PackageId>BitzArt.Miscellaneous.EnumToMemberValue</PackageId>
+	<Authors>BitzArt</Authors>
+	<RepositoryType>git</RepositoryType>
+	<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>
