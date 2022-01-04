@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace BitzArt
+namespace BitzArt.EnumToMemberValue
 {
     public static class StringExtensions
     {
-        public static TEnum ToEnum<TEnum>(this string enumString, TEnum? defaultValue = null) where TEnum : struct, Enum
+        public static TEnum ToEnum<TEnum>(this string enumString, TEnum? defaultValue = null)
+            where TEnum : struct, Enum
         {
             var enumType = typeof(TEnum);
             foreach (var name in Enum.GetNames(enumType))
