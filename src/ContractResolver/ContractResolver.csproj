@@ -2,7 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <LangVersion>8.0</LangVersion>
+	<RootNamespace>BitzArt</RootNamespace>
+	<LangVersion>8.0</LangVersion>
+	<AssemblyName>BitzArt.Miscellaneous.$(MSBuildProjectName)</AssemblyName>
+
+	<PackageId>BitzArt.Miscellaneous.ContractResolver</PackageId>
+	<Authors>BitzArt</Authors>
+	<RepositoryType>git</RepositoryType>
+	<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
