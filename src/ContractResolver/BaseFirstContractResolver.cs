@@ -19,7 +19,8 @@ namespace ContractResolver
 
         protected override string ResolvePropertyName(string propertyName)
         {
-            return char.ToLowerInvariant(propertyName[0]) + propertyName[1..];
+
+            return char.ToLowerInvariant(propertyName[0]) + propertyName.Remove(0, 1);
         }
     }
 

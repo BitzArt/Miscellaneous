@@ -3,8 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	<RootNamespace>BitzArt</RootNamespace>
-	<LangVersion>8.0</LangVersion>
-	<AssemblyName>BitzArt.Miscellaneous.$(MSBuildProjectName)</AssemblyName>
+	  <AssemblyName>BitzArt.Miscellaneous.$(MSBuildProjectName)</AssemblyName>
 
 	<PackageId>BitzArt.Miscellaneous.ContractResolver</PackageId>
 	<Authors>BitzArt</Authors>
