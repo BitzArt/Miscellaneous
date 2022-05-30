@@ -5,7 +5,7 @@
 	<RootNamespace>BitzArt</RootNamespace>
 	  <AssemblyName>BitzArt.Miscellaneous.$(MSBuildProjectName)</AssemblyName>
 
-	<PackageId>BitzArt.Miscellaneous.ContractResolver</PackageId>
+	<PackageId>BitzArt.Miscellaneous.BaseFirstContractResolver</PackageId>
 	<Authors>BitzArt</Authors>
 	<RepositoryType>git</RepositoryType>
 	<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
