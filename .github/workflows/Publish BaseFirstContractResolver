@@ -34,8 +34,8 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/ContractResolver/BaseFirstContractResolver.csproj --configuration Release /p:Version=${VERSION}
-          dotnet test src/ContractResolver/BaseFirstContractResolver.csproj --configuration Release /p:Version=${VERSION} --no-build
-          dotnet pack src/ContractResolver/BaseFirstContractResolver.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/BaseFirstContractResolver/BaseFirstContractResolver.csproj --configuration Release /p:Version=${VERSION}
+          dotnet test src/BaseFirstContractResolver/BaseFirstContractResolver.csproj --configuration Release /p:Version=${VERSION} --no-build
+          dotnet pack src/BaseFirstContractResolver/BaseFirstContractResolver.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
       - name: Push
         run: dotnet nuget push BitzArt.Miscellaneous.BaseFirstContractResolver.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
