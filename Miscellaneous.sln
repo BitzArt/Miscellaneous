@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumToMemberValue", "src\EnumToMemberValue\EnumToMemberValue.csproj", "{120D5DF3-E6F6-4B1F-AA06-94BB6E0A3061}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContractResolver", "src\ContractResolver\ContractResolver.csproj", "{4589B727-9B5A-4934-A5AF-023A16F0C144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseFirstContractResolver", "src\BaseFirstContractResolver\BaseFirstContractResolver.csproj", "{0B4CD683-8CEE-4DB7-8220-8DDE6231ACEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{120D5DF3-E6F6-4B1F-AA06-94BB6E0A3061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{120D5DF3-E6F6-4B1F-AA06-94BB6E0A3061}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{120D5DF3-E6F6-4B1F-AA06-94BB6E0A3061}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4589B727-9B5A-4934-A5AF-023A16F0C144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4589B727-9B5A-4934-A5AF-023A16F0C144}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4589B727-9B5A-4934-A5AF-023A16F0C144}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4589B727-9B5A-4934-A5AF-023A16F0C144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B4CD683-8CEE-4DB7-8220-8DDE6231ACEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B4CD683-8CEE-4DB7-8220-8DDE6231ACEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B4CD683-8CEE-4DB7-8220-8DDE6231ACEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B4CD683-8CEE-4DB7-8220-8DDE6231ACEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

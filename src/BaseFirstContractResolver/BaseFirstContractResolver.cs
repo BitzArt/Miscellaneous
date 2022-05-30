@@ -4,7 +4,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace ContractResolver
+namespace BitzArt.BaseFirstContractResolver
 {
     public class BaseFirstContractResolver : DefaultContractResolver
     {
@@ -19,7 +19,6 @@ namespace ContractResolver
 
         protected override string ResolvePropertyName(string propertyName)
         {
-
             return char.ToLowerInvariant(propertyName[0]) + propertyName.Remove(0, 1);
         }
     }
