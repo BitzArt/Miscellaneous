@@ -19,7 +19,8 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var result = await _db.Products.ToListAsync();
+            var products = await _db.Products.ToListAsync();
+            var result = products.Select(x => new ProductDisplayViewModel(x));
             return Ok(result);
         }
 
