@@ -6,6 +6,11 @@
     <Nullable>enable</Nullable>
     <AssemblyName>BitzArt.EntityFrameworkCore.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>BitzArt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+
+	<PackageId>BitzArt.EntityFrameworkCore.EntityBase</PackageId>
+	<Authors>BitzArt</Authors>
+	<RepositoryType>git</RepositoryType>
+	<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
