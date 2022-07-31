@@ -5,10 +5,14 @@ public abstract class EntityUpdated<TKey> : EntityCreated<TKey>
 {
     public UpdateInfo UpdateInfo { get; private set; }
 
-    protected EntityUpdated() : base() { }
+    protected EntityUpdated() : base()
+    {
+        UpdateInfo = new();
+    }
 
     public EntityUpdated(DateTime? createdOn = null) : base(createdOn)
     {
+        UpdateInfo = new();
         Updated(createdOn);
     }
 
@@ -22,9 +26,12 @@ public abstract class EntityUpdated<TKey, TUpdaterKey> : EntityCreated<TKey, TUp
     where TKey : struct
     where TUpdaterKey : struct
 {
-    public UpdateInfo<TUpdaterKey> UpdateInfo { get; private set; }
+    public UpdateInfo<TUpdaterKey>? UpdateInfo { get; private set; }
 
-    protected EntityUpdated() : base() { }
+    protected EntityUpdated() : base()
+    {
+        UpdateInfo = new();
+    }
 
     public EntityUpdated(TUpdaterKey creatorId, DateTime? createdOn = null) : base(creatorId, createdOn)
     {
@@ -42,9 +49,12 @@ public abstract class EntityUpdated<TKey, TUpdater, TUpdaterKey> : EntityCreated
     where TUpdaterKey : struct
     where TUpdater : IIdentifiable<TUpdaterKey>
 {
-    public UpdateInfo<TUpdater, TUpdaterKey> UpdateInfo { get; private set; }
+    public UpdateInfo<TUpdater, TUpdaterKey>? UpdateInfo { get; private set; }
 
-    protected EntityUpdated() : base() { }
+    protected EntityUpdated() : base()
+    {
+        UpdateInfo = new();
+    }
 
     public EntityUpdated(TUpdaterKey creatorId, DateTime? createdOn = null) : base(creatorId, createdOn)
     {

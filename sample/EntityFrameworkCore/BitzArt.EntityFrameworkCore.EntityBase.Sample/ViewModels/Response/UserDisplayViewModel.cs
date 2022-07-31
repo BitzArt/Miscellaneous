@@ -19,7 +19,7 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
 
         public UserDisplayViewModel(User user)
         {
-            Id = user.Id!.Value;
+            Id = user.Id.Value;
             Name = user.Name;
             CreatedOn = user.CreationInfo.CreatedOn;
         }
