@@ -5,7 +5,7 @@ public abstract class EntityUpdated<TKey> : EntityCreated<TKey>
 {
     public UpdateInfo UpdateInfo { get; private set; }
 
-    public EntityUpdated() { }
+    protected EntityUpdated() : base() { }
 
     public EntityUpdated(DateTime? createdOn = null) : base(createdOn)
     {
@@ -24,7 +24,7 @@ public abstract class EntityUpdated<TKey, TUpdaterKey> : EntityCreated<TKey, TUp
 {
     public UpdateInfo<TUpdaterKey> UpdateInfo { get; private set; }
 
-    public EntityUpdated() { }
+    protected EntityUpdated() : base() { }
 
     public EntityUpdated(TUpdaterKey creatorId, DateTime? createdOn = null) : base(creatorId, createdOn)
     {
@@ -44,7 +44,7 @@ public abstract class EntityUpdated<TKey, TUpdater, TUpdaterKey> : EntityCreated
 {
     public UpdateInfo<TUpdater, TUpdaterKey> UpdateInfo { get; private set; }
 
-    public EntityUpdated() { }
+    protected EntityUpdated() : base() { }
 
     public EntityUpdated(TUpdaterKey creatorId, DateTime? createdOn = null) : base(creatorId, createdOn)
     {

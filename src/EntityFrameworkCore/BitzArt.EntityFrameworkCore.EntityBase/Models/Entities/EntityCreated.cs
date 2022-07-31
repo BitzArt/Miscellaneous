@@ -5,7 +5,10 @@ public abstract class EntityCreated<TKey> : EntityBase<TKey>
 {
     public CreationInfo CreationInfo { get; private set; }
 
-    public EntityCreated() { }
+    protected EntityCreated()
+    {
+        CreationInfo = new();
+    }
 
     public EntityCreated(DateTime? createdOn = null)
     {
@@ -19,7 +22,10 @@ public abstract class EntityCreated<TKey, TCreatorKey> : EntityBase<TKey>
 {
     public CreationInfo<TCreatorKey> CreationInfo { get; private set; }
 
-    public EntityCreated() { }
+    protected EntityCreated()
+    {
+        CreationInfo = new();
+    }
 
     public EntityCreated(TCreatorKey creatorId, DateTime? createdOn = null)
     {
@@ -34,7 +40,10 @@ public abstract class EntityCreated<TKey, TCreator, TCreatorKey> : EntityBase<TK
 {
     public CreationInfo<TCreator, TCreatorKey> CreationInfo { get; private set; }
 
-    public EntityCreated() { }
+    protected EntityCreated()
+    {
+        CreationInfo = new();
+    }
 
     public EntityCreated(TCreatorKey creatorId, DateTime? createdOn = null)
     {

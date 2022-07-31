@@ -11,10 +11,17 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
+        [JsonIgnore]
+        public DateTime CreatedOn { get; set; }
+
+        [JsonPropertyName("created")]
+        public string CreatedOnString => CreatedOn.ToString("HH:mm:ss");
+
         public UserDisplayViewModel(User user)
         {
             Id = user.Id!.Value;
             Name = user.Name;
+            CreatedOn = user.CreationInfo.CreatedOn;
         }
     }
 }

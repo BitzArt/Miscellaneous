@@ -2,7 +2,7 @@
 
 namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Models
 {
-    public class User : EntityBase<Guid>
+    public class User : EntityCreated<Guid>
     {
         public string Name { get; set; }
     }

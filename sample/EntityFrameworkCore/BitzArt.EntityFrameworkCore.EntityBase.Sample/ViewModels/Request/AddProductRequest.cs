@@ -13,7 +13,6 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
 
         public Product ToProduct(User creator) => new Product(creator)
         {
-            Id = null,
             Name = Name,
             Price = Price,
         };

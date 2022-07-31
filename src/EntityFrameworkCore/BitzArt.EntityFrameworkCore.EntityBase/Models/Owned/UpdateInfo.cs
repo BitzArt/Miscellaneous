@@ -9,13 +9,13 @@ public class UpdateInfo
     [Column("UpdatedOn")]
     public DateTime UpdatedOn { get; set; }
 
-    private protected UpdateInfo() { }
-
     internal UpdateInfo(DateTime? updatedOn = null)
     {
         if (updatedOn is null) updatedOn = DateTime.UtcNow;
         UpdatedOn = updatedOn.Value;
     }
+
+    internal UpdateInfo() : this(null) { }
 }
 
 [Owned]
@@ -25,7 +25,7 @@ public class UpdateInfo<TUpdaterKey> : UpdateInfo
     [Column("UpdatedBy")]
     public TUpdaterKey? UpdaterId { get; set; }
 
-    private protected UpdateInfo() { }
+    internal UpdateInfo() : base() { }
 
     internal UpdateInfo(TUpdaterKey updaterId, DateTime? updatedOn = null) : base(updatedOn)
     {
@@ -42,7 +42,7 @@ public class UpdateInfo<TUpdater, TUpdaterKey> : UpdateInfo<TUpdaterKey>
     [ForeignKey(nameof(UpdaterId))]
     public TUpdater? Updater { get; set; }
 
-    private protected UpdateInfo() { }
+    internal UpdateInfo() : base() { }
 
     internal UpdateInfo(TUpdaterKey updaterId, DateTime? updatedOn = null) : base(updaterId, updatedOn) { }
 

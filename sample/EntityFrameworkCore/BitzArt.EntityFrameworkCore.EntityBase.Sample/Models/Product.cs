@@ -7,7 +7,7 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
 
-        public Product() : base() { }
+        public Product() { }
 
         public Product(User creator) : base(creator) { }
     }

@@ -7,16 +7,15 @@ namespace BitzArt.EntityBase;
 public class CreationInfo
 {
     [Column("CreatedOn")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime CreatedOn { get; set; }
-
-    private protected CreationInfo() { }
 
     internal CreationInfo(DateTime? createdOn = null)
     {
         if (createdOn is null) createdOn = DateTime.UtcNow;
         CreatedOn = createdOn.Value;
     }
+
+    internal CreationInfo() : this(null) { }
 }
 
 [Owned]
@@ -26,7 +25,7 @@ public class CreationInfo<TCreatorKey> : CreationInfo
     [Column("CreatedBy")]
     public TCreatorKey? CreatorId { get; set; }
 
-    private protected CreationInfo() { }
+    internal CreationInfo() : base() { }
 
     internal CreationInfo(TCreatorKey creatorId, DateTime? createdOn = null) : base(createdOn)
     {
@@ -43,7 +42,7 @@ public class CreationInfo<TCreator, TCreatorKey> : CreationInfo<TCreatorKey>
     [ForeignKey(nameof(CreatorId))]
     public TCreator? Creator { get; set; }
 
-    private protected CreationInfo() { }
+    internal CreationInfo() : base() { }
 
     internal CreationInfo(TCreatorKey creatorId, DateTime? createdOn = null) : base(creatorId, createdOn) { }
 
