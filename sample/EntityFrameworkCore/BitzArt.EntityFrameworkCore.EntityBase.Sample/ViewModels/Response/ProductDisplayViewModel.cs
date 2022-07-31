@@ -34,7 +34,7 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
 
         public ProductDisplayViewModel(Product product)
         {
-            Id = product.Id!.Value;
+            Id = product.Id.Value;
             Name = product.Name;
             Price = product.Price;
 

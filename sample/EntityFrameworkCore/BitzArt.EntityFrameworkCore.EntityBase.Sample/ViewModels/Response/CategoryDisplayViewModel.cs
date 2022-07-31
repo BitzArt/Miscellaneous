@@ -12,11 +12,11 @@ public class CategoryDisplayViewModel
     public string Name { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-    public IEnumerable<ProductDisplayViewModel>? Products { get; set; }
+    public IEnumerable<ProductDisplayViewModel> Products { get; set; }
 
     public CategoryDisplayViewModel(Category category)
     {
-        Id = category.Id!.Value;
+        Id = category.Id.Value;
         Name = category.Name;
 
         Products = category.Products is null || !category.Products.Any() ?
