@@ -35,9 +35,8 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/EnumToMemberValue/EnumToMemberValue.csproj --configuration Release /p:Version=${VERSION}
-          dotnet test src/EnumToMemberValue/EnumToMemberValue.csproj --configuration Release /p:Version=${VERSION} --no-build
-          dotnet pack src/EnumToMemberValue/EnumToMemberValue.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/BitzArt.EnumToMemberValue/BitzArt.EnumToMemberValue.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/BitzArt.EnumToMemberValue/BitzArt.EnumToMemberValue.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
         run: dotnet nuget push BitzArt.Miscellaneous.EnumToMemberValue.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
