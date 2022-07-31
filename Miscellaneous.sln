@@ -9,13 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.BaseFirstContractRe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{3757C1C1-318C-4447-AFB0-3BA25D39D218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.EntityFrameworkCore.EntityBase", "src\EntityFrameworkCore\BitzArt.EntityFrameworkCore.EntityBase\BitzArt.EntityFrameworkCore.EntityBase.csproj", "{287F1A96-7C31-47A0-89F5-89F569629920}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.EntityFrameworkCore.EntityBase", "src\EntityFrameworkCore\BitzArt.EntityFrameworkCore.EntityBase\BitzArt.EntityFrameworkCore.EntityBase.csproj", "{287F1A96-7C31-47A0-89F5-89F569629920}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2638AACB-7314-4962-87BE-93876EEED788}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{BDDE9224-CA80-4144-9650-4D05E134B744}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{C99AEE71-8BA6-401A-B209-2F14692D24F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.EntityFrameworkCore.EntityBase.Sample", "sample\EntityFrameworkCore\BitzArt.EntityFrameworkCore.EntityBase.Sample\BitzArt.EntityFrameworkCore.EntityBase.Sample.csproj", "{B638CA24-4040-4F3A-9227-B5B09710EBAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{287F1A96-7C31-47A0-89F5-89F569629920}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{287F1A96-7C31-47A0-89F5-89F569629920}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{287F1A96-7C31-47A0-89F5-89F569629920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B638CA24-4040-4F3A-9227-B5B09710EBAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B638CA24-4040-4F3A-9227-B5B09710EBAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B638CA24-4040-4F3A-9227-B5B09710EBAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B638CA24-4040-4F3A-9227-B5B09710EBAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{3757C1C1-318C-4447-AFB0-3BA25D39D218} = {2638AACB-7314-4962-87BE-93876EEED788}
 		{287F1A96-7C31-47A0-89F5-89F569629920} = {3757C1C1-318C-4447-AFB0-3BA25D39D218}
 		{C99AEE71-8BA6-401A-B209-2F14692D24F3} = {BDDE9224-CA80-4144-9650-4D05E134B744}
+		{B638CA24-4040-4F3A-9227-B5B09710EBAE} = {C99AEE71-8BA6-401A-B209-2F14692D24F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}

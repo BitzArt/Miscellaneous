@@ -1,10 +1,11 @@
 ﻿namespace BitzArt.EntityBase;
 
 public abstract class EntityUpdated<TKey> : EntityCreated<TKey>
+    where TKey : struct
 {
     public UpdateInfo UpdateInfo { get; private set; }
 
-    protected internal EntityUpdated() { }
+    public EntityUpdated() { }
 
     public EntityUpdated(DateTime? createdOn = null) : base(createdOn)
     {
@@ -18,14 +19,16 @@ public abstract class EntityUpdated<TKey> : EntityCreated<TKey>
 }
 
 public abstract class EntityUpdated<TKey, TUpdaterKey> : EntityCreated<TKey, TUpdaterKey>
+    where TKey : struct
+    where TUpdaterKey : struct
 {
     public UpdateInfo<TUpdaterKey> UpdateInfo { get; private set; }
 
-    protected internal EntityUpdated() { }
+    public EntityUpdated() { }
 
-    public EntityUpdated(TUpdaterKey updaterId, DateTime? createdOn = null) : base(updaterId, createdOn)
+    public EntityUpdated(TUpdaterKey creatorId, DateTime? createdOn = null) : base(creatorId, createdOn)
     {
-        Updated(updaterId, createdOn);
+        Updated(creatorId, createdOn);
     }
 
     public void Updated(TUpdaterKey updaterId, DateTime? updatedOn = null)
@@ -35,15 +38,27 @@ public abstract class EntityUpdated<TKey, TUpdaterKey> : EntityCreated<TKey, TUp
 }
 
 public abstract class EntityUpdated<TKey, TUpdater, TUpdaterKey> : EntityCreated<TKey, TUpdater, TUpdaterKey>
+    where TKey : struct
+    where TUpdaterKey : struct
     where TUpdater : IIdentifiable<TUpdaterKey>
 {
     public UpdateInfo<TUpdater, TUpdaterKey> UpdateInfo { get; private set; }
 
-    protected internal EntityUpdated() { }
+    public EntityUpdated() { }
 
-    public EntityUpdated(TUpdater updater, DateTime? updatedOn = null) : base(updater, updatedOn)
+    public EntityUpdated(TUpdaterKey creatorId, DateTime? createdOn = null) : base(creatorId, createdOn)
     {
-        Updated(updater, updatedOn);
+        Updated(creatorId, createdOn);
+    }
+
+    public EntityUpdated(TUpdater creator, DateTime? createdOn = null) : base(creator, createdOn)
+    {
+        Updated(creator, createdOn);
+    }
+
+    public void Updated(TUpdaterKey updaterId, DateTime? updatedOn = null)
+    {
+        UpdateInfo = new(updaterId, updatedOn);
     }
 
     public void Updated(TUpdater updater, DateTime? updatedOn = null)

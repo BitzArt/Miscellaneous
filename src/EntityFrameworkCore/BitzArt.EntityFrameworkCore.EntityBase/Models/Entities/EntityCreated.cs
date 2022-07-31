@@ -1,10 +1,11 @@
 ﻿namespace BitzArt.EntityBase;
 
 public abstract class EntityCreated<TKey> : EntityBase<TKey>
+    where TKey : struct
 {
     public CreationInfo CreationInfo { get; private set; }
 
-    protected internal EntityCreated() { }
+    public EntityCreated() { }
 
     public EntityCreated(DateTime? createdOn = null)
     {
@@ -13,10 +14,12 @@ public abstract class EntityCreated<TKey> : EntityBase<TKey>
 }
 
 public abstract class EntityCreated<TKey, TCreatorKey> : EntityBase<TKey>
+    where TKey : struct
+    where TCreatorKey : struct
 {
     public CreationInfo<TCreatorKey> CreationInfo { get; private set; }
 
-    protected internal EntityCreated() { }
+    public EntityCreated() { }
 
     public EntityCreated(TCreatorKey creatorId, DateTime? createdOn = null)
     {
@@ -25,11 +28,18 @@ public abstract class EntityCreated<TKey, TCreatorKey> : EntityBase<TKey>
 }
 
 public abstract class EntityCreated<TKey, TCreator, TCreatorKey> : EntityBase<TKey>
+    where TKey : struct
+    where TCreatorKey : struct
     where TCreator : IIdentifiable<TCreatorKey>
 {
     public CreationInfo<TCreator, TCreatorKey> CreationInfo { get; private set; }
 
-    protected internal EntityCreated() { }
+    public EntityCreated() { }
+
+    public EntityCreated(TCreatorKey creatorId, DateTime? createdOn = null)
+    {
+        CreationInfo = new(creatorId, createdOn);
+    }
 
     public EntityCreated(TCreator creator, DateTime? createdOn = null)
     {
