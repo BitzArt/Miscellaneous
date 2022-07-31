@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace BitzArt.BaseFirstContractResolver
 {
@@ -13,7 +13,7 @@ namespace BitzArt.BaseFirstContractResolver
             var properties = base.CreateProperties(type, memberSerialization);
             if (properties != null)
                 return properties.OrderBy(p => p.DeclaringType.BaseTypesAndSelf().Count()).ToList();
-            
+
             return properties;
         }
 
