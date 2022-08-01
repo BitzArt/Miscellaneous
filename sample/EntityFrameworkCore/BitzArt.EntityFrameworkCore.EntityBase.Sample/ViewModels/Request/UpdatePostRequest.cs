@@ -8,13 +8,13 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("price")]
-        public decimal Price { get; set; }
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
 
         public Post Apply(Post post, User updater)
         {
             post.Name = Name;
-            post.Price = Price;
+            post.Content = Content;
 
             post.Updated(updater);
 

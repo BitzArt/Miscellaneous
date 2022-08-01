@@ -8,7 +8,7 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        public User ToUser() => new User
+        public User ToUser() => new()
         {
             Id = null,
             Name = Name

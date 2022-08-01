@@ -11,8 +11,8 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("price")]
-        public decimal Price { get; set; }
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
 
         [JsonPropertyName("createdBy")]
         public object CreatedBy { get; set; }
@@ -36,7 +36,7 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         {
             Id = post.Id.Value;
             Name = post.Name;
-            Price = post.Price;
+            Content = post.Content;
 
             CreatedBy = post.CreationInfo.CreatorId!.Value;
             CreatedOn = post.CreationInfo.CreatedOn;
