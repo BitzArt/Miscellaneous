@@ -2,10 +2,10 @@
 
 namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Models
 {
-    public class Category : EntityBase<Guid>
+    public class Blog : EntityBase<Guid>
     {
         public string Name { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Post> Posts { get; set; }
     }
 }

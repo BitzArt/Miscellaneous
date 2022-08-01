@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels;
 
-public class CategoryDisplayViewModel
+public class BlogDisplayViewModel
 {
     [JsonPropertyName("id")]
     public object Id { get; set; }
@@ -12,14 +12,14 @@ public class CategoryDisplayViewModel
     public string Name { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-    public IEnumerable<ProductDisplayViewModel> Products { get; set; }
+    public IEnumerable<PostDisplayViewModel> Posts { get; set; }
 
-    public CategoryDisplayViewModel(Category category)
+    public BlogDisplayViewModel(Blog category)
     {
         Id = category.Id.Value;
         Name = category.Name;
 
-        Products = category.Products is null || !category.Products.Any() ?
-            null : category.Products.Select(x => new ProductDisplayViewModel(x));
+        Posts = category.Posts is null || !category.Posts.Any() ?
+            null : category.Posts.Select(x => new PostDisplayViewModel(x));
     }
 }

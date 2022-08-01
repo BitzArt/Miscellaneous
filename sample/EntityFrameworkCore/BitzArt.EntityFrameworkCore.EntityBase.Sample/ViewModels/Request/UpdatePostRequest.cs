@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
 {
-    public class UpdateProductRequest
+    public class UpdatePostRequest
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -11,14 +11,14 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
 
-        public Product Apply(Product product, User updater)
+        public Post Apply(Post post, User updater)
         {
-            product.Name = Name;
-            product.Price = Price;
+            post.Name = Name;
+            post.Price = Price;
 
-            product.Updated(updater);
+            post.Updated(updater);
 
-            return product;
+            return post;
         }
     }
 }

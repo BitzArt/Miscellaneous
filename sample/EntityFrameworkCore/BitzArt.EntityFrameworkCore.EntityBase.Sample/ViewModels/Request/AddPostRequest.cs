@@ -3,14 +3,18 @@ using System.Text.Json.Serialization;
 
 namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
 {
-    public class AddCategoryRequest
+    public class AddPostRequest
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        public Category ToCategory() => new()
+        [JsonPropertyName("price")]
+        public decimal Price { get; set; }
+
+        public Post ToPost(User creator) => new Post(creator)
         {
-            Name = Name
+            Name = Name,
+            Price = Price,
         };
     }
 }

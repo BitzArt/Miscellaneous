@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
 {
-    public class ProductDisplayViewModel
+    public class PostDisplayViewModel
     {
         [JsonPropertyName("id")]
         public object Id { get; set; }
@@ -32,7 +32,7 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         [JsonPropertyName("updated")]
         public string UpdatedOnString => LastUpdatedOn.ToString("HH:mm:ss");
 
-        public ProductDisplayViewModel(Product product)
+        public PostDisplayViewModel(Post product)
         {
             Id = product.Id.Value;
             Name = product.Name;
