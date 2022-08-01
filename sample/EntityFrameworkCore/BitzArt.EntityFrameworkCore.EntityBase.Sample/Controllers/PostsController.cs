@@ -19,17 +19,17 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var products = await _db.Posts.ToListAsync();
-            var result = products.Select(x => new PostDisplayViewModel(x));
+            var posts = await _db.Posts.ToListAsync();
+            var result = posts.Select(x => new PostDisplayViewModel(x));
             return Ok(result);
         }
 
-        [HttpGet("{productId}")]
-        public async Task<IActionResult> GetAsync([FromRoute] Guid productId)
+        [HttpGet("{postId}")]
+        public async Task<IActionResult> GetAsync([FromRoute] Guid postId)
         {
-            var product = await _db.Posts.FindAsync(productId);
-            if (product is null) return NotFound();
-            var result = new PostDisplayViewModel(product);
+            var post = await _db.Posts.FindAsync(postId);
+            if (post is null) return NotFound();
+            var result = new PostDisplayViewModel(post);
             return Ok(result);
         }
     }

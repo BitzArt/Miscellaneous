@@ -32,17 +32,17 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.ViewModels
         [JsonPropertyName("updated")]
         public string UpdatedOnString => LastUpdatedOn.ToString("HH:mm:ss");
 
-        public PostDisplayViewModel(Post product)
+        public PostDisplayViewModel(Post post)
         {
-            Id = product.Id.Value;
-            Name = product.Name;
-            Price = product.Price;
+            Id = post.Id.Value;
+            Name = post.Name;
+            Price = post.Price;
 
-            CreatedBy = product.CreationInfo.CreatorId!.Value;
-            CreatedOn = product.CreationInfo.CreatedOn;
+            CreatedBy = post.CreationInfo.CreatorId!.Value;
+            CreatedOn = post.CreationInfo.CreatedOn;
 
-            LastUpdatedBy = product.UpdateInfo.UpdaterId!.Value;
-            LastUpdatedOn = product.UpdateInfo.UpdatedOn;
+            LastUpdatedBy = post.UpdateInfo.UpdaterId!.Value;
+            LastUpdatedOn = post.UpdateInfo.UpdatedOn;
         }
     }
 }

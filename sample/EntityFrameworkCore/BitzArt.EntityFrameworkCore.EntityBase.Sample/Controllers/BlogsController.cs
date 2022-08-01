@@ -24,11 +24,11 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{categoryId}")]
-        public async Task<IActionResult> GetAsync([FromRoute] Guid categoryId)
+        [HttpGet("{blogId}")]
+        public async Task<IActionResult> GetAsync([FromRoute] Guid blogId)
         {
             var blog = await _db.Blogs
-                .Where(x => x.Id == categoryId)
+                .Where(x => x.Id == blogId)
                 .Include(x => x.Posts)
                 .FirstOrDefaultAsync();
             if (blog is null) return NotFound();
@@ -47,21 +47,22 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{categoryId}/products")]
-        public async Task<IActionResult> ConfigureCategoryProductsAsync([FromRoute] Guid categoryId, [FromBody] ConfigureBlogPostsRequest request)
+        [HttpPut("{blogId}/posts")]
+        public async Task<IActionResult> ConfigureBlogPostsAsync([FromRoute] Guid blogId, [FromBody] ConfigureBlogPostsRequest request)
         {
-            var blog = await _db
-                .Blogs
+            var blog = await _db.Blogs
                 .Include(x => x.Posts)
-                .Where(x => x.Id == categoryId)
+                .Where(x => x.Id == blogId)
                 .FirstOrDefaultAsync();
             if (blog is null) return NotFound();
 
             blog.Posts!.Clear();
 
-            foreach(var productId in request.PostIds)
+            // Normally you should not do db calls in a loop.
+            // This is for nuget package demonstration purposes only.
+            foreach (var postId in request.PostIds)
             {
-                var post = await _db.Posts.FindAsync(productId);
+                var post = await _db.Posts.FindAsync(postId);
                 if (post is null) return NotFound();
                 blog.Posts.Add(post);
             }

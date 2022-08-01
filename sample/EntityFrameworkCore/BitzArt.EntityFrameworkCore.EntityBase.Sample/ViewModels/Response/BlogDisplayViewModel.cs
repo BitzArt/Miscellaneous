@@ -14,12 +14,12 @@ public class BlogDisplayViewModel
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public IEnumerable<PostDisplayViewModel> Posts { get; set; }
 
-    public BlogDisplayViewModel(Blog category)
+    public BlogDisplayViewModel(Blog blog)
     {
-        Id = category.Id.Value;
-        Name = category.Name;
+        Id = blog.Id.Value;
+        Name = blog.Name;
 
-        Posts = category.Posts is null || !category.Posts.Any() ?
-            null : category.Posts.Select(x => new PostDisplayViewModel(x));
+        Posts = blog.Posts is null || !blog.Posts.Any() ?
+            null : blog.Posts.Select(x => new PostDisplayViewModel(x));
     }
 }

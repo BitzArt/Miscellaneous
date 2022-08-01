@@ -44,33 +44,33 @@ namespace BitzArt.EntityFrameworkCore.EntityBase.Sample.Controllers
             return Ok(result);
         }
 
-        [HttpPost("{userId}/products")]
-        public async Task<IActionResult> AddProductAsync([FromRoute] Guid userId, [FromBody] AddPostRequest request)
+        [HttpPost("{userId}/posts")]
+        public async Task<IActionResult> AddPostAsync([FromRoute] Guid userId, [FromBody] AddPostRequest request)
         {
             var user = await _db.Users.FindAsync(userId);
             if (user is null) return NotFound();
 
-            var product = request.ToPost(user);
-            _db.Add(product);
+            var post = request.ToPost(user);
+            _db.Add(post);
             await _db.SaveChangesAsync();
 
-            var result = new PostDisplayViewModel(product);
+            var result = new PostDisplayViewModel(post);
             return Ok(result);
         }
 
-        [HttpPatch("{userId}/products/{productId}")]
-        public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid userId, [FromRoute] Guid productId, [FromBody] UpdatePostRequest request)
+        [HttpPatch("{userId}/posts/{postId}")]
+        public async Task<IActionResult> UpdatePostAsync([FromRoute] Guid userId, [FromRoute] Guid postId, [FromBody] UpdatePostRequest request)
         {
             var user = await _db.Users.FindAsync(userId);
             if (user is null) return NotFound();
 
-            var product = await _db.Posts.FindAsync(productId);
-            if (product is null) return NotFound();
+            var post = await _db.Posts.FindAsync(postId);
+            if (post is null) return NotFound();
 
-            product = request.Apply(product, user);
+            post = request.Apply(post, user);
             await _db.SaveChangesAsync();
 
-            var result = new PostDisplayViewModel(product);
+            var result = new PostDisplayViewModel(post);
             return Ok(result);
         }
     }
