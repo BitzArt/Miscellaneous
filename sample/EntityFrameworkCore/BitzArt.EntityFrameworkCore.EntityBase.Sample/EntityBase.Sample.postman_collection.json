@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "219d840b-b0ac-4e1b-9369-bfdb9e25e5be",
+		"name": "EntityBase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8614021"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{EntityBase.Sample}}/users",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{EntityBase.Sample}}/users/{{UserId}}",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"users",
+								"{{UserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"UserId\",jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{EntityBase.Sample}}/users/",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Config",
+			"item": [
+				{
+					"name": "Recreate DB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{EntityBase.Sample}}/config/recreate",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"config",
+								"recreate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Get Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{EntityBase.Sample}}/posts",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{EntityBase.Sample}}/posts/{{PostId}}",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"posts",
+								"{{PostId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"PostId\",jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"post 1\",\r\n    \"content\": \"blah blah blah\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{EntityBase.Sample}}/users/{{UserId}}/posts",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"users",
+								"{{UserId}}",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"post 1\",\r\n    \"price\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{EntityBase.Sample}}/users/{{UserId}}/posts/{{PostId}}",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"users",
+								"{{UserId}}",
+								"posts",
+								"{{PostId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "Get Blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{EntityBase.Sample}}/blogs",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Blog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{EntityBase.Sample}}/blogs/{{BlogId}}",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"blogs",
+								"{{BlogId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"BlogId\",jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"blog 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{EntityBase.Sample}}/blogs",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Configure Posts",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"posts\": [\r\n        \"{{PostId}}\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{EntityBase.Sample}}/blogs/{{BlogId}}/posts",
+							"host": [
+								"{{EntityBase.Sample}}"
+							],
+							"path": [
+								"blogs",
+								"{{BlogId}}",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "EntityBase.Sample",
+			"value": "http://localhost:5117",
+			"type": "string"
+		},
+		{
+			"key": "UserId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "PostId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BlogId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
