@@ -22,6 +22,8 @@ public abstract class EntityUpdated<TKey> : EntityCreated<TKey>
     }
 }
 
+public abstract class EntityUpdated : EntityUpdated<Guid> { }
+
 public abstract class EntityUpdated<TKey, TUpdaterKey> : EntityCreated<TKey, TUpdaterKey>
     where TKey : struct
     where TUpdaterKey : struct

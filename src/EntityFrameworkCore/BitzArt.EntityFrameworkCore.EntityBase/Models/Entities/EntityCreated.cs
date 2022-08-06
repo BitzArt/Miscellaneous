@@ -16,6 +16,8 @@ public abstract class EntityCreated<TKey> : EntityBase<TKey>
     }
 }
 
+public abstract class EntityCreated : EntityCreated<Guid> { }
+
 public abstract class EntityCreated<TKey, TCreatorKey> : EntityBase<TKey>
     where TKey : struct
     where TCreatorKey : struct

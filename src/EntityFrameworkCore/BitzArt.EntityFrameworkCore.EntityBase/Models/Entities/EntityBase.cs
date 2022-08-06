@@ -11,4 +11,4 @@ public abstract class EntityBase<TKey> : IIdentifiable<TKey>
     public TKey? Id { get; set; }
 }
 
-public abstract class EntityBase : EntityBase<int> { }
+public abstract class EntityBase : EntityBase<Guid> { }
