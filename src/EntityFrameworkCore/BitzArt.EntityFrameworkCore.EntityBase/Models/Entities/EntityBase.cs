@@ -10,3 +10,5 @@ public abstract class EntityBase<TKey> : IIdentifiable<TKey>
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public TKey? Id { get; set; }
 }
+
+public abstract class EntityBase : EntityBase<int> { }
