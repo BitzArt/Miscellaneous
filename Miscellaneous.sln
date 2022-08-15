@@ -17,7 +17,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{BDDE92
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{C99AEE71-8BA6-401A-B209-2F14692D24F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.EntityFrameworkCore.EntityBase.Sample", "sample\EntityFrameworkCore\BitzArt.EntityFrameworkCore.EntityBase.Sample\BitzArt.EntityFrameworkCore.EntityBase.Sample.csproj", "{B638CA24-4040-4F3A-9227-B5B09710EBAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.EntityFrameworkCore.EntityBase.Sample", "sample\EntityFrameworkCore\BitzArt.EntityFrameworkCore.EntityBase.Sample\BitzArt.EntityFrameworkCore.EntityBase.Sample.csproj", "{B638CA24-4040-4F3A-9227-B5B09710EBAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.LinqExtensions", "src\BitzArt.LinqExtensions\BitzArt.LinqExtensions.csproj", "{C61CD1AF-0E8E-4F32-A9F9-B84D1ED8C445}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2DA898EF-3842-49FE-B687-ADD620C47F83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{9545DA65-B29C-4A40-8010-3E339D138EE9}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Publish BaseFirstContractResolver.yml = .github\workflows\Publish BaseFirstContractResolver.yml
+		.github\workflows\Publish EntityFrameworkCore.EntityBase.yml = .github\workflows\Publish EntityFrameworkCore.EntityBase.yml
+		.github\workflows\Publish EnumToMemberValue.yml = .github\workflows\Publish EnumToMemberValue.yml
+		.github\workflows\Publish LinqExtensions.yml = .github\workflows\Publish LinqExtensions.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +53,10 @@ Global
 		{B638CA24-4040-4F3A-9227-B5B09710EBAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B638CA24-4040-4F3A-9227-B5B09710EBAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B638CA24-4040-4F3A-9227-B5B09710EBAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C61CD1AF-0E8E-4F32-A9F9-B84D1ED8C445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C61CD1AF-0E8E-4F32-A9F9-B84D1ED8C445}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C61CD1AF-0E8E-4F32-A9F9-B84D1ED8C445}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C61CD1AF-0E8E-4F32-A9F9-B84D1ED8C445}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +68,8 @@ Global
 		{287F1A96-7C31-47A0-89F5-89F569629920} = {3757C1C1-318C-4447-AFB0-3BA25D39D218}
 		{C99AEE71-8BA6-401A-B209-2F14692D24F3} = {BDDE9224-CA80-4144-9650-4D05E134B744}
 		{B638CA24-4040-4F3A-9227-B5B09710EBAE} = {C99AEE71-8BA6-401A-B209-2F14692D24F3}
+		{C61CD1AF-0E8E-4F32-A9F9-B84D1ED8C445} = {2638AACB-7314-4962-87BE-93876EEED788}
+		{9545DA65-B29C-4A40-8010-3E339D138EE9} = {2DA898EF-3842-49FE-B687-ADD620C47F83}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
