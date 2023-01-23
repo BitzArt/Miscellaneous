@@ -1,27 +1,30 @@
-﻿using System.Threading.Tasks;
-using MassTransit;
+﻿using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace BitzArt.MassTransit
+namespace MassTransit
 {
-    public class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fault<TMessage>>
+    public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fault<TMessage>>
         where TMessage : class
     {
-        private readonly ILogger _logger;
-        private readonly IProcessor<TMessage> _processor;
+        protected readonly ILogger Logger;
+        protected readonly IProcessor<TMessage> Processor;
 
-        public ConsumerBase(ILogger<IConsumer<Fault<TMessage>>> logger, IProcessor<TMessage> processor)
+        public ConsumerBase(ILogger<IConsumer<TMessage>> logger, IProcessor<TMessage> processor)
         {
-            _logger = logger;
-            _processor = processor;
+            Logger = logger;
+            Processor = processor;
         }
 
         public virtual async Task Consume(ConsumeContext<TMessage> context) =>
-            await _processor.ProcessAsync(context.Message);
+            await Processor.ProcessAsync(context.Message);
 
         public virtual Task Consume(ConsumeContext<Fault<TMessage>> context)
         {
-            _logger.LogError(context.Message.Exceptions[0].Message);
+            var errors = context.Message.Exceptions.Select(x => x.Message);
+            var json = JsonSerializer.Serialize(errors);
+            Logger.LogError("Message consume attempt failed. Errors:\n{json}", json);
             return Task.CompletedTask;
         }
     }

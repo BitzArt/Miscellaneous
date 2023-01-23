@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BitzArt.MassTransit
+namespace MassTransit
 {
     public interface IProcessor<TMessage> where TMessage : class
     {
