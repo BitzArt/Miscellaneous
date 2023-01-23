@@ -10,8 +10,4 @@
 	<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
 </Project>
