@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.MassTransit.Consume
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MassTransit", "MassTransit", "{EDA3AB56-CCE1-4774-9B1E-4828D1E551E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.LinqExtensions.Tests", "src\BitzArt.LinqExtensions.Tests\BitzArt.LinqExtensions.Tests.csproj", "{A62D8E84-A841-4E12-A69F-35F50E2145B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{1A828274-0B29-4892-8525-D9E3F79471EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A828274-0B29-4892-8525-D9E3F79471EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A828274-0B29-4892-8525-D9E3F79471EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A62D8E84-A841-4E12-A69F-35F50E2145B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A62D8E84-A841-4E12-A69F-35F50E2145B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A62D8E84-A841-4E12-A69F-35F50E2145B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A62D8E84-A841-4E12-A69F-35F50E2145B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{9545DA65-B29C-4A40-8010-3E339D138EE9} = {2DA898EF-3842-49FE-B687-ADD620C47F83}
 		{1A828274-0B29-4892-8525-D9E3F79471EC} = {EDA3AB56-CCE1-4774-9B1E-4828D1E551E0}
 		{EDA3AB56-CCE1-4774-9B1E-4828D1E551E0} = {2638AACB-7314-4962-87BE-93876EEED788}
+		{A62D8E84-A841-4E12-A69F-35F50E2145B4} = {2638AACB-7314-4962-87BE-93876EEED788}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
