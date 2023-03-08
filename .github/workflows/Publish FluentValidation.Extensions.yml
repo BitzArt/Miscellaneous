@@ -30,7 +30,7 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/FluentVaidation/BitzArt.FluentValidation.Extensions/BitzArt.FluentValidation.Extensions.csproj --configuration Release /p:Version=${VERSION}
+          dotnet build src/FluentValidation/BitzArt.FluentValidation.Extensions/BitzArt.FluentValidation.Extensions.csproj --configuration Release /p:Version=${VERSION}
           dotnet pack src/FluentValidation/BitzArt.FluentValidation.Extensions/BitzArt.FluentValidation.Extensions.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push

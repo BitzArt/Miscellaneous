@@ -15,9 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2DA8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{9545DA65-B29C-4A40-8010-3E339D138EE9}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\Publish BaseFirstContractResolver.yml = .github\workflows\Publish BaseFirstContractResolver.yml
-		.github\workflows\Publish EntityFrameworkCore.EntityBase.yml = .github\workflows\Publish EntityFrameworkCore.EntityBase.yml
 		.github\workflows\Publish EnumToMemberValue.yml = .github\workflows\Publish EnumToMemberValue.yml
+		.github\workflows\Publish FluentValidation.Extensions.yml = .github\workflows\Publish FluentValidation.Extensions.yml
 		.github\workflows\Publish LinqExtensions.yml = .github\workflows\Publish LinqExtensions.yml
 		.github\workflows\Publish MassTransit.ConsumerBase.yml = .github\workflows\Publish MassTransit.ConsumerBase.yml
 	EndProjectSection
@@ -30,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.LinqExtensions.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FluentValidation", "FluentValidation", "{D39781AC-BBE5-4DBC-8CAD-DF79AFFB2C65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.FluentValidation.Extensions", "src\FluentValidation\BitzArt.FluentValidation.Extensions\BitzArt.FluentValidation.Extensions.csproj", "{83D61F5C-9F19-4DBB-BF20-4C451AD9877B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.FluentValidation.Extensions", "src\FluentValidation\BitzArt.FluentValidation.Extensions\BitzArt.FluentValidation.Extensions.csproj", "{83D61F5C-9F19-4DBB-BF20-4C451AD9877B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
