@@ -4,6 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <RootNamespace>FluentValidation</RootNamespace>
+
+	  <PackageId>BitzArt.FluentValidation.Extensions</PackageId>
+	  <Authors>BitzArt</Authors>
+	  <Description>Extensions for FluentValidation</Description>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <RepositoryType>git</RepositoryType>
+	  <RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+	  <PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
