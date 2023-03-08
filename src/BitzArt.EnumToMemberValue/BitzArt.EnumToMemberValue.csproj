@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>BitzArt</RootNamespace>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>BitzArt</RootNamespace>
 
-	<PackageId>BitzArt.Miscellaneous.EnumToMemberValue</PackageId>
-	<Authors>BitzArt</Authors>
-	  <Description>A library to help match enums with their string member values</Description>
-	<RepositoryType>git</RepositoryType>
-	<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
-  </PropertyGroup>
+		<PackageId>BitzArt.EnumToMemberValue</PackageId>
+		<Authors>BitzArt</Authors>
+		<Description>A library to help match enums with their string member values</Description>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
+	</PropertyGroup>
 
 </Project>

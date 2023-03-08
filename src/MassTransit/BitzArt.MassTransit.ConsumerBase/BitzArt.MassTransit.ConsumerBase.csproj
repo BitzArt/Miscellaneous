@@ -11,8 +11,9 @@
 		<Authors>BitzArt</Authors>
 		<Description>ConsumerBase boilerplate for MassTransit</Description>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
