@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BitzArt.LinqExtensions\BitzArt.LinqExtensions.csproj" />
+	  <ProjectReference Include="..\..\src\BitzArt.LinqExtensions\BitzArt.LinqExtensions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
