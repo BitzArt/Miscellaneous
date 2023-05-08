@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<PackageId>BitzArt.Patcher</PackageId>
+		<Authors>BitzArt</Authors>
+		<Description>This library implements methods needed to Patch entities in REST APIs</Description>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
+	</PropertyGroup>
+
+</Project>
