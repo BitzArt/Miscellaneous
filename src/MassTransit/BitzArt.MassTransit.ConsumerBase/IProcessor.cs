@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace MassTransit
+namespace MassTransit;
+
+public interface IProcessor<TMessage> where TMessage : class
 {
-    public interface IProcessor<TMessage> where TMessage : class
-    {
-        Task ProcessAsync(TMessage message);
-    }
+    Task ProcessAsync(TMessage message);
 }

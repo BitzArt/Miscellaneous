@@ -1,8 +1,7 @@
-﻿using MassTransit;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 
-namespace BitzArt.MassTransit;
+namespace MassTransit;
 
 public static class AddProcessorsExtension
 {
