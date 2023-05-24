@@ -5,6 +5,15 @@ using System.Threading.Tasks;
 
 namespace MassTransit
 {
+    public class ConsumerBase<TProcessor, TMessage> : ConsumerBase<TMessage>
+        where TProcessor : IProcessor<TMessage>
+        where TMessage : class
+    {
+        public ConsumerBase(ILogger<IConsumer<TMessage>> logger, TProcessor processor) : base(logger, processor)
+        {
+        }
+    }
+
     public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fault<TMessage>>
         where TMessage : class
     {
@@ -23,8 +32,12 @@ namespace MassTransit
         public virtual Task Consume(ConsumeContext<Fault<TMessage>> context)
         {
             var errors = context.Message.Exceptions.Select(x => x.Message);
-            var json = JsonSerializer.Serialize(errors);
-            Logger.LogError("Message consume attempt failed. Errors:\n{json}", json);
+            var json = JsonSerializer.Serialize(errors,
+                new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                });
+            Logger.LogError("Message processing attempt failed. Errors:\n{json}", json);
             return Task.CompletedTask;
         }
     }
