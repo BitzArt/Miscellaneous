@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.Json;
@@ -31,8 +32,16 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
     {
         Logger.LogInformation("Received message: {type}", typeof(TMessage));
         var sw = Stopwatch.StartNew();
-        await Processor.ProcessAsync(context.Message);
-        Logger.LogInformation("Message has been processed: {ms}ms.", sw.ElapsedMilliseconds);
+        try
+        {
+            await Processor.ProcessAsync(context.Message);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Processing failed: {error}", ex.Message);
+            throw;
+        }
+        Logger.LogInformation("Message has been processed successfully: {ms}ms.", sw.ElapsedMilliseconds);
         sw.Stop();
     }
         
