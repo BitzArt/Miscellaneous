@@ -30,7 +30,7 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
 
     public virtual async Task Consume(ConsumeContext<TMessage> context)
     {
-        Logger.LogInformation("Received message: {type}", nameof(TMessage));
+        Logger.LogInformation("Received message: {type}", typeof(TMessage).Name);
         var sw = Stopwatch.StartNew();
         try
         {
