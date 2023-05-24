@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -26,8 +27,15 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
         Processor = processor;
     }
 
-    public virtual async Task Consume(ConsumeContext<TMessage> context) =>
+    public virtual async Task Consume(ConsumeContext<TMessage> context)
+    {
+        Logger.LogInformation("Received message: {type}", typeof(TMessage));
+        var sw = Stopwatch.StartNew();
         await Processor.ProcessAsync(context.Message);
+        Logger.LogInformation("Message has been processed: {ms}ms.", sw.ElapsedMilliseconds);
+        sw.Stop();
+    }
+        
 
     public virtual Task Consume(ConsumeContext<Fault<TMessage>> context)
     {
