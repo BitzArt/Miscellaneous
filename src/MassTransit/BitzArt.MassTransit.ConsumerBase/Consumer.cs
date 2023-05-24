@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
-using MassTransit;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace MassTransit
 {
