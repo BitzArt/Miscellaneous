@@ -30,7 +30,7 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
 
     public virtual async Task Consume(ConsumeContext<TMessage> context)
     {
-        Logger.LogInformation("Received message: {type}", typeof(TMessage));
+        Logger.LogInformation("Received message: {type}", nameof(TMessage));
         var sw = Stopwatch.StartNew();
         try
         {
@@ -38,7 +38,7 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
         }
         catch (Exception ex)
         {
-            Logger.LogError("Processing failed: {error}", ex.Message);
+            Logger.LogError("Message processing failed: {error}", ex.Message);
             throw;
         }
         Logger.LogInformation("Message has been processed successfully: {ms}ms.", sw.ElapsedMilliseconds);
