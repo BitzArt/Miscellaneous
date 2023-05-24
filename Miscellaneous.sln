@@ -36,7 +36,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6C59FADC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.Patcher", "src\BitzArt.Patcher\BitzArt.Patcher.csproj", "{78DBB5F9-22F9-4C70-804A-2E82EA782D00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Patcher.Tests", "tests\BitzArt.Patcher.Tests\BitzArt.Patcher.Tests.csproj", "{D23D39F0-EF03-4C4A-9EBA-48ADDE9B1938}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.Patcher.Tests", "tests\BitzArt.Patcher.Tests\BitzArt.Patcher.Tests.csproj", "{D23D39F0-EF03-4C4A-9EBA-48ADDE9B1938}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MassTransit", "MassTransit", "{5BA67B39-E0AA-4A92-B619-0E7ADCDA6871}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.MassTransit.ConsumerBase.Tests", "tests\MassTransit\BitzArt.MassTransit.ConsumerBase.Tests\BitzArt.MassTransit.ConsumerBase.Tests.csproj", "{8AC27A66-E451-4BA5-BE17-F1CA452B24EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +76,10 @@ Global
 		{D23D39F0-EF03-4C4A-9EBA-48ADDE9B1938}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D23D39F0-EF03-4C4A-9EBA-48ADDE9B1938}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D23D39F0-EF03-4C4A-9EBA-48ADDE9B1938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AC27A66-E451-4BA5-BE17-F1CA452B24EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AC27A66-E451-4BA5-BE17-F1CA452B24EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AC27A66-E451-4BA5-BE17-F1CA452B24EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AC27A66-E451-4BA5-BE17-F1CA452B24EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +95,8 @@ Global
 		{83D61F5C-9F19-4DBB-BF20-4C451AD9877B} = {D39781AC-BBE5-4DBC-8CAD-DF79AFFB2C65}
 		{78DBB5F9-22F9-4C70-804A-2E82EA782D00} = {2638AACB-7314-4962-87BE-93876EEED788}
 		{D23D39F0-EF03-4C4A-9EBA-48ADDE9B1938} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
+		{5BA67B39-E0AA-4A92-B619-0E7ADCDA6871} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
+		{8AC27A66-E451-4BA5-BE17-F1CA452B24EB} = {5BA67B39-E0AA-4A92-B619-0E7ADCDA6871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
