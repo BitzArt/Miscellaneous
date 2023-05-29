@@ -7,15 +7,6 @@ using System.Threading.Tasks;
 
 namespace MassTransit;
 
-public class ConsumerBase<TProcessor, TMessage> : ConsumerBase<TMessage>
-    where TProcessor : IProcessor<TMessage>
-    where TMessage : class
-{
-    public ConsumerBase(ILogger<IConsumer<TMessage>> logger, TProcessor processor) : base(logger, processor)
-    {
-    }
-}
-
 public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fault<TMessage>>
     where TMessage : class
 {
