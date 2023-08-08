@@ -4,6 +4,13 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+
+		<PackageId>BitzArt.OpenTelemetry.BoilerPlate</PackageId>
+		<Authors>BitzArt</Authors>
+		<Description>Some boilerplate code for OpenTelemetry</Description>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
