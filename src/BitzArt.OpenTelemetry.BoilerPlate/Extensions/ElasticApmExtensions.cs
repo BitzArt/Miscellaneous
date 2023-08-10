@@ -94,6 +94,8 @@ public static class ElasticApmExtensions
                 });
         });
 
+        ExceptionTelemetry.EnableOpenTelemetry();
+
         return builder;
     }
 }
