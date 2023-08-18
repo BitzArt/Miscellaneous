@@ -22,6 +22,9 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
     public virtual async Task Consume(ConsumeContext<TMessage> context)
     {
         Logger.LogInformation("Received message: {type}", typeof(TMessage).Name);
+
+        await OnBeforeConsuming(context);
+
         var sw = Stopwatch.StartNew();
         try
         {
@@ -34,8 +37,18 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
         }
         Logger.LogInformation("Message has been processed successfully: {ms}ms.", sw.ElapsedMilliseconds);
         sw.Stop();
+
+        await OnAfterConsuming(context);
     }
-        
+
+    public virtual Task OnBeforeConsuming(ConsumeContext<TMessage> context)
+    {
+        return Task.CompletedTask;
+    }
+    public virtual Task OnAfterConsuming(ConsumeContext<TMessage> context)
+    {
+        return Task.CompletedTask;
+    }
 
     public virtual Task Consume(ConsumeContext<Fault<TMessage>> context)
     {
