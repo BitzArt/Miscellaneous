@@ -30,8 +30,8 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/BitzArt.OpenTelemetry.BoilerPlate/BitzArt.OpenTelemetry.BoilerPlate.csproj --configuration Release /p:Version=${VERSION}
-          dotnet pack src/BitzArt.OpenTelemetry.BoilerPlate/BitzArt.OpenTelemetry.BoilerPlate.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/OpenTelemetry/BitzArt.OpenTelemetry.BoilerPlate/BitzArt.OpenTelemetry.BoilerPlate.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/OpenTelemetry/BitzArt.OpenTelemetry.BoilerPlate/BitzArt.OpenTelemetry.BoilerPlate.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
         run: dotnet nuget push BitzArt.OpenTelemetry.BoilerPlate.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}

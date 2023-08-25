@@ -42,7 +42,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MassTransit", "MassTransit"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.MassTransit.ConsumerBase.Tests", "tests\MassTransit\BitzArt.MassTransit.ConsumerBase.Tests\BitzArt.MassTransit.ConsumerBase.Tests.csproj", "{8AC27A66-E451-4BA5-BE17-F1CA452B24EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.OpenTelemetry.BoilerPlate", "src\BitzArt.OpenTelemetry.BoilerPlate\BitzArt.OpenTelemetry.BoilerPlate.csproj", "{A258E652-1BB2-4A90-9ED4-6248A09FD379}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.OpenTelemetry.BoilerPlate", "src\OpenTelemetry\BitzArt.OpenTelemetry.BoilerPlate\BitzArt.OpenTelemetry.BoilerPlate.csproj", "{A258E652-1BB2-4A90-9ED4-6248A09FD379}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenTelemetry", "OpenTelemetry", "{E47B8516-234F-4D06-957C-B24278490706}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,7 +105,8 @@ Global
 		{D23D39F0-EF03-4C4A-9EBA-48ADDE9B1938} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
 		{5BA67B39-E0AA-4A92-B619-0E7ADCDA6871} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
 		{8AC27A66-E451-4BA5-BE17-F1CA452B24EB} = {5BA67B39-E0AA-4A92-B619-0E7ADCDA6871}
-		{A258E652-1BB2-4A90-9ED4-6248A09FD379} = {2638AACB-7314-4962-87BE-93876EEED788}
+		{A258E652-1BB2-4A90-9ED4-6248A09FD379} = {E47B8516-234F-4D06-957C-B24278490706}
+		{E47B8516-234F-4D06-957C-B24278490706} = {2638AACB-7314-4962-87BE-93876EEED788}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
