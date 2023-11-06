@@ -7,6 +7,8 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using BitzArt.OpenTelemetry.BoilerPlate;
+using Microsoft.AspNetCore.Http;
+using System.Diagnostics;
 
 namespace BitzArt;
 
