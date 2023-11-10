@@ -11,23 +11,27 @@ public static class MapProbesExtension
 {
     public static IEndpointRouteBuilder MapProbes(this IEndpointRouteBuilder builder)
     {
+        builder.MapGet("/", () => "It's good to be alive.");
+        MapHealthChecks(builder);
+        MapServiceInfo(builder);
+
+        return builder;
+    }
+
+    private static void MapHealthChecks(IEndpointRouteBuilder builder)
+    {
         builder.MapHealthChecks("_health", new HealthCheckOptions
         {
             ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
         });
+    }
 
+    private static void MapServiceInfo(IEndpointRouteBuilder builder)
+    {
         var infoOptions = builder.ServiceProvider.GetService<ServiceInfoOptions>();
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        var info = new ServiceInfoResponse(infoOptions, environment);
 
-        if (infoOptions is null)
-        {
-            builder.MapGet("/", () => "It's good to be alive.");
-        }
-        else
-        {
-            var info = new ServiceInfoResponse(infoOptions);
-            builder.MapGet("/", () => info);
-        }
-
-        return builder;
+        builder.MapGet("_info", () => info);
     }
 }
