@@ -9,7 +9,7 @@ namespace BitzArt;
 
 public static class MapProbesExtension
 {
-    public static IEndpointRouteBuilder MapRoutes(this IEndpointRouteBuilder builder)
+    public static IEndpointRouteBuilder MapProbes(this IEndpointRouteBuilder builder)
     {
         builder.MapHealthChecks("_health", new HealthCheckOptions
         {
