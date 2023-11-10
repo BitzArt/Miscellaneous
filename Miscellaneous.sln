@@ -46,6 +46,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.OpenTelemetry.Boile
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenTelemetry", "OpenTelemetry", "{E47B8516-234F-4D06-957C-B24278490706}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.Probes", "src\BitzArt.Probes\BitzArt.Probes.csproj", "{014EF2B0-4D13-4A35-ADE7-006689C5EC3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{A258E652-1BB2-4A90-9ED4-6248A09FD379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A258E652-1BB2-4A90-9ED4-6248A09FD379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A258E652-1BB2-4A90-9ED4-6248A09FD379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{014EF2B0-4D13-4A35-ADE7-006689C5EC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{014EF2B0-4D13-4A35-ADE7-006689C5EC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{014EF2B0-4D13-4A35-ADE7-006689C5EC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{014EF2B0-4D13-4A35-ADE7-006689C5EC3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{8AC27A66-E451-4BA5-BE17-F1CA452B24EB} = {5BA67B39-E0AA-4A92-B619-0E7ADCDA6871}
 		{A258E652-1BB2-4A90-9ED4-6248A09FD379} = {E47B8516-234F-4D06-957C-B24278490706}
 		{E47B8516-234F-4D06-957C-B24278490706} = {2638AACB-7314-4962-87BE-93876EEED788}
+		{014EF2B0-4D13-4A35-ADE7-006689C5EC3D} = {2638AACB-7314-4962-87BE-93876EEED788}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}

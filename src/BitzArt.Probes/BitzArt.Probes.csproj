@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<PackageId>BitzArt.Probes</PackageId>
+		<Authors>BitzArt</Authors>
+		<Description>Default probes and healthchecks for web APIs</Description>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
+	</ItemGroup>
+
+</Project>
