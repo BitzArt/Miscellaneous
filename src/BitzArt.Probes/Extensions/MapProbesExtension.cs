@@ -11,7 +11,7 @@ public static class MapProbesExtension
 {
     public static IEndpointRouteBuilder MapProbes(this IEndpointRouteBuilder builder)
     {
-        builder.MapGet("/", () => "It's good to be alive.");
+        builder.MapGet("/", () => ProbeMessages.GetOne());
         MapHealthChecks(builder);
         MapServiceInfo(builder);
 
