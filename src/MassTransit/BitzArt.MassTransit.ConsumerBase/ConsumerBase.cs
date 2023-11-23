@@ -35,7 +35,7 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
             Logger.LogError("Message processing failed: {error}", ex.Message);
             throw;
         }
-        Logger.LogInformation("Message has been processed successfully: {ms}ms.", sw.ElapsedMilliseconds);
+        Logger.LogInformation("Message has been processed successfully in {ms}ms.", sw.ElapsedMilliseconds);
         sw.Stop();
 
         await OnAfterConsuming(context);
@@ -58,7 +58,7 @@ public abstract class ConsumerBase<TMessage> : IConsumer<TMessage>, IConsumer<Fa
             {
                 WriteIndented = true
             });
-        Logger.LogError("Message processing attempt failed. Errors:\n{json}", json);
+        Logger.LogError("Message processing failed after {count} attempts. Errors:\n{json}", errors.Count(), json);
         return Task.CompletedTask;
     }
 }
