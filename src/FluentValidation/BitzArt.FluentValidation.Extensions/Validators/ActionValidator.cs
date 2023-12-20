@@ -1,26 +1,20 @@
 ﻿namespace FluentValidation;
 
-public abstract class ActionValidator<T> : JsonValidator<T>
+public abstract class ActionValidator<T> : AbstractValidator<T>, IActionValidator
 {
-    protected readonly ActionType ActionType;
-
-    protected ActionValidator(ActionType actionType)
+    private ActionType? _actionType;
+    public ActionType ActionType
     {
-        ActionType = actionType;
+        get => _actionType is not null ?
+            _actionType!.Value :
+            throw new ArgumentException("ActionType is not configured for this ActionValidator.");
+
+        set => _actionType = value;
     }
+
     public IConditionBuilder When(ActionType actionType, Action action)
         => When(x => ActionType == actionType, action);
 
     public IConditionBuilder Unless(ActionType actionType, Action action)
         => Unless(x => ActionType == actionType, action);
-}
-
-public enum ActionType : byte
-{
-    Get = 1,
-    Create = 2,
-    Update = 3,
-    Patch = 4,
-    Options = 5,
-    Delete = 6
 }

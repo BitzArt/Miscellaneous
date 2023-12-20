@@ -1,22 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-	  <RootNamespace>FluentValidation</RootNamespace>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>FluentValidation</RootNamespace>
 
-	  <PackageId>BitzArt.FluentValidation.Extensions</PackageId>
-	  <Authors>BitzArt</Authors>
-	  <Description>Extensions for FluentValidation</Description>
-	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <RepositoryType>git</RepositoryType>
-	  <RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
-	  <PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
-  </PropertyGroup>
+		<PackageId>BitzArt.FluentValidation.Extensions</PackageId>
+		<Authors>BitzArt</Authors>
+		<Description>Extensions for FluentValidation</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.5.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.8.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>BitzArt.FluentValidation.Extensions.UnitTests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 
 </Project>
