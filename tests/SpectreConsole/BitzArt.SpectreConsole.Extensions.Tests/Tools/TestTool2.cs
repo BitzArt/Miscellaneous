@@ -1,6 +1,6 @@
 ﻿namespace BitzArt.ConsoleTools;
 
-public class TestTool2 : IConsoleTool
+public class TestTool2 : IConsoleMenu
 {
     public void Run()
     {

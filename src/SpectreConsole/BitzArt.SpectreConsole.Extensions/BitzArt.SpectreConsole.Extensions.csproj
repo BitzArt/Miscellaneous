@@ -7,7 +7,7 @@
 
 		<PackageId>BitzArt.ConsoleTools</PackageId>
 		<Authors>BitzArt</Authors>
-		<Description>A library to help implement Console Tools</Description>
+		<Description></Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
@@ -20,7 +20,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Spectre.Console" Version="0.48.0" />
+		<PackageReference Include="Spectre.Console.Cli" Version="0.48.0" />
 	</ItemGroup>
 
 	<ItemGroup>

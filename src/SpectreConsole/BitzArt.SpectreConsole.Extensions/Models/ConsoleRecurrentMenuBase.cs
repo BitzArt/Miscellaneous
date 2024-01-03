@@ -1,12 +1,16 @@
-﻿using System.Text;
+﻿using Spectre.Console;
+using System.Text;
 
-namespace BitzArt.ConsoleTools;
+namespace BitzArt.Console;
 
-public abstract class ConsoleRecurrentToolBase : ConsoleToolBase
+public abstract class ConsoleRecurrentMenuBase : ConsoleMenuBase
 {
     protected record RecurrentAction(string Title, Action Action);
 
     protected virtual Dictionary<ConsoleKey, RecurrentAction> Actions { get; set; } = [];
+
+    protected virtual bool MainMenu => false;
+    private string ExitMenuItem => MainMenu ? "ESC - Exit" : "ESC - Back";
 
     protected void AddAction(ConsoleKey key, string title, Action action)
     {
@@ -29,18 +33,20 @@ public abstract class ConsoleRecurrentToolBase : ConsoleToolBase
         $"""
         {GetActionMenu()}
         
-        ESC - Back
+        {ExitMenuItem}
         """;
 
-    public override void RunTool()
+    public override void Run()
     {
         while (true)
         {
-            Console.Clear();
+            AnsiConsole.Clear();
 
-            ConsoleEx.WriteMenu(FullMenu);
+            AnsiConsoleMenu.WriteTitle(Title);
 
-            var key = Console.ReadKey(true).Key;
+            AnsiConsoleMenu.WriteMenuItems(FullMenu);
+
+            var key = System.Console.ReadKey(true).Key;
 
             if (key == ConsoleKey.Escape) return;
 

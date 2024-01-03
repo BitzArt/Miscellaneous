@@ -9,20 +9,20 @@ public class ServiceInjectionTests
     {
         var services = new ServiceCollection();
 
-        services.AddConsoleTool<TestTool1>();
+        services.AddConsoleMenu<TestTool1>();
 
         var provider = services.BuildServiceProvider();
 
-        var tools = provider.GetServices<IConsoleTool>();
+        var tools = provider.GetServices<IConsoleMenu>();
         Assert.Single(tools);
 
-        var toolByInterface = provider.GetService<IConsoleTool>();
+        var toolByInterface = provider.GetService<IConsoleMenu>();
         Assert.NotNull(toolByInterface);
         Assert.True(toolByInterface is TestTool1);
 
         var toolByType = provider.GetService<TestTool1>();
         Assert.NotNull(toolByType);
-        Assert.True(toolByType is IConsoleTool);
+        Assert.True(toolByType is IConsoleMenu);
     }
 
     [Fact]
@@ -30,12 +30,12 @@ public class ServiceInjectionTests
     {
         var services = new ServiceCollection();
 
-        services.AddConsoleTool<TestTool1>();
-        services.AddConsoleTool<TestTool2>();
+        services.AddConsoleMenu<TestTool1>();
+        services.AddConsoleMenu<TestTool2>();
 
         var provider = services.BuildServiceProvider();
 
-        var tools = provider.GetServices<IConsoleTool>();
+        var tools = provider.GetServices<IConsoleMenu>();
 
         Assert.Equal(2, tools.Count());
         Assert.Contains(tools, x => x.GetType() == typeof(TestTool1));
@@ -47,12 +47,12 @@ public class ServiceInjectionTests
     {
         var services = new ServiceCollection();
 
-        services.AddConsoleTool(typeof(TestTool1));
-        services.AddConsoleTool(typeof(TestTool2));
+        services.AddConsoleMenu(typeof(TestTool1));
+        services.AddConsoleMenu(typeof(TestTool2));
 
         var provider = services.BuildServiceProvider();
 
-        var tools = provider.GetServices<IConsoleTool>();
+        var tools = provider.GetServices<IConsoleMenu>();
 
         Assert.Equal(2, tools.Count());
         Assert.Contains(tools, x => x.GetType() == typeof(TestTool1));
@@ -64,11 +64,11 @@ public class ServiceInjectionTests
     {
         var services = new ServiceCollection();
 
-        services.AddConsoleToolsFromAssembly(typeof(ServiceInjectionTests).Assembly);
+        services.AddConsoleMenusFromAssembly(typeof(ServiceInjectionTests).Assembly);
 
         var provider = services.BuildServiceProvider();
 
-        var tools = provider.GetServices<IConsoleTool>();
+        var tools = provider.GetServices<IConsoleMenu>();
 
         Assert.Equal(2, tools.Count());
         Assert.Contains(tools, x => x.GetType() == typeof(TestTool1));
@@ -80,11 +80,11 @@ public class ServiceInjectionTests
     {
         var services = new ServiceCollection();
 
-        services.AddConsoleToolsFromAssemblyContaining(typeof(ServiceInjectionTests));
+        services.AddConsoleMenusFromAssemblyContaining(typeof(ServiceInjectionTests));
 
         var provider = services.BuildServiceProvider();
 
-        var tools = provider.GetServices<IConsoleTool>();
+        var tools = provider.GetServices<IConsoleMenu>();
 
         Assert.Equal(2, tools.Count());
         Assert.Contains(tools, x => x.GetType() == typeof(TestTool1));
@@ -96,11 +96,11 @@ public class ServiceInjectionTests
     {
         var services = new ServiceCollection();
 
-        services.AddConsoleToolsFromAssemblyContaining<ServiceInjectionTests>();
+        services.AddConsoleMenusFromAssemblyContaining<ServiceInjectionTests>();
 
         var provider = services.BuildServiceProvider();
 
-        var tools = provider.GetServices<IConsoleTool>();
+        var tools = provider.GetServices<IConsoleMenu>();
 
         Assert.Equal(2, tools.Count());
         Assert.Contains(tools, x => x.GetType() == typeof(TestTool1));

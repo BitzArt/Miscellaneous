@@ -52,9 +52,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FluentValidation", "FluentV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.FluentValidation.Extensions.UnitTests", "tests\FluentValidation\BitzArt.FluentValidation.Extensions.UnitTests\BitzArt.FluentValidation.Extensions.UnitTests.csproj", "{9FDF435B-8ACD-48D5-986A-1B526D7F6E38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.ConsoleTools", "src\BitzArt.ConsoleTools\BitzArt.ConsoleTools.csproj", "{0826A59B-A539-4E53-9D1A-61D4A9E10215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.SpectreConsole.Extensions", "src\SpectreConsole\BitzArt.SpectreConsole.Extensions\BitzArt.SpectreConsole.Extensions.csproj", "{0826A59B-A539-4E53-9D1A-61D4A9E10215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.ConsoleTools.Tests", "tests\BitzArt.ConsoleTools.Tests\BitzArt.ConsoleTools.Tests.csproj", "{6C922491-4163-4862-8E01-8191EA1E5701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.SpectreConsole.Extensions.Tests", "tests\SpectreConsole\BitzArt.SpectreConsole.Extensions.Tests\BitzArt.SpectreConsole.Extensions.Tests.csproj", "{6C922491-4163-4862-8E01-8191EA1E5701}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpectreConsole", "SpectreConsole", "{0490E833-4AF5-42C7-A126-E13299E3C8C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpectreConsole", "SpectreConsole", "{4FF558B6-CD2A-4FC0-B610-258EEA111F40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.SpectreConsole.Extensions.TestApp", "tests\SpectreConsole\BitzArt.SpectreConsole.Extensions.TestApp\BitzArt.SpectreConsole.Extensions.TestApp.csproj", "{F0EDEC14-7B10-43DB-9DC3-8AA2B0269374}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,6 +120,10 @@ Global
 		{6C922491-4163-4862-8E01-8191EA1E5701}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C922491-4163-4862-8E01-8191EA1E5701}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C922491-4163-4862-8E01-8191EA1E5701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0EDEC14-7B10-43DB-9DC3-8AA2B0269374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0EDEC14-7B10-43DB-9DC3-8AA2B0269374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0EDEC14-7B10-43DB-9DC3-8AA2B0269374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0EDEC14-7B10-43DB-9DC3-8AA2B0269374}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,8 +146,11 @@ Global
 		{014EF2B0-4D13-4A35-ADE7-006689C5EC3D} = {2638AACB-7314-4962-87BE-93876EEED788}
 		{B8DD59B3-F647-4761-97AD-EEBB972B8557} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
 		{9FDF435B-8ACD-48D5-986A-1B526D7F6E38} = {B8DD59B3-F647-4761-97AD-EEBB972B8557}
-		{0826A59B-A539-4E53-9D1A-61D4A9E10215} = {2638AACB-7314-4962-87BE-93876EEED788}
-		{6C922491-4163-4862-8E01-8191EA1E5701} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
+		{0826A59B-A539-4E53-9D1A-61D4A9E10215} = {0490E833-4AF5-42C7-A126-E13299E3C8C1}
+		{6C922491-4163-4862-8E01-8191EA1E5701} = {4FF558B6-CD2A-4FC0-B610-258EEA111F40}
+		{0490E833-4AF5-42C7-A126-E13299E3C8C1} = {2638AACB-7314-4962-87BE-93876EEED788}
+		{4FF558B6-CD2A-4FC0-B610-258EEA111F40} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
+		{F0EDEC14-7B10-43DB-9DC3-8AA2B0269374} = {4FF558B6-CD2A-4FC0-B610-258EEA111F40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
