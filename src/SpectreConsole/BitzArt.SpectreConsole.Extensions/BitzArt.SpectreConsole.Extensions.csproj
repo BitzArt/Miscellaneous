@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<PackageId>BitzArt.ConsoleTools</PackageId>
+		<PackageId>BitzArt.SpectreConsole.Extensions</PackageId>
 		<Authors>BitzArt</Authors>
 		<Description></Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
