@@ -12,7 +12,7 @@ env:
 
 jobs:
 
-  SpectreConsole.Extensions:
+  SpectreConsole-Extensions:
     name: SpectreConsole.Extensions
     runs-on: ubuntu-latest
     steps:
