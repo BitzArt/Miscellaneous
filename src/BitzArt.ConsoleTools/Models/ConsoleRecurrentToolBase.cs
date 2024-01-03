@@ -36,6 +36,8 @@ public abstract class ConsoleRecurrentToolBase : ConsoleToolBase
     {
         while (true)
         {
+            Console.Clear();
+
             ConsoleEx.WriteMenu(FullMenu);
 
             var key = Console.ReadKey(true).Key;

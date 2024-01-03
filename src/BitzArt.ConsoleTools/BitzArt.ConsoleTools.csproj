@@ -8,10 +8,16 @@
 		<PackageId>BitzArt.ConsoleTools</PackageId>
 		<Authors>BitzArt</Authors>
 		<Description>A library to help implement Console Tools</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="True" PackagePath="\" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
@@ -22,5 +28,4 @@
 			<_Parameter1>BitzArt.ConsoleTools.Tests</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
-
 </Project>
