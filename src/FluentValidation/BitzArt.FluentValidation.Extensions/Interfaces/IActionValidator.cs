@@ -1,6 +1,6 @@
 ﻿namespace FluentValidation;
 
-internal interface IActionValidator
+public interface IActionValidator
 {
     public ActionType ActionType { get; set; }
 }
