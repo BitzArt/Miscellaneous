@@ -26,8 +26,8 @@ internal static class ExpressionExtensions
 
     public class ParameterReplaceVisitor : ExpressionVisitor
     {
-        private ParameterExpression from;
-        private Expression to;
+        private readonly ParameterExpression from;
+        private readonly Expression to;
         public ParameterReplaceVisitor(ParameterExpression from, Expression to)
         {
             this.from = from;

@@ -4,6 +4,7 @@
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 		<RootNamespace>BitzArt</RootNamespace>
 		<Nullable>enable</Nullable>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 
 		<PackageId>BitzArt.LinqExtensions</PackageId>
 		<Authors>BitzArt</Authors>

@@ -3,8 +3,14 @@ using System.Linq.Expressions;
 
 namespace System.Linq;
 
+/// <summary>
+/// Extensions for adding filters to LINQ queries.
+/// </summary>
 public static class AddFilterExtension
 {
+    /// <summary>
+    /// Adds a filter to the query if the filter value is not null.
+    /// </summary>
     public static IQueryable<TSource> AddFilter<TSource, TProperty>(this IQueryable<TSource> source, Expression<Func<TSource, TProperty?>> expression, TProperty? filter, FilterOperation filterOperation = FilterOperation.Equal)
         where TProperty : class
     {
@@ -13,6 +19,9 @@ public static class AddFilterExtension
         return BuildExpression(source, filter, expression, filterOperation);
     }
 
+    /// <summary>
+    /// Adds a filter to the query if the filter value is not null.
+    /// </summary>
     public static IQueryable<TSource> AddFilter<TSource, TProperty>(this IQueryable<TSource> source, Expression<Func<TSource, TProperty?>> expression, TProperty? filter, FilterOperation filterOperation = FilterOperation.Equal)
         where TProperty : struct
     {
