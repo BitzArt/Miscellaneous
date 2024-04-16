@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BitzArt;
+namespace System.Linq;
 
 /// <summary>
 /// Extension methods for applying filter sets to queries.

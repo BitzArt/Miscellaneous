@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace BitzArt;
+namespace System.Linq;
 
 internal static class ExpressionExtensions
 {

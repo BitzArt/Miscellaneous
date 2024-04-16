@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace BitzArt;
+namespace System.Linq;
 
 /// <summary>
 /// Extension methods for median calculation in LINQ queries.
