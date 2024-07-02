@@ -14,6 +14,7 @@ public static class FilterSetExtensions
     /// <param name="query"></param>
     /// <param name="filterSet"></param>
     /// <returns></returns>
+    [Obsolete]
     public static IQueryable<TSource> Apply<TSource>(this IQueryable<TSource> query, IFilterSet<TSource> filterSet)
         where TSource : class
     {

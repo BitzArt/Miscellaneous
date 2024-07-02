@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace BitzArt;
 
@@ -6,6 +7,7 @@ namespace BitzArt;
 /// A set of filters to apply to a query.
 /// </summary>
 /// <typeparam name="TSource"></typeparam>
+[Obsolete]
 public interface IFilterSet<TSource> where TSource : class
 {
     /// <summary>
