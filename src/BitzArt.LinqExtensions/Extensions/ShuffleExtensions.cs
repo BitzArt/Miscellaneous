@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MediaMars.Management;
+namespace BitzArt;
 
 /// <summary>
 /// Extension methods for shuffling collections.
