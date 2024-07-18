@@ -12,7 +12,7 @@ public static class ShuffleExtensions
     private static readonly Random _random = new();
 
     /// <summary>
-    /// Shuffles the elements of the source collection
+    /// Shuffles the elements of the collection
     /// using <see href="https://en.wikipedia.org/wiki/Fisher-Yates_shuffle"/>
     /// </summary>
     /// <returns>A new IQueryable with the elements shuffled.</returns>
@@ -20,7 +20,7 @@ public static class ShuffleExtensions
         => source.Shuffle().AsQueryable();
 
     /// <summary>
-    /// Shuffles the elements of the source collection
+    /// Shuffles the elements of the collection
     /// using <see href="https://en.wikipedia.org/wiki/Fisher-Yates_shuffle"/>
     /// </summary>
     /// <returns>A new collection with the elements shuffled.</returns>
