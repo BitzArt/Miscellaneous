@@ -25,11 +25,12 @@ public static class BatchExtensions
     public static IQueryable<TSource> Batch<TSource, TProperty>(
         this IQueryable<TSource> query,
         Expression<Func<TSource, TProperty>> selector,
-        int size,
-        int offset,
+        (int size, int offset) batchRequest,
         OrderDirection orderDirection = OrderDirection.Ascending)
     {
-        return query.OrderBy(selector, orderDirection).Skip(offset).Take(size);
+        return query.OrderBy(selector, orderDirection)
+            .Skip(batchRequest.offset)
+            .Take(batchRequest.size);
     }
 
     /// <summary>
