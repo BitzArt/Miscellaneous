@@ -91,7 +91,7 @@ public class BatchTests
 
         // Act
         var batch = query.Select(x => x.Id!.Value)
-            .Batch(x => x, (size, offset)).ToList();
+            .Batch(x => x, new BatchRequest(size, offset)).ToList();
 
         // Assert
         Assert.Equal(expectedCount, batch.Count);
