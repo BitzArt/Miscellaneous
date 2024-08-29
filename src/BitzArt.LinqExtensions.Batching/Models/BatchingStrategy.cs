@@ -1,5 +1,4 @@
-﻿
-namespace BitzArt.LinqExtensions.Batching;
+﻿namespace BitzArt.LinqExtensions.Batching;
 
 internal class BatchingStrategy<TSource> : IBatchingStrategy<TSource>
 {
@@ -11,13 +10,15 @@ internal class BatchingStrategy<TSource> : IBatchingStrategy<TSource>
         NotifyQueryChanged();
     }
 
+    /// <summary>
+    /// <inheritdoc />
+    /// </summary>
     public virtual IQueryable<TSource> GetQuery(IQueryable<TSource> query, int size)
-    {
-        return query.Take(size);
-    }
+        => query.Take(size);
 
-    public void NotifyQueryChanged()
-    {
-        Builder.NotifyQueryChanged();
-    }
+    /// <summary>
+    /// <inheritdoc />
+    /// </summary>
+    public void NotifyQueryChanged() 
+        => Builder.NotifyQueryChanged();
 }

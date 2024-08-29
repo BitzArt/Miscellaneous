@@ -1,12 +1,13 @@
 ﻿namespace BitzArt.LinqExtensions.Batching;
 
-internal class OffsetBatchingStrategy<TSource>(IBatchQueryBuilder<TSource> builder, int offset) 
+internal class OffsetBatchingStrategy<TSource>(IBatchQueryBuilder<TSource> builder, int offset)
     : BatchingStrategy<TSource>(builder)
 {
     private readonly int _offset = offset;
 
+    /// <summary>
+    /// <inheritdoc />
+    /// </summary>
     public override IQueryable<TSource> GetQuery(IQueryable<TSource> query, int size)
-    {
-        return query.Skip(_offset).Take(size);
-    }
+        => query.Skip(_offset).Take(size);
 }

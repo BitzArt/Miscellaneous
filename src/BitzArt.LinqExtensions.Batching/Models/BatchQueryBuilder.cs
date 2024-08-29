@@ -3,8 +3,11 @@ using System.Linq.Expressions;
 
 namespace BitzArt.LinqExtensions.Batching;
 
-internal class BatchQueryBuilder<TSource> : IBatchQueryBuilder<TSource>
+internal class BatchQueryBuilder<TSource> : IBatchQueryBuilder<TSource>, IAsyncEnumerable<TSource>
 {
+    /// <summary>
+    /// <inheritdoc />
+    /// </summary>
     public IBatchingStrategy<TSource> BatchingStrategy { get; set; }
 
     private readonly int _size;
@@ -38,11 +41,22 @@ internal class BatchQueryBuilder<TSource> : IBatchQueryBuilder<TSource>
         BatchingStrategy = new BatchingStrategy<TSource>(this);
     }
 
-    public IEnumerator<TSource> GetEnumerator() => ResultingQuery.GetEnumerator();
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
+    /// <summary>
+    /// <inheritdoc />
+    /// </summary>
     public void NotifyQueryChanged()
     {
         _queryChanged = true;
+    }
+
+    public IEnumerator<TSource> GetEnumerator() => ResultingQuery.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public IAsyncEnumerator<TSource> GetAsyncEnumerator(CancellationToken cancellationToken = default)
+    {
+        if (ResultingQuery is IAsyncEnumerable<TSource> asyncEnumerable)
+            return asyncEnumerable.GetAsyncEnumerator(cancellationToken);
+
+        throw new NotSupportedException("The query does not support async enumeration.");
     }
 }

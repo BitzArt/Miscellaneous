@@ -9,9 +9,12 @@ internal class LastValueBatchingStrategy<TSource, TProperty>(
     OrderDirection orderDirection)
     : BatchingStrategy<TSource>(builder)
 {
+    /// <summary>
+    /// <inheritdoc />
+    /// </summary>
     public override IQueryable<TSource> GetQuery(IQueryable<TSource> query, int size)
     {
-        if (lastValue is null) 
+        if (lastValue is null)
             return query.OrderBy(selector, orderDirection).Take(size);
 
         var constant = Expression.Constant(lastValue, typeof(TProperty));
