@@ -8,7 +8,7 @@
 
 		<PackageId>BitzArt.LinqExtensions.Batching</PackageId>
 		<Authors>BitzArt</Authors>
-		<Description>Batch LINQ Extension</Description>
+		<Description>Batch LINQ Extensions</Description>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
