@@ -1,3 +1,4 @@
+using BitzArt.EnumToMemberValue;
 using FluentValidation.Models;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -106,5 +107,82 @@ public class AddActionValidatorsExtensionTests
         Assert.True(validator is TestEntityValidator);
         var validatorCasted = (TestEntityValidator)validator;
         Assert.Equal(actionType, validatorCasted.ActionType);
+    }
+
+    [Theory]
+    [InlineData(ActionType.Get)]
+    [InlineData(ActionType.Create)]
+    [InlineData(ActionType.Update)]
+    [InlineData(ActionType.Patch)]
+    [InlineData(ActionType.Options)]
+    [InlineData(ActionType.Delete)]
+    public void AddActionValidator_WithoutSpecifyingActionType_ValidatorAccessibleByActionType(ActionType resolveKey)
+    {
+        // Arrange
+        IServiceCollection services = new ServiceCollection();
+        var validatorType = typeof(TestEntityValidator);
+
+        // Act
+        services.AddActionValidator(validatorType);
+
+        // Assert
+        var serviceProvider = services.BuildServiceProvider();
+        var validator = serviceProvider.GetRequiredKeyedService<IValidator<TestEntity>>(resolveKey);
+
+        Assert.NotNull(validator);
+        Assert.True(validator is TestEntityValidator);
+        Assert.Equal(resolveKey, ((TestEntityValidator)validator).ActionType);
+    }
+
+    [Theory]
+    [InlineData(ActionType.Get)]
+    [InlineData(ActionType.Create)]
+    [InlineData(ActionType.Update)]
+    [InlineData(ActionType.Patch)]
+    [InlineData(ActionType.Options)]
+    [InlineData(ActionType.Delete)]
+    public void AddActionValidator_WithActionType_ValidatorStillAccessibleByActionType(ActionType resolveKey)
+    {
+        // Arrange
+        IServiceCollection services = new ServiceCollection();
+        var validatorType = typeof(TestEntityValidator);
+
+        // Act
+        services.AddActionValidator(validatorType, x => default);
+
+        // Assert
+        var serviceProvider = services.BuildServiceProvider();
+        var validator = serviceProvider.GetRequiredKeyedService<IValidator<TestEntity>>(resolveKey);
+
+        Assert.NotNull(validator);
+        Assert.True(validator is TestEntityValidator);
+        Assert.Equal(resolveKey, ((TestEntityValidator)validator).ActionType);
+    }
+
+    [Theory]
+    [InlineData(ActionTypes.Get)]
+    [InlineData(ActionTypes.Create)]
+    [InlineData(ActionTypes.Update)]
+    [InlineData(ActionTypes.Patch)]
+    [InlineData(ActionTypes.Options)]
+    [InlineData(ActionTypes.Delete)]
+    public void AddActionValidator_WithoutSpecifyingActionType_ValidatorAccessibleByActionTypeEnumMemberValue(string resolveKey)
+    {
+        // Arrange
+        IServiceCollection services = new ServiceCollection();
+        var validatorType = typeof(TestEntityValidator);
+
+        // Act
+        services.AddActionValidator(validatorType);
+
+        // Assert
+        var serviceProvider = services.BuildServiceProvider();
+        var validator = serviceProvider.GetRequiredKeyedService<IValidator<TestEntity>>(resolveKey);
+
+        var expectedActionType = resolveKey.ToEnum<ActionType>();
+
+        Assert.NotNull(validator);
+        Assert.True(validator is TestEntityValidator);
+        Assert.Equal(expectedActionType, ((TestEntityValidator)validator).ActionType);
     }
 }
