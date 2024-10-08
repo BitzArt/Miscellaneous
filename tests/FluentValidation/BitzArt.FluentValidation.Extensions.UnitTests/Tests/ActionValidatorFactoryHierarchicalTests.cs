@@ -41,7 +41,6 @@ public class ActionValidatorFactoryHierarchicalTests
         services.AddActionValidator<TestHierarchyParentValidator>();
         services.AddActionValidator<TestDescriptionValidator>();
 
-
         var serviceProvider = services.BuildServiceProvider();
         var factory = serviceProvider.GetRequiredService<IActionValidatorFactory>();
 
