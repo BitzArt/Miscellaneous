@@ -50,9 +50,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FluentValidation", "FluentV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.FluentValidation.Extensions.UnitTests", "tests\FluentValidation\BitzArt.FluentValidation.Extensions.UnitTests\BitzArt.FluentValidation.Extensions.UnitTests.csproj", "{9FDF435B-8ACD-48D5-986A-1B526D7F6E38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.LinqExtensions.Batching", "src\BitzArt.LinqExtensions.Batching\BitzArt.LinqExtensions.Batching.csproj", "{81AC0594-A0C5-4A02-8C4D-B8E139F16F5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.LinqExtensions.Batching", "src\BitzArt.LinqExtensions.Batching\BitzArt.LinqExtensions.Batching.csproj", "{81AC0594-A0C5-4A02-8C4D-B8E139F16F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.LinqExtensions.Batching.Tests", "tests\BitzArt.LinqExtensions.Batching.Tests\BitzArt.LinqExtensions.Batching.Tests.csproj", "{6DBA7894-9852-4DF1-B9E0-09D60D311F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.LinqExtensions.Batching.Tests", "tests\BitzArt.LinqExtensions.Batching.Tests\BitzArt.LinqExtensions.Batching.Tests.csproj", "{6DBA7894-9852-4DF1-B9E0-09D60D311F6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{629938AD-8A1E-49C0-ABFB-724E564B0CCB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
