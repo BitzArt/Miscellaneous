@@ -9,7 +9,7 @@
 
 		<PackageId>BitzArt.Json.TypedObjects</PackageId>
 		<Authors>BitzArt</Authors>
-		<Description>Utilities for objects serialization and deserialization</Description>
+		<Description>Utilities, helping to retain objects' original types during serialization and deserialization</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>

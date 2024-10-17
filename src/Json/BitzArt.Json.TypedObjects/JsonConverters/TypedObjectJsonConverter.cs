@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace BitzArt.Json;
 
 /// <summary>
-/// Converts value of type <typeparamref name="T"/> to and from JSON, preserving original type information.
+/// Converts a value of type <typeparamref name="T"/> to and from JSON, retaining original type information.
 /// </summary>
 public class TypedObjectJsonConverter<T> : JsonConverter<T>
 {

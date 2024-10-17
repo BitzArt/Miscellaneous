@@ -1,4 +1,4 @@
-﻿// Source of this code: https://stackoverflow.com/a/67082032
+﻿// Source of the code: https://stackoverflow.com/a/67082032
 
 using System.Collections;
 using System.Text.Json;
@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 namespace BitzArt.Json;
 
 /// <summary>
-/// Converts collection to and from JSON using a specified <typeparamref name="TItemConverter"/>.
+/// Converts a collection to and from JSON using a specified <typeparamref name="TItemConverter"/>.
 /// </summary>
 /// <typeparam name="TItemConverter"></typeparam>
 public class ItemConverter<TItemConverter> : JsonConverterFactory
@@ -169,7 +169,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
 public static class TypeExtensions
 {
     /// <summary>
-    /// Returns all interfaces implemented by the type and the type itself if it is an interface.
+    /// Retrieves all interfaces implemented by the specified type.
     /// </summary>
     public static IEnumerable<Type> GetInterfacesAndSelf(this Type type) =>
         (type ?? throw new ArgumentNullException(nameof(type))).IsInterface
