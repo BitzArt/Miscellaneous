@@ -9,7 +9,7 @@
 
 		<PackageId>BitzArt.Json.TypedObjects</PackageId>
 		<Authors>BitzArt</Authors>
-		<Description>Utilities, helping to retain objects' original types during serialization and deserialization</Description>
+		<Description>Provides TypedObjectJsonConverter, retaining actual types of values during serialization and deserialization</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
@@ -18,7 +18,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="README.md" Pack="True" Visible="False" PackagePath="\" />
+		<None Include="README.md" Pack="True" Visible="True" PackagePath="\" />
 	</ItemGroup>
 	
 </Project>
