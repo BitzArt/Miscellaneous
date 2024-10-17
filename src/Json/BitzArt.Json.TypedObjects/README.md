@@ -7,6 +7,27 @@
 ## The problem
 Serialization can encounter issues when dealing with interfaces, abstract and base classes, or `object`, etc. The resulting JSON will not include information about the specific types of values. This becomes a problem during deserialization, as the actual type will be lost, and the deserialized value will not match its original type.
 
+### Example
+Consider the following class hierarchy:
+
+```csharp
+public class Animal { /* ... */ }
+
+public class Dog : Animal { /* ... */ } 
+
+public class Cat : Animal { /* ... */ }
+```
+
+Serializing and deserializing instances of `Cat` and `Dog` as `Animal` will result in loss of their actual types:
+
+```csharp
+var animals = new List<Animal> { new Dog(), new Cat() };
+var serialized = JsonSerializer.Serialize(animals);
+
+// The deserialized list contains instances of Animal.
+var deserialized = JsonSerializer.Deserialize<List<Animal>>(serialized);
+```
+
 ## The solution
 `TypedObjectJsonConverter` is a JSON converter designed to handle serialization and deserialization retaining original type of values:
 
