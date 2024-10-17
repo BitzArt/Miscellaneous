@@ -10,8 +10,7 @@ internal class TypedValueJsonConverter : JsonConverter<TypedObjectJsonValue?>
         var jsonDocument = JsonDocument.ParseValue(ref reader);
         var rootElement = jsonDocument.RootElement;
 
-        if (rootElement.ValueKind == JsonValueKind.Null)
-            return null;
+        if (rootElement.ValueKind == JsonValueKind.Null) return null;
 
         var typeName = rootElement.GetProperty("type").GetString()!;
         var type = Type.GetType(typeName)!;

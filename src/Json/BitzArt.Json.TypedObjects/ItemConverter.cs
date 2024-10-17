@@ -14,12 +14,16 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
     public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
         var (itemType, isArray, isSet) = GetItemType(typeToConvert);
+
         if (itemType == null)
             throw new NotImplementedException();
+
         if (isArray)
             return (JsonConverter)Activator.CreateInstance(typeof(ArrayItemConverterDecorator<>).MakeGenericType(typeof(TItemConverter), itemType), [options, itemConverter])!;
+
         if (!typeToConvert.IsAbstract && !typeToConvert.IsInterface && typeToConvert.GetConstructor(Type.EmptyTypes) != null)
             return (JsonConverter)Activator.CreateInstance(typeof(ConcreteCollectionItemConverterDecorator<,,>).MakeGenericType(typeof(TItemConverter), typeToConvert, typeToConvert, itemType), [options, itemConverter])!;
+
         if (isSet)
         {
             var setType = typeof(HashSet<>).MakeGenericType(itemType);
@@ -32,7 +36,8 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
             if (typeToConvert.IsAssignableFrom(listType))
                 return (JsonConverter)Activator.CreateInstance(typeof(ConcreteCollectionItemConverterDecorator<,,>).MakeGenericType(typeof(TItemConverter), listType, typeToConvert, itemType), [options, itemConverter])!;
         }
-        // OK it's not an array and we can't find a parameterless constructor for the type.  We can serialize, but not deserialize.
+
+        // OK it's not an array and we can't find a parameterless constructor for the type. We can serialize, but not deserialize.
         return (JsonConverter)Activator.CreateInstance(typeof(EnumerableItemConverterDecorator<,>).MakeGenericType(typeof(TItemConverter), typeToConvert, itemType), [options, itemConverter])!;
     }
 
@@ -42,9 +47,10 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
         // Dictionary is not implemented. 
         if (type.IsPrimitive || type == typeof(string) || typeof(IDictionary).IsAssignableFrom(type))
             return (null, false, false);
+
         if (type.IsArray)
             return type.GetArrayRank() == 1 ? (type.GetElementType(), true, false) : (null, false, false);
-        
+
         Type? itemType = null;
         bool isSet = false;
 
@@ -60,8 +66,10 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
                 else if (genType == typeof(IEnumerable<>))
                 {
                     var thisItemType = iType.GetGenericArguments()[0];
+
                     if (itemType != null && itemType != thisItemType)
-                        return (null, false, false); // type implements multiple enumerable types simultaneously. 
+                        return (null, false, false); // Type implements multiple enumerable types simultaneously. 
+
                     itemType = thisItemType;
                 }
                 else if (genType == typeof(IDictionary<,>))
@@ -74,7 +82,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
         return (itemType, false, isSet);
     }
 
-    abstract class CollectionItemConverterDecoratorBase<TEnumerable, TItem> : JsonConverter<TEnumerable> 
+    abstract class CollectionItemConverterDecoratorBase<TEnumerable, TItem> : JsonConverter<TEnumerable>
         where TEnumerable : IEnumerable<TItem>
     {
         readonly JsonConverter<TItem> innerConverter;
@@ -88,11 +96,12 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
             innerConverter = (JsonConverter<TItem>)modifiedOptions.GetConverter(typeof(TItem));
         }
 
-        protected TCollection BaseRead<TCollection>(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) 
+        protected TCollection BaseRead<TCollection>(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             where TCollection : ICollection<TItem>, new()
         {
             if (reader.TokenType != JsonTokenType.StartArray)
-                throw new JsonException(); // Unexpected token type.  JsonTokenType.Null is handled by the framework, unless we set HandleNull => true (which we didn't).
+                throw new JsonException(); // Unexpected token type. JsonTokenType.Null is handled by the framework, unless we set HandleNull => true (which we didn't).
+
             var list = new TCollection();
             while (reader.Read())
             {
@@ -102,38 +111,41 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
                 // TODO: optionally add checks to make sure innerConverter correctly advanced the reader to the end of the current token.
                 list.Add(item!);
             }
+
             return list;
         }
 
         public sealed override void Write(Utf8JsonWriter writer, TEnumerable value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
+
             foreach (var item in value)
                 innerConverter.Write(writer, item, options);
+
             writer.WriteEndArray();
         }
     }
 
-    sealed class ArrayItemConverterDecorator<TItem>(JsonSerializerOptions options, TItemConverter converter) 
+    sealed class ArrayItemConverterDecorator<TItem>(JsonSerializerOptions options, TItemConverter converter)
         : CollectionItemConverterDecoratorBase<TItem[], TItem>(options, converter)
     {
-        public override TItem[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) 
+        public override TItem[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             => BaseRead<List<TItem>>(ref reader, typeToConvert, options).ToArray();
     }
 
-    sealed class ConcreteCollectionItemConverterDecorator<TCollection, TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter) 
+    sealed class ConcreteCollectionItemConverterDecorator<TCollection, TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter)
         : CollectionItemConverterDecoratorBase<TEnumerable, TItem>(options, converter)
         where TCollection : ICollection<TItem>, TEnumerable, new()
         where TEnumerable : IEnumerable<TItem>
     {
-        public override TEnumerable Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) 
+        public override TEnumerable Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             => BaseRead<TCollection>(ref reader, typeToConvert, options);
     }
 
-    sealed class EnumerableItemConverterDecorator<TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter) 
+    sealed class EnumerableItemConverterDecorator<TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter)
         : CollectionItemConverterDecoratorBase<TEnumerable, TItem>(options, converter) where TEnumerable : IEnumerable<TItem>
     {
-        public override TEnumerable Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) 
+        public override TEnumerable Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             => throw new NotImplementedException(string.Format("Deserialization is not implemented for type {0}", typeof(TEnumerable)));
     }
 }
@@ -141,7 +153,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
 public static class TypeExtensions
 {
     public static IEnumerable<Type> GetInterfacesAndSelf(this Type type) =>
-        (type ?? throw new ArgumentNullException(nameof(type))).IsInterface 
-            ? new[] { type }.Concat(type.GetInterfaces()) 
+        (type ?? throw new ArgumentNullException(nameof(type))).IsInterface
+            ? new[] { type }.Concat(type.GetInterfaces())
             : type.GetInterfaces();
 }

@@ -18,7 +18,7 @@ public class TypedObjectJsonConverter<T> : JsonConverter<T>
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
     {
         if (value is null)
-        { 
+        {
             writer.WriteNullValue();
             return;
         }
@@ -28,4 +28,3 @@ public class TypedObjectJsonConverter<T> : JsonConverter<T>
         converter.Write(writer, typedJsonValue, options);
     }
 }
-
