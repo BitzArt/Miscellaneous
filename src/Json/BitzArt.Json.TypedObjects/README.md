@@ -23,8 +23,8 @@ apply the `JsonConverter` attribute with the `TypedObjectJsonConverter` to the p
 ```csharp
 public class YourClass
 {
-	[JsonConverter(typeof(TypedObjectJsonConverter<object>))]
-	public object Value { get; set; }
+    [JsonConverter(typeof(TypedObjectJsonConverter<object>))]
+    public object Value { get; set; }
 }
 ```
 
@@ -45,8 +45,8 @@ To serialize and deserialize a collection of objects with an ability to preserve
 ```csharp
 public class YourClass
 {
-	[JsonConverter(typeof(ItemConverter<TypedObjectJsonConverter<object>>))]
-	public IEnumerable<object> Values { get; set; }
+    [JsonConverter(typeof(ItemConverter<TypedObjectJsonConverter<object>>))]
+    public IEnumerable<object> Values { get; set; }
 }
 ```
 
