@@ -120,7 +120,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
                 if (reader.TokenType == JsonTokenType.EndArray)
                     break;
                 var item = innerConverter.Read(ref reader, typeof(TItem), options);
-                
+
                 // TODO: optionally add checks to make sure innerConverter correctly advanced the reader to the end of the current token.
                 list.Add(item!);
             }

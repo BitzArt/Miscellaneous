@@ -3,11 +3,11 @@
 
 ## Overview
 
-**BitzArt.Json.TypedObjects**  provides utilities for preserving the original type information during serialization and deserialization of objects and collections of objects.
+**BitzArt.Json.TypedObjects** provides utilities for preserving the original type information during serialization and deserialization of objects and collections of objects.
 
 ## Installation
 
-- Install the following package in your project:
+- Install the following package to your project:
 
 ```
 dotnet add package BitzArt.Json.TypedObjects
@@ -17,8 +17,8 @@ dotnet add package BitzArt.Json.TypedObjects
 
 ### TypedObjectJsonConverter
 
-To serialize and deserialize an object with an ability to preserve the original type information, 
-apply the `JsonConverter` attribute with the `TypedObjectJsonConverter`.
+To serialize and deserialize an object property with an ability to preserve its original type information, 
+apply the `JsonConverter` attribute with the `TypedObjectJsonConverter` to the property:
 
 ```csharp
 public class YourClass
@@ -40,7 +40,7 @@ var type = deserialized.Value.GetType(); // System.Int32
 
 ### ItemConverter
 
-To serialize and deserialize a collection of objects with an ability to preserve the original type information, apply the `JsonConverter` attribute with the `ItemConverter`, specifying `TypedObjectJsonConverter` as its generic type.
+To serialize and deserialize a collection of objects with an ability to preserve the original type information, apply the `JsonConverter` attribute with the `ItemConverter`, specifying `TypedObjectJsonConverter` as its generic type to the property:
 
 ```csharp
 public class YourClass
