@@ -1,16 +1,28 @@
-﻿using System.Collections;
+﻿// Source of this code: https://stackoverflow.com/a/67082032
+
+using System.Collections;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace BitzArt.Json;
 
+/// <summary>
+/// Converts collection to and from JSON using a specified <typeparamref name="TItemConverter"/>.
+/// </summary>
+/// <typeparam name="TItemConverter"></typeparam>
 public class ItemConverter<TItemConverter> : JsonConverterFactory
     where TItemConverter : JsonConverter, new()
 {
     readonly TItemConverter itemConverter = new();
 
+    /// <summary>
+    /// <inheritdoc/>/>
+    /// </summary>
     public override bool CanConvert(Type typeToConvert) => GetItemType(typeToConvert).ItemType is var itemType && itemType != null && itemConverter.CanConvert(itemType);
 
+    /// <summary>
+    /// <inheritdoc/>/>
+    /// </summary>
     public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
         var (itemType, isArray, isSet) = GetItemType(typeToConvert);
@@ -41,7 +53,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
         return (JsonConverter)Activator.CreateInstance(typeof(EnumerableItemConverterDecorator<,>).MakeGenericType(typeof(TItemConverter), typeToConvert, itemType), [options, itemConverter])!;
     }
 
-    static (Type? ItemType, bool IsArray, bool isSet) GetItemType(Type type)
+    private static (Type? ItemType, bool IsArray, bool isSet) GetItemType(Type type)
     {
         // Quick reject for performance
         // Dictionary is not implemented. 
@@ -82,7 +94,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
         return (itemType, false, isSet);
     }
 
-    abstract class CollectionItemConverterDecoratorBase<TEnumerable, TItem> : JsonConverter<TEnumerable>
+    private abstract class CollectionItemConverterDecoratorBase<TEnumerable, TItem> : JsonConverter<TEnumerable>
         where TEnumerable : IEnumerable<TItem>
     {
         readonly JsonConverter<TItem> innerConverter;
@@ -108,6 +120,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
                 if (reader.TokenType == JsonTokenType.EndArray)
                     break;
                 var item = innerConverter.Read(ref reader, typeof(TItem), options);
+                
                 // TODO: optionally add checks to make sure innerConverter correctly advanced the reader to the end of the current token.
                 list.Add(item!);
             }
@@ -126,14 +139,14 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
         }
     }
 
-    sealed class ArrayItemConverterDecorator<TItem>(JsonSerializerOptions options, TItemConverter converter)
+    private sealed class ArrayItemConverterDecorator<TItem>(JsonSerializerOptions options, TItemConverter converter)
         : CollectionItemConverterDecoratorBase<TItem[], TItem>(options, converter)
     {
         public override TItem[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             => BaseRead<List<TItem>>(ref reader, typeToConvert, options).ToArray();
     }
 
-    sealed class ConcreteCollectionItemConverterDecorator<TCollection, TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter)
+    private sealed class ConcreteCollectionItemConverterDecorator<TCollection, TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter)
         : CollectionItemConverterDecoratorBase<TEnumerable, TItem>(options, converter)
         where TCollection : ICollection<TItem>, TEnumerable, new()
         where TEnumerable : IEnumerable<TItem>
@@ -142,7 +155,7 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
             => BaseRead<TCollection>(ref reader, typeToConvert, options);
     }
 
-    sealed class EnumerableItemConverterDecorator<TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter)
+    private sealed class EnumerableItemConverterDecorator<TEnumerable, TItem>(JsonSerializerOptions options, TItemConverter converter)
         : CollectionItemConverterDecoratorBase<TEnumerable, TItem>(options, converter) where TEnumerable : IEnumerable<TItem>
     {
         public override TEnumerable Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -150,8 +163,14 @@ public class ItemConverter<TItemConverter> : JsonConverterFactory
     }
 }
 
+/// <summary>
+/// Extension methods for <see cref="Type"/>.
+/// </summary>
 public static class TypeExtensions
 {
+    /// <summary>
+    /// Returns all interfaces implemented by the type and the type itself if it is an interface.
+    /// </summary>
     public static IEnumerable<Type> GetInterfacesAndSelf(this Type type) =>
         (type ?? throw new ArgumentNullException(nameof(type))).IsInterface
             ? new[] { type }.Concat(type.GetInterfaces())
