@@ -7,7 +7,7 @@
 
 ## Installation
 
-- Install the following package to your project:
+Install the following package to your project:
 
 ```
 dotnet add package BitzArt.Json.TypedObjects
@@ -17,7 +17,7 @@ dotnet add package BitzArt.Json.TypedObjects
 
 ### TypedObjectJsonConverter
 
-To preserve the original type of an object during serialization and deserialization, apply the `JsonConverter` attribute to the property specifying the `TypedObjectJsonConverter`:
+Apply `JsonConverter` attribute to an object property specifying `TypedObjectJsonConverter`:
 
 ```csharp
 public class YourClass
@@ -27,7 +27,7 @@ public class YourClass
 }
 ```
 
-This ensures that the `Value` property retains its type information during serialization and deserialization:
+This ensures that the `Value` property retains its original type during serialization and deserialization:
 
 ```csharp
 var instance = new YourClass { Value = 42 };
@@ -39,7 +39,7 @@ var type = deserialized.Value.GetType(); // System.Int32
 
 ### ItemConverter
 
-To retain the original type of each item in a collection of object during serialization and deserialization, apply the `JsonConverter` attribute to the property specifying the `ItemConverter` with `TypedObjectJsonConverter` as its generic type:
+Apply `JsonConverter` attribute to a collection of objects property specifying `ItemConverter` with `TypedObjectJsonConverter` as its generic type:
 
 ```csharp
 public class YourClass
@@ -49,7 +49,7 @@ public class YourClass
 }
 ```
 
-This ensures that each item in the `Values` collection retains its type information during serialization and deserialization.
+This ensures that each item in the `Values` collection retains its original type information during serialization and deserialization:
 
 ```csharp
 var instance = new YourClass { Values = [ 42, "Hello"] };
