@@ -8,7 +8,7 @@
 Serialization can encounter issues when dealing with interfaces, abstract and base classes, or `object`, etc. The resulting JSON will not include information about the specific types of values. This becomes a problem during deserialization, as the actual type will be lost, and the deserialized value will not match its original type.
 
 ### Example
-Consider the following class hierarchy:
+Consider following classes implementing `IShape` interface:
 
 ```csharp
 public interface IShape { }
