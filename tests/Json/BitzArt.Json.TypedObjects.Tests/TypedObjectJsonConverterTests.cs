@@ -6,7 +6,7 @@ namespace BitzArt.Json.Tests;
 public class TypedObjectJsonConverterTests
 {
     [Fact]
-    public void Deserialize_WhenNonNullableObject_ShouldRestoreOriginalTypes()
+    public void Deserialize_WhenNonNullableObject_ShouldRetainOriginalTypes()
     {
         // Arrange
         var testClass = new TestClass1([1, 2L, 3.0f, 4.0, 5.0m, "6", Guid.NewGuid(), true, false]);
@@ -40,7 +40,7 @@ public class TypedObjectJsonConverterTests
     }
 
     [Fact]
-    public void Deserialize_WhenNullableObject_ShouldRestoreOriginalTypes()
+    public void Deserialize_WhenNullableObject_ShouldRetainOriginalTypes()
     {
         // Arrange
         var testClass = new TestClass2([1, 2L, 3.0f, 4.0, 5.0m, "6", Guid.NewGuid(), true, false, null]);
