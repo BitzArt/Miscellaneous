@@ -4,8 +4,8 @@
 ## Overview
 `BitzArt.Json.TypedObjects` provides solution to retain actual types of values during JSON serialization and deserialization.
 
-## The problem
-Serializing using interfaces, abstract and base classes, or `object`, etc. results in JSON does not include information about the specific types of values, which causes issues during deserialization, as the actual types of the values are lost.
+## The problem 
+Since JSON does not preserve information about specific value types, using interfaces, abstract classes, base classes, or `object`, etc for serialization and deserialization causes values to lose their actual types.
 
 ### Example
 Consider the following classes implementing `IShape` interface:
@@ -25,7 +25,7 @@ public class Circle(int radius) : IShape
 }
 ```
 
-If you serialize and deserialize a list of `Rectangle` and `Circle` objects as `IShape`, their actual types will be lost:
+If you serialize and deserialize a list of `Rectangle` and `Circle` as a list of `IShape`, actual types of items will be lost:
 
 ```csharp
 var shapes = new List<IShape> { new Rectangle(16, 9), new Circle(5) };
@@ -40,7 +40,7 @@ var deserialized = JsonSerializer.Deserialize<List<IShape>>(serialized);
 
  - __Serialization__: when a value is serialized, `TypedObjectJsonConverter` stores value's full type name along with the value itself in the resulting JSON.
 
-- __Deserialization__: when reading from the JSON, `TypedObjectJsonConverter` uses full type name to resolve the actual type of the value.
+- __Deserialization__: when reading from JSON, `TypedObjectJsonConverter` uses full type name to resolve the actual type of the value.
 
 For instance, JSON output for the list in the previous [example](#example) when serialized with `TypedObjectJsonConverter` would have the following structure:
 
