@@ -31,8 +31,8 @@ public class YourClass
 During serialization and deserialization, the `Value` property preserves its original type information.
 
 ```csharp
-var myClass = new YourClass { Value = 42 };
-var serialized = JsonSerializer.Serialize(myClass);
+var yourClass = new YourClass { Value = 42 };
+var serialized = JsonSerializer.Serialize(yourClass);
 
 var deserialized = JsonSerializer.Deserialize<YourClass>(serialized);
 var type = deserialized.Value.GetType(); // System.Int32
@@ -53,8 +53,8 @@ public class YourClass
 During serialization and deserialization, items of `Values` property preserve their original types information.
 
 ```csharp
-var myClass = new YourClass { Values = [ 42, "Hello"] };
-var serialized = JsonSerializer.Serialize(myClass);
+var yourClass = new YourClass { Values = [ 42, "Hello"] };
+var serialized = JsonSerializer.Serialize(yourClass);
 
 var deserialized = JsonSerializer.Deserialize<YourClass>(serialized);
 var types = deserialized.Values.Select(x => x.GetType()); // System.Int32, System.String
