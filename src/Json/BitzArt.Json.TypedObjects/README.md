@@ -11,14 +11,14 @@ Serialization can encounter issues when dealing with interfaces, abstract and ba
 Consider the following class hierarchy:
 
 ```csharp
-public class Animal { /* ... */ }
+public class Animal { }
 
-public class Dog : Animal { /* ... */ } 
+public class Dog : Animal { } 
 
-public class Cat : Animal { /* ... */ }
+public class Cat : Animal { }
 ```
 
-Serializing and deserializing instances of `Cat` and `Dog` as `Animal` will result in loss of their actual types:
+Serializing and deserializing instances of `Dog` and `Cat` as `Animal` will result in loss of their actual types:
 
 ```csharp
 var animals = new List<Animal> { new Dog(), new Cat() };
@@ -35,11 +35,17 @@ var deserialized = JsonSerializer.Deserialize<List<Animal>>(serialized);
 
 - __Deserialization__: when reading from the JSON, `TypedObjectJsonConverter` uses full type name to resolve the original type of the value.
 
-JSON of a value serialized with `TypedObjectJsonConverter` has the following structure:
+JSON of the list from previous example serialized with `TypedObjectJsonConverter` will have following structure:
 
 ```json
-{
-	"type": "System.Int64",
-	"value": 42
-}
-``` 
+[
+	{
+		"type": "Namespace.Dog",
+		"value": { }
+	},
+	{
+		"type": "Namespace.Cat",
+		"value": { }
+	}
+]
+```
