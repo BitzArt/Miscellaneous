@@ -5,16 +5,16 @@
 
 `BitzArt.Json.TypedObjects` provides solution to retain actual types of values during JSON serialization and deserialization.
 
-> ⚠️ The current version of the libraty only supports polymorphic serialization and deserialization of 
+> ⚠️ The current version of the library only supports polymorphic serialization and deserialization of 
 > [C# standard value types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types).
 
 ## The problem 
 
-Since JSON does not preserve information about specific value types, serialization and deserialization of polymorphic types cause values to lose their actual types.
+Since JSON does not preserve information about specific value types, serialization of such values may lead to this 
+information being lost in cases where the actual type is not known in compile-time, e.g. when operating with a value 
+of a specific type as it's base type, like `var fruit = (new Apple() as Fruit);`
 
 ### Example
-
-Consider the following classes:
 
 ```csharp
 public class Fruit { }
@@ -24,9 +24,6 @@ public class Apple(string variety) : Fruit
 	public string? Variety { get; set; } = variety;
 }
 ```
-
-If for some reason the actual type of an object is not known at compile time, 
-it can be deserialized using base type, but in this case all properties specific to the actual type will be lost:
 
 ```csharp
 var apple = new Apple("Granny Smith");
@@ -46,7 +43,8 @@ designed to handle serialization and deserialization of polymorphic types retain
 
  - __Serialization__: when a value is serialized, `TypedObjectJsonConverter` stores value's full type name along with the value itself in the resulting JSON. 
  
- The JSON of a value serialized with `TypedObjectJsonConverter` has the following structure:
+For instance, JSON output for the object in the previous [example](#example) when serialized with `TypedObjectJsonConverter` 
+would have the following structure:
 
 ```json
 {
