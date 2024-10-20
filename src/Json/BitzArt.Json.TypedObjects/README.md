@@ -25,8 +25,8 @@ public class Apple(string variety) : Fruit
 }
 ```
 
-If for some reason the actual type of an object not known at compile time, 
-it can be deserialized using it's base type, but all properties specific to the actual type will be lost:
+If for some reason the actual type of an object is not known at compile time, 
+it can be deserialized using base type, but in this case all properties specific to the actual type will be lost:
 
 ```csharp
 var apple = new Apple("Granny Smith");
