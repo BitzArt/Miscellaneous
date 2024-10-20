@@ -5,7 +5,7 @@
 `BitzArt.Json.TypedObjects` provides solution to retain actual types of values during JSON serialization and deserialization.
 
 ## The problem 
-Since JSON does not preserve information about specific value types, using interfaces, abstract classes, base classes, or `object`, etc for serialization and deserialization causes values to lose their actual types.
+Since JSON does not preserve information about specific value types, serialization and deserialization of polymorphic types cause values to lose their actual types.
 
 ### Example
 Consider the following classes implementing `IShape` interface:
@@ -36,28 +36,22 @@ var deserialized = JsonSerializer.Deserialize<List<IShape>>(serialized);
 ```
 
 ## The solution
-`TypedObjectJsonConverter` is a custom JSON converter designed to handle serialization and deserialization retaining actual types of values:
+`TypedObjectJsonConverter` is a [custom JSON converter](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/converters-how-to) designed to handle serialization and deserialization of polymorphic types retaining actual types of values:
 
- - __Serialization__: when a value is serialized, `TypedObjectJsonConverter` stores value's full type name along with the value itself in the resulting JSON.
-
-- __Deserialization__: when reading from JSON, `TypedObjectJsonConverter` uses full type name to resolve the actual type of the value.
-
-For instance, JSON output for the list in the previous [example](#example) when serialized with `TypedObjectJsonConverter` would have the following structure:
+ - __Serialization__: when a value is serialized, `TypedObjectJsonConverter` stores value's full type name along with the value itself in the resulting JSON. 
+ 
+ The JSON of a value serialized with `TypedObjectJsonConverter` has the following structure:
 
 ```json
-[
-	{
-		"type": "Namespace.Rectangle",
-		"value": {
-			"width": 16,
-			"height": 9
-		}
-	},
-	{
-		"type": "Namespace.Circle",
-		"value": {
-			"radius": 5
-		}
+{
+	"type": "Namespace.Rectangle",
+	"value": {
+		"width": 16,
+		"height": 9
 	}
-]
+},
 ```
+
+- __Deserialization__: when reading from JSON, `TypedObjectJsonConverter` uses `type` and deserializes `value` polymorphically to the actual type.
+
+
