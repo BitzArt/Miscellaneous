@@ -9,7 +9,7 @@
 
 		<PackageId>BitzArt.Json.TypedObjects</PackageId>
 		<Authors>BitzArt</Authors>
-		<Description>Provides TypedObjectJsonConverter, retaining actual types of values during serialization and deserialization</Description>
+		<Description>Allows retaining actual object types when serializing and deserializing</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
