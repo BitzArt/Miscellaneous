@@ -88,7 +88,7 @@ When a value is serialized, `TypedObjectJsonConverter` stores the value's type n
 ```json
 {
     "type": "MyNamespace.MyClass",
-    "value": {} // The actual serialized value of the object
+    "value": {"The actual serialized value of the object goes here"}
 }
 ```
 
