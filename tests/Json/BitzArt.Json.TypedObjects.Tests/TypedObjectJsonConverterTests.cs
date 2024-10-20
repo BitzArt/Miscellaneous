@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BitzArt.Json.Tests;
+namespace BitzArt.Json.TypedObjects.Tests;
 
 public class TypedObjectJsonConverterTests
 {
