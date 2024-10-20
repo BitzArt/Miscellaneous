@@ -19,14 +19,17 @@ of a specific type as it's base type, like `var fruit = (new Apple() as Fruit);`
 ```csharp
 public class Fruit { }
 
-public class Apple(string variety) : Fruit
+public class Apple : Fruit
 {
-	public string? Variety { get; set; } = variety;
+	public string? Variety { get; set; }
 }
 ```
 
 ```csharp
-var apple = new Apple("Granny Smith");
+var apple = new Apple
+{
+	Variety = "Granny Smith"
+};
 
 // Serialized as Apple
 var serialized = JsonSerializer.Serialize(apple);
@@ -60,7 +63,11 @@ would have the following structure:
 ### Example
 
 ```csharp
-var apple = new Apple("Granny Smith");
+var apple = new Apple
+{
+	Variety = "Granny Smith"
+};
+
 var fruit = (Fruit)apple; 
 
 // TypedObjectJsonConverter can be added to the JsonSerializerOptions
