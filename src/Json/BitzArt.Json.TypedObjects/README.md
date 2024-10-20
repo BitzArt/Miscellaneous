@@ -25,7 +25,8 @@ public class Apple(string variety) : Fruit
 }
 ```
 
-If for some reason the actual type of an object not known at compile time, it can be deserialized using it's base type:
+If for some reason the actual type of an object not known at compile time, 
+it can be deserialized using it's base type, but all properties specific to the actual type will be lost:
 
 ```csharp
 var apple = new Apple("Granny Smith");
@@ -40,7 +41,8 @@ var deserialized = JsonSerializer.Deserialize<Fruit>(serialized);
 
 ## The solution
 
-`TypedObjectJsonConverter` is a [custom JSON converter](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/converters-how-to) designed to handle serialization and deserialization of polymorphic types retaining actual types of values:
+`TypedObjectJsonConverter` is a [custom JSON converter](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/converters-how-to) 
+designed to handle serialization and deserialization of polymorphic types retaining actual types of values:
 
  - __Serialization__: when a value is serialized, `TypedObjectJsonConverter` stores value's full type name along with the value itself in the resulting JSON. 
  
