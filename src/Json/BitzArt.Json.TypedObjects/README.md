@@ -37,7 +37,7 @@ public class Fruit { }
 
 public class Apple : Fruit
 {
-	public string Variety { get; set; }
+    public string Variety { get; set; }
 }
 ```
 
@@ -46,7 +46,7 @@ The following code will result in the loss of the actual type of the object when
 ```csharp
 var apple = new Apple
 {
-	Variety = "Granny Smith"
+    Variety = "Granny Smith"
 };
 
 var serialized = JsonSerializer.Serialize(apple);
@@ -66,14 +66,14 @@ Now, let's see how the `TypedObjectJsonConverter` can be used to solve the probl
 ```csharp
 var apple = new Apple
 {
-	Variety = "Granny Smith"
+    Variety = "Granny Smith"
 };
 
 var fruit = (Fruit)apple; 
 
 var jsonSerializerOptions = new JsonSerializerOptions
 {
-	Converters = { new TypedObjectJsonConverter<Fruit>() }
+    Converters = { new TypedObjectJsonConverter<Fruit>() }
 };
 
 var serialized = JsonSerializer.Serialize(fruit, jsonSerializerOptions);
@@ -87,8 +87,8 @@ When a value is serialized, `TypedObjectJsonConverter` stores the value's type n
 
 ```json
 {
-	"type": "MyNamespace.MyClass",
-	"value": {} // The actual serialized value of the object
+    "type": "MyNamespace.MyClass",
+    "value": {} // The actual serialized value of the object
 }
 ```
 
