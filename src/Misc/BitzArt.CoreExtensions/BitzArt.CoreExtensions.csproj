@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>BitzArt</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+		<PackageId>BitzArt.CoreExtensions</PackageId>
+		<Authors>BitzArt</Authors>
+		<Description>BCL (Base Class Library) Extensions</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
+	</PropertyGroup>
+
+</Project>
