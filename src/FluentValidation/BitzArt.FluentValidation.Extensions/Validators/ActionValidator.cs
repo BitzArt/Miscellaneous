@@ -1,5 +1,6 @@
 ﻿namespace FluentValidation;
 
+/// <inheritdoc/>
 public abstract class ActionValidator<T> : AbstractValidator<T>, IActionValidator<T>
 {
     public ActionType? Action { get; set; }
