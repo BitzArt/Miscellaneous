@@ -38,8 +38,8 @@ public class ActionValidatorFactoryHierarchicalTests
     {
         // Arrange
         var services = new ServiceCollection();
-        services.AddActionValidator<TestHierarchyParentValidator>();
-        services.AddActionValidator<TestDescriptionValidator>();
+        services.AddActionValidator<TestHierarchyParentValidator>(ActionType.Get);
+        services.AddActionValidator<TestDescriptionValidator>(ActionType.Get);
 
         var serviceProvider = services.BuildServiceProvider();
         var factory = serviceProvider.GetRequiredService<IActionValidatorFactory>();
@@ -55,5 +55,55 @@ public class ActionValidatorFactoryHierarchicalTests
         Assert.NotNull(descriptionValidator);
         Assert.True(descriptionValidator is TestDescriptionValidator);
         Assert.Equal(ActionType.Create, descriptionValidator.Action);
+    }
+
+    [Fact]
+    public void GetValidator_OnValidatorHierarchyWithDifferentActionTypes_ShouldSetActionTypeFromFirstDefinedInHierarchy()
+    {
+        // Arrange
+        var services = new ServiceCollection();
+        services.AddActionValidator<TestHierarchyParentValidator>(ActionType.Get);
+        services.AddActionValidator<TestDescriptionValidator>(ActionType.Create);
+
+        var serviceProvider = services.BuildServiceProvider();
+        var factory = serviceProvider.GetRequiredService<IActionValidatorFactory>();
+
+        // Act
+        var validator = factory.GetValidator<TestHierarchyParent>();
+
+        // Assert
+        Assert.NotNull(validator);
+        Assert.True(validator is TestHierarchyParentValidator);
+        Assert.Equal(ActionType.Get, ((TestHierarchyParentValidator)validator).Action);
+
+        var descriptionValidator = ((TestHierarchyParentValidator)validator).DescriptionValidator;
+        Assert.NotNull(descriptionValidator);
+        Assert.True(descriptionValidator is TestDescriptionValidator);
+        Assert.Equal(ActionType.Get, descriptionValidator.Action);
+    }
+
+    [Fact]
+    public void GetValidator_WithActionTypeOverride_ShouldOverride()
+    {
+        // Arrange
+        var services = new ServiceCollection();
+        services.AddActionValidator<TestHierarchyParentValidator>(ActionType.Get);
+        services.AddActionValidator<TestDescriptionValidator>(ActionType.Create);
+
+        var serviceProvider = services.BuildServiceProvider();
+        var factory = serviceProvider.GetRequiredService<IActionValidatorFactory>();
+
+        // Act
+        var validator = factory.GetValidator<TestHierarchyParent>(ActionType.Update);
+
+        // Assert
+        Assert.NotNull(validator);
+        Assert.True(validator is TestHierarchyParentValidator);
+        Assert.Equal(ActionType.Update, ((TestHierarchyParentValidator)validator).Action);
+
+        var descriptionValidator = ((TestHierarchyParentValidator)validator).DescriptionValidator;
+        Assert.NotNull(descriptionValidator);
+        Assert.True(descriptionValidator is TestDescriptionValidator);
+        Assert.Equal(ActionType.Update, descriptionValidator.Action);
     }
 }
