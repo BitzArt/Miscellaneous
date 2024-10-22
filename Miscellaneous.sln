@@ -13,12 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2DA8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{9545DA65-B29C-4A40-8010-3E339D138EE9}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Publish CoreExtensions.yml = .github\workflows\Publish CoreExtensions.yml
 		.github\workflows\Publish EnumToMemberValue.yml = .github\workflows\Publish EnumToMemberValue.yml
 		.github\workflows\Publish FluentValidation.Extensions.yml = .github\workflows\Publish FluentValidation.Extensions.yml
 		.github\workflows\Publish Json.TypedObjects.yml = .github\workflows\Publish Json.TypedObjects.yml
 		.github\workflows\Publish LinqExtensions.yml = .github\workflows\Publish LinqExtensions.yml
 		.github\workflows\Publish MassTransit.ConsumerBase.yml = .github\workflows\Publish MassTransit.ConsumerBase.yml
 		.github\workflows\Publish Patcher.yml = .github\workflows\Publish Patcher.yml
+		.github\workflows\Tests.yml = .github\workflows\Tests.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.MassTransit.ConsumerBase", "src\MassTransit\BitzArt.MassTransit.ConsumerBase\BitzArt.MassTransit.ConsumerBase.csproj", "{1A828274-0B29-4892-8525-D9E3F79471EC}"
@@ -55,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.LinqExtensions.Batc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.LinqExtensions.Batching.Tests", "tests\BitzArt.LinqExtensions.Batching.Tests\BitzArt.LinqExtensions.Batching.Tests.csproj", "{6DBA7894-9852-4DF1-B9E0-09D60D311F6B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{629938AD-8A1E-49C0-ABFB-724E564B0CCB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sln", "sln", "{629938AD-8A1E-49C0-ABFB-724E564B0CCB}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
@@ -75,6 +77,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linq", "Linq", "{BFE4986F-CD69-4E42-8C6E-F8EE35491BBF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{A5E6C844-8858-442E-8EAB-2CFD2E59B9EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.CoreExtensions", "src\Misc\BitzArt.CoreExtensions\BitzArt.CoreExtensions.csproj", "{350EF47C-407B-4509-AE6C-A86F17ED0C80}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.CoreExtensions.Tests", "tests\Misc\BitzArt.CoreExtensions.Tests\BitzArt.CoreExtensions.Tests.csproj", "{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -142,6 +148,14 @@ Global
 		{8F88487B-C78F-4695-B4F3-BF59CCDF6DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F88487B-C78F-4695-B4F3-BF59CCDF6DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F88487B-C78F-4695-B4F3-BF59CCDF6DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{350EF47C-407B-4509-AE6C-A86F17ED0C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{350EF47C-407B-4509-AE6C-A86F17ED0C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{350EF47C-407B-4509-AE6C-A86F17ED0C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{350EF47C-407B-4509-AE6C-A86F17ED0C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +188,8 @@ Global
 		{8F88487B-C78F-4695-B4F3-BF59CCDF6DF0} = {23E7F528-746A-4A42-8FB3-F89088395933}
 		{BFE4986F-CD69-4E42-8C6E-F8EE35491BBF} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
 		{A5E6C844-8858-442E-8EAB-2CFD2E59B9EB} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
+		{350EF47C-407B-4509-AE6C-A86F17ED0C80} = {A053045B-CB06-473C-A04E-D54A519B6BBD}
+		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5} = {A5E6C844-8858-442E-8EAB-2CFD2E59B9EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
