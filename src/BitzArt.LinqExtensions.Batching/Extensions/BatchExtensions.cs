@@ -1,5 +1,4 @@
 ﻿using BitzArt;
-using BitzArt.LinqExtensions.Batching;
 using System.Linq.Expressions;
 
 namespace System.Linq;

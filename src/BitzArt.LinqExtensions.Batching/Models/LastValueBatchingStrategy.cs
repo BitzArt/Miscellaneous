@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace BitzArt.LinqExtensions.Batching;
+namespace BitzArt;
 
 internal class LastValueBatchingStrategy<TSource, TProperty>(
     IBatchQueryBuilder<TSource> builder,

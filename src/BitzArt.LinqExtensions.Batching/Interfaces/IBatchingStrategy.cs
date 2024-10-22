@@ -1,4 +1,4 @@
-﻿namespace BitzArt.LinqExtensions.Batching;
+﻿namespace BitzArt;
 
 /// <summary>
 /// A strategy to compose a batch query.

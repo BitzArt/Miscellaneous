@@ -1,6 +1,4 @@
-﻿using BitzArt.LinqExtensions.Batching;
-
-namespace BitzArt.LinqExtensions.Tests;
+﻿namespace BitzArt.LinqExtensions.Batching.Tests;
 
 public class BatchTests
 {
