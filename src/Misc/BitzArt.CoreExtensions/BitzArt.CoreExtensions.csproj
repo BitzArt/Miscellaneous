@@ -9,7 +9,7 @@
 
 		<PackageId>BitzArt.CoreExtensions</PackageId>
 		<Authors>BitzArt</Authors>
-		<Description>BCL (Base Class Library) Extensions</Description>
+		<Description>Base Class Library Extensions</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
