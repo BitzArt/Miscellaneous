@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Linq.Expressions;
 
-namespace BitzArt.LinqExtensions.Batching;
+namespace BitzArt;
 
 internal class BatchQueryBuilder<TSource> : IBatchQueryBuilder<TSource>, IAsyncEnumerable<TSource>
 {

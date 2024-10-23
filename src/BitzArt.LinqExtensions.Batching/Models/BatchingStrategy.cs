@@ -1,4 +1,4 @@
-﻿namespace BitzArt.LinqExtensions.Batching;
+﻿namespace BitzArt;
 
 internal class BatchingStrategy<TSource> : IBatchingStrategy<TSource>
 {

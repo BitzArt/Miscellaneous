@@ -14,4 +14,8 @@
 		<PackageProjectUrl>https://github.com/BitzArt/Miscellaneous</PackageProjectUrl>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="BitzArt.CoreExtensions" Version="1.0.0" />
+	</ItemGroup>
+
 </Project>

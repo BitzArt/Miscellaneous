@@ -89,7 +89,7 @@ namespace BitzArt.LinqExtensions.Tests
 
             int? filter = notEqualTo;
 
-            var filtered = queryable.AddFilter(x => x.Id, filter, FilterOperation.NotEqual).ToList();
+            var filtered = queryable.AddFilter(x => x.Id, filter, ComparisonType.NotEqual).ToList();
 
             Assert.Equal(9, filtered.Count);
 
@@ -111,7 +111,7 @@ namespace BitzArt.LinqExtensions.Tests
 
             int? filter = 5;
 
-            var filtered = queryable.AddFilter(x => x.Id, filter, FilterOperation.GreaterThan).ToList();
+            var filtered = queryable.AddFilter(x => x.Id, filter, ComparisonType.GreaterThan).ToList();
 
             Assert.Equal(5, filtered.Count);
             Assert.True(filtered.First().Id == 6);
@@ -127,7 +127,7 @@ namespace BitzArt.LinqExtensions.Tests
 
             int? filter = 5;
 
-            var filtered = queryable.AddFilter(x => x.Id, filter, FilterOperation.GreaterThanOrEqual).ToList();
+            var filtered = queryable.AddFilter(x => x.Id, filter, ComparisonType.GreaterThanOrEqual).ToList();
 
             Assert.Equal(6, filtered.Count);
             Assert.True(filtered.First().Id == 5);
@@ -143,7 +143,7 @@ namespace BitzArt.LinqExtensions.Tests
 
             int? filter = 5;
 
-            var filtered = queryable.AddFilter(x => x.Id, filter, FilterOperation.LessThan).ToList();
+            var filtered = queryable.AddFilter(x => x.Id, filter, ComparisonType.LessThan).ToList();
 
             Assert.Equal(4, filtered.Count);
             Assert.True(filtered.First().Id == 1);
@@ -159,7 +159,7 @@ namespace BitzArt.LinqExtensions.Tests
 
             int? filter = 5;
 
-            var filtered = queryable.AddFilter(x => x.Id, filter, FilterOperation.LessThanOrEqual).ToList();
+            var filtered = queryable.AddFilter(x => x.Id, filter, ComparisonType.LessThanOrEqual).ToList();
 
             Assert.Equal(5, filtered.Count);
             Assert.True(filtered.First().Id == 1);

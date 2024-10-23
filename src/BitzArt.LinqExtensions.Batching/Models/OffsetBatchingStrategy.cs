@@ -1,4 +1,4 @@
-﻿namespace BitzArt.LinqExtensions.Batching;
+﻿namespace BitzArt;
 
 internal class OffsetBatchingStrategy<TSource>(IBatchQueryBuilder<TSource> builder, int offset)
     : BatchingStrategy<TSource>(builder)
