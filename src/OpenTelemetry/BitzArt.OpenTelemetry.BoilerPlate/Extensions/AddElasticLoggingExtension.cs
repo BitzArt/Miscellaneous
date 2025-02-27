@@ -12,7 +12,7 @@ public static class AddElasticLoggingExtension
         if (!section.Exists()) return builder;
 
         var nodeUri = section.GetValue<string>("ElasticsearchNodeUri")!;
-        var nodeUris = new List<Uri> { new Uri(nodeUri) }.ToArray();
+        var nodeUris = new List<Uri> { new(nodeUri) }.ToArray();
 
         var environment = section.GetValue<string>("Environment")!;
         var serviceName = section.GetValue<string>("ServiceName")!;
@@ -20,7 +20,7 @@ public static class AddElasticLoggingExtension
         builder.Logging
             .AddElasticsearch(x =>
             {
-                x.Tags = new List<string> { environment, serviceName }.ToArray();
+                x.Tags = [environment, serviceName];
                 x.ShipTo.NodeUris = nodeUris;
             });
 

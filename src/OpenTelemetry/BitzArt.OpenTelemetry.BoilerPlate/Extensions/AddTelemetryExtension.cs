@@ -29,11 +29,7 @@ public static class AddTelemetryExtension
         var resourceBuilder = ResourceBuilder.CreateDefault()
             .AddService(serviceName)
             .AddTelemetrySdk()
-            .AddAttributes(
-                new KeyValuePair<string, object>[]
-                    {
-                        new("deployment.environment", environment)
-                    })
+            .AddAttributes([new("deployment.environment", environment)])
             .AddEnvironmentVariableDetector();
 
         builder.Logging
