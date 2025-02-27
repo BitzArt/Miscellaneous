@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace System.Linq;
+﻿namespace System.Linq;
 
 /// <summary>
 /// If extension for LINQ queries.
@@ -8,11 +6,11 @@ namespace System.Linq;
 public static class IfExtension
 {
     /// <summary>
-    /// Executes the expression on the source if the condition is true.
+    /// Executes the transform function on the source if the condition is <see langword="true"/>.
     /// </summary>
-    public static IQueryable<T> If<T>(this IQueryable<T> source, bool condition, Expression<Func<IQueryable<T>, IQueryable<T>>> expression)
+    public static IQueryable<T> If<T>(this IQueryable<T> source, bool condition, Func<IQueryable<T>, IQueryable<T>> transform)
     {
-        if (condition) return expression.Compile().Invoke(source);
+        if (condition) return transform.Invoke(source);
         return source;
     }
 }
