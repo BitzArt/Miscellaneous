@@ -82,6 +82,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.CoreExtensions", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.CoreExtensions.Tests", "tests\Misc\BitzArt.CoreExtensions.Tests\BitzArt.CoreExtensions.Tests.csproj", "{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.TransientServiceProvider", "src\BitzArt.TransientServiceProvider\BitzArt.TransientServiceProvider.csproj", "{B653A671-1EC2-459D-98EC-2C79EF799EEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -156,6 +158,10 @@ Global
 		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B653A671-1EC2-459D-98EC-2C79EF799EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B653A671-1EC2-459D-98EC-2C79EF799EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B653A671-1EC2-459D-98EC-2C79EF799EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B653A671-1EC2-459D-98EC-2C79EF799EEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,6 +196,7 @@ Global
 		{A5E6C844-8858-442E-8EAB-2CFD2E59B9EB} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
 		{350EF47C-407B-4509-AE6C-A86F17ED0C80} = {A053045B-CB06-473C-A04E-D54A519B6BBD}
 		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5} = {A5E6C844-8858-442E-8EAB-2CFD2E59B9EB}
+		{B653A671-1EC2-459D-98EC-2C79EF799EEC} = {A053045B-CB06-473C-A04E-D54A519B6BBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
