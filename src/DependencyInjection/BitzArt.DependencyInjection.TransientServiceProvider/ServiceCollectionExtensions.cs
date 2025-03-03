@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace BitzArt;
+namespace BitzArt.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {

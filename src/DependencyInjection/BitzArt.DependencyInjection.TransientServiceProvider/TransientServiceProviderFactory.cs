@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace BitzArt;
+namespace BitzArt.DependencyInjection;
 
 public class TransientServiceProviderFactory(
     IServiceProvider serviceProvider,
