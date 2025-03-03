@@ -2,8 +2,14 @@
 
 namespace BitzArt.DependencyInjection;
 
+/// <summary>
+/// Provides DI container extensions.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Registers the factory as a singleton and adds a transient registration that retrieves a provider from the factory.
+    /// </summary>
     public static IServiceCollection AddTransientServiceProvider(
         this IServiceCollection services,
         Func<IServiceProvider, TransientServiceProvider> build)

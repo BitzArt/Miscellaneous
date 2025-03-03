@@ -9,7 +9,7 @@
 
 		<PackageId>BitzArt.DependencyInjection.TransientServiceProvider</PackageId>
 		<Authors>BitzArt</Authors>
-		<Description>A lightweight NuGet package delivering isolated DI containers per call with seamless extension methods for effortless integration</Description>
+		<Description>This package provides isolated transient service providers</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/BitzArt/Miscellaneous</RepositoryUrl>
