@@ -8,7 +8,7 @@ public static class InExtension
     /// <summary>
     /// Determines whether the specified value is within the given <see cref="Range{T}"/>.
     /// </summary>
-    /// <typeparam name="T">The type of the value and range boundaries.</typeparam>
+    /// <typeparam name="T">The type of the value and range bounds.</typeparam>
     /// <param name="value">The value to check.</param>
     /// <param name="range">The range to check against.</param>
     /// <returns><see langword="true"/> if the value is within the given range, otherwise <see langword="false"/>.</returns>

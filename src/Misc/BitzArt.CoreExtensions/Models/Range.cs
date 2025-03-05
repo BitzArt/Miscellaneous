@@ -1,7 +1,7 @@
 ﻿namespace BitzArt;
 
 /// <summary>
-/// Represents a range within specified boundaries.
+/// Represents a range within specified bounds.
 /// </summary>
 /// <typeparam name="T">The type of bound values.</typeparam>
 public record struct Range<T>
