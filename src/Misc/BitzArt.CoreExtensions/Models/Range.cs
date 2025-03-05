@@ -40,12 +40,14 @@ public record struct Range<T>
     /// <summary>
     /// Whether the lower bound is included in the range.
     /// </summary>
-    public bool IncludeStart { get; set; }
+    /// <remarks>Default value is <see langword="true"/>.</remarks>
+    public bool IncludeStart { get; set; } = true;
 
     /// <summary>
     /// Whether the upper bound is included in the range.
     /// </summary>
-    public bool IncludeEnd { get; set; }
+    /// <remarks>Default value is <see langword="true"/>.</remarks>
+    public bool IncludeEnd { get; set; } = true;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Range{T}"/>.
