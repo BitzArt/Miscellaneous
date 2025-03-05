@@ -1,7 +1,7 @@
 ﻿namespace BitzArt;
 
 /// <summary>
-/// In extension for struct values.
+/// In extension method for comparable struct values.
 /// </summary>
 public static class InExtension
 {
