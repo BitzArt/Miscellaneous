@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.Extensions.DependencyInjection;
+
 namespace BitzArt.DependencyInjection;
 
 /// <summary>
@@ -10,12 +11,42 @@ public class TransientServiceProvider(IServiceProvider innerServiceProvider) : I
     private readonly IServiceProvider _innerServiceProvider = innerServiceProvider;
 
     /// <summary>
-    /// Resolves a service of the specified type using the inner service provider.
+    /// Get service of type serviceType from the inner <see cref="IServiceProvider"/>.
     /// </summary>
     /// <param name="serviceType">The type of service to resolve.</param>
     /// <returns>The requested service instance or null if not found.</returns>
     public object? GetService(Type serviceType)
     {
         return _innerServiceProvider.GetService(serviceType);
+    }
+
+    /// <summary>
+    /// Get service of type <typeparamref name="T"/> from the inner <see cref="IServiceProvider"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of service object to get.</typeparam>
+    /// <returns>A service object of type <typeparamref name="T"/> or null if there is no such service.</returns>
+    public T? GetService<T>()
+    {
+        return (T?)GetService(typeof(T));
+    }
+
+    /// <summary>
+    /// Get service of type <paramref name="serviceType"/> from the inner <see cref="IServiceProvider"/>.
+    /// </summary>
+    /// <param name="serviceType">An object that specifies the type of service object to get.</param>
+    /// <returns>A service object of type <paramref name="serviceType"/>.</returns>
+    public object GetRequiredService(Type serviceType)
+    {
+        return _innerServiceProvider.GetRequiredService(serviceType);
+    }
+
+    /// <summary>
+    /// Get service of type <typeparamref name="T"/> from the inner <see cref="IServiceProvider"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of service object to get.</typeparam>
+    /// <returns>A service object of type <typeparamref name="T"/>.</returns>
+    public T GetRequiredService<T>() where T : notnull
+    {
+        return (T)GetRequiredService(typeof(T));
     }
 }
