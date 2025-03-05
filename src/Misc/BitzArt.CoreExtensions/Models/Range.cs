@@ -16,7 +16,7 @@ public record struct Range<T>
         set
         {
             _start = value;
-            EnsureOrder();
+            EnsureBoundsOrder();
         }
     }
 
@@ -31,7 +31,7 @@ public record struct Range<T>
         set
         {
             _end = value;
-            EnsureOrder();
+            EnsureBoundsOrder();
         }
     }
 
@@ -60,10 +60,10 @@ public record struct Range<T>
         _end = end;
         IncludeStart = includeStart;
         IncludeEnd = includeEnd;
-        EnsureOrder();
+        EnsureBoundsOrder();
     }
 
-    private void EnsureOrder()
+    private void EnsureBoundsOrder()
     {
         if (_start.HasValue && _end.HasValue)
         {
