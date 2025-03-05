@@ -38,12 +38,12 @@ public record struct Range<T>
     private T? _end;
 
     /// <summary>
-    /// Whether the lower boundary is included in the range.
+    /// Whether the lower bound is included in the range.
     /// </summary>
     public bool IncludeStart { get; set; }
 
     /// <summary>
-    /// Whether the upper boundary is included in the range.
+    /// Whether the upper bound is included in the range.
     /// </summary>
     public bool IncludeEnd { get; set; }
 
