@@ -10,103 +10,6 @@ It allows resolving services within isolated transient scopes while supporting b
 > ⚠️
 > Currently, the library requires .NET 9 and is not compatible with earlier versions. Ensure your project targets .NET 9 or later to use this package.
 
-
-## The Problem
-
-When tests share the same AppDbContext and UserService instances, data modifications in one test can interfere with another, causing unexpected failures.
-
-```csharp
-public class SomeTests(AppDbContext context, UserService service)
-{
-    [Fact]
-    public async Task ActivateUserAsync_UserExists_ShouldSetActive()
-    {
-        // Arrange: Seed an inactive user
-        context.Users.Add(new User { Name = "Alice", IsActive = false });
-        await context.SaveChangesAsync();
-
-        // Act: Activate the user
-        await service.ActivateUserAsync("Alice");
-
-        // Assert: Check the user is active
-        var alice = await context.Users.SingleAsync(u => u.Name == "Alice");
-        Assert.True(alice.IsActive);
-    }
-
-    [Fact]
-    public async Task DeleteInactiveUsersAsync_InactiveUserExists_ShouldRemainOnlyActive()
-    {
-        // Arrange: Seed some users
-        context.Users.AddRange(
-            new User { Name = "Bob", IsActive = true },
-            new User { Name = "Charlie", IsActive = false }
-        );
-        await context.SaveChangesAsync();
-
-        // Act: Delete inactive users
-        await service.DeleteInactiveUsersAsync();
-
-        // Assert: Only active users remain
-        var remainingCount = await context.Users.Where(x => x.IsActive).CountAsync();
-        Assert.Equal(1, remainingCount);
-    }
-}
-```
-In this case, first test seeds an inactive Alice and tests ActivateUserAsync method, expecting her to become active. Second test seeds Bob (active) and Charlie (inactive) and tests DeleteInactiveUsersAsync, expecting only Bob to remain.
-With a shared AppDbContext, Charlie from second test might get activated by first test, or Alice from first test might get deleted by test 2, leading to unpredictable failures.
-
-
-## The Solution
-
-By using TransientServiceProviderFactory, each test obtains its own isolated AppDbContext and UserService instances. This prevents one test's changes from affecting another.
-
-```csharp
-public class SomeTests(TransientServiceProviderFactory factory)
-{
-    [Fact]
-    public async Task ActivateUserAsync_UserExists_ShouldSetActive()
-    {
-        var provider = factory.GetProvider(nameof(ActivateUserAsync_UserExists_ShouldSetActive));
-        var context = provider.GetRequiredService<AppDbContext>();
-        var service = provider.GetRequiredService<UserService>();
-
-        // Arrange: Seed an inactive user
-        context.Users.Add(new User { Name = "Alice", IsActive = false });
-        await context.SaveChangesAsync();
-
-        // Act: Activate the user
-        await service.ActivateUserAsync("Alice");
-
-        // Assert: Check the user is active
-        var alice = await context.Users.SingleAsync(u => u.Name == "Alice");
-        Assert.True(alice.IsActive);
-    }
-
-    [Fact]
-    public async Task DeleteInactiveUsersAsync_InactiveUserExists_ShouldRemainOnlyActive()
-    {
-        var provider = factory.GetProvider(nameof(DeleteInactiveUsersAsync_InactiveUserExists_ShouldRemainOnlyActive));
-        var context = provider.GetRequiredService<AppDbContext>();
-        var service = provider.GetRequiredService<UserService>();
-
-        // Arrange: Seed some users
-        context.Users.AddRange(
-            new User { Name = "Bob", IsActive = true },
-            new User { Name = "Charlie", IsActive = false }
-        );
-        await context.SaveChangesAsync();
-
-        // Act: Delete inactive users
-        await service.DeleteInactiveUsersAsync();
-
-        // Assert: Only active users remain
-        var remainingCount = await context.Users.Where(x => x.IsActive).CountAsync();
-        Assert.Equal(1, remainingCount);
-    }
-}
-```
-
-
 ## How it Works
 
 ### Centralized Provider Factory:
@@ -127,7 +30,7 @@ The factory employs locking mechanisms to ensure that the creation and caching o
 This approach allows different parts of an application to obtain isolated service provider instances, ensuring that transient services do not interfere with one another.
 
 
-## Configure
+## Usage
 
 The following demonstrates how to configure and use the `TransientServiceProvider`.
 
