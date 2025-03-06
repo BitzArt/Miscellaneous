@@ -3,48 +3,32 @@
 namespace BitzArt.DependencyInjection;
 
 /// <summary>
-/// Provides a transient service provider that delegates service resolution 
+/// Provides a transient service provider for creating isolated instances of services that delegates service resolution 
 /// to an inner <see cref="IServiceProvider"/>.
 /// </summary>
-public class TransientServiceProvider(IServiceProvider innerServiceProvider) : IServiceProvider
+public class TransientServiceProvider(IServiceProvider innerServiceProvider) : ITransientServiceProvider
 {
     private readonly IServiceProvider _innerServiceProvider = innerServiceProvider;
 
-    /// <summary>
-    /// Get service of type serviceType from the inner <see cref="IServiceProvider"/>.
-    /// </summary>
-    /// <param name="serviceType">The type of service to resolve.</param>
-    /// <returns>The requested service instance or null if not found.</returns>
+    /// <inheritdoc/>
     public object? GetService(Type serviceType)
     {
         return _innerServiceProvider.GetService(serviceType);
     }
 
-    /// <summary>
-    /// Get service of type <typeparamref name="T"/> from the inner <see cref="IServiceProvider"/>.
-    /// </summary>
-    /// <typeparam name="T">The type of service object to get.</typeparam>
-    /// <returns>A service object of type <typeparamref name="T"/> or null if there is no such service.</returns>
+    /// <inheritdoc/>
     public T? GetService<T>()
     {
         return (T?)GetService(typeof(T));
     }
 
-    /// <summary>
-    /// Get service of type <paramref name="serviceType"/> from the inner <see cref="IServiceProvider"/>.
-    /// </summary>
-    /// <param name="serviceType">An object that specifies the type of service object to get.</param>
-    /// <returns>A service object of type <paramref name="serviceType"/>.</returns>
+    /// <inheritdoc/>
     public object GetRequiredService(Type serviceType)
     {
         return _innerServiceProvider.GetRequiredService(serviceType);
     }
 
-    /// <summary>
-    /// Get service of type <typeparamref name="T"/> from the inner <see cref="IServiceProvider"/>.
-    /// </summary>
-    /// <typeparam name="T">The type of service object to get.</typeparam>
-    /// <returns>A service object of type <typeparamref name="T"/>.</returns>
+    /// <inheritdoc/>
     public T GetRequiredService<T>() where T : notnull
     {
         return (T)GetRequiredService(typeof(T));

@@ -6,26 +6,26 @@ namespace BitzArt.DependencyInjection;
 /// Factory for creating and managing transient service providers.
 /// </summary>
 /// <param name="serviceProvider">The root service provider.</param>
-/// <param name="build">A function to create a new <see cref="TransientServiceProvider"/>.</param>
+/// <param name="build">A function to create a new <see cref="ITransientServiceProvider"/>.</param>
 public class TransientServiceProviderFactory(
     IServiceProvider serviceProvider,
-    Func<IServiceProvider, TransientServiceProvider> build)
+    Func<IServiceProvider, ITransientServiceProvider> build)
 {
-    private readonly ConcurrentDictionary<string, TransientServiceProvider> _namedProviders = [];
+    private readonly ConcurrentDictionary<string, ITransientServiceProvider> _namedProviders = [];
 
     private readonly Lock _lock = new();
 
-    private readonly Func<IServiceProvider, TransientServiceProvider> _build = build;
+    private readonly Func<IServiceProvider, ITransientServiceProvider> _build = build;
 
     /// <summary>
     /// Returns a transient service provider associated with the given name,
     /// creating and caching a new instance if not already present.
     /// </summary>
     /// <param name="name">The identifier for the provider instance.</param>
-    /// <returns>A <see cref="TransientServiceProvider"/> instance.</returns>
-    public TransientServiceProvider GetProvider(string name)
+    /// <returns>A <see cref="ITransientServiceProvider"/> instance.</returns>
+    public ITransientServiceProvider GetProvider(string name)
     {
-        TransientServiceProvider? provider;
+        ITransientServiceProvider? provider;
 
         if (!_namedProviders.TryGetValue(name, out provider))
         {
@@ -45,6 +45,6 @@ public class TransientServiceProviderFactory(
     /// <summary>
     /// Creates and returns a new transient service provider instance.
     /// </summary>
-    /// <returns>A new <see cref="TransientServiceProvider"/> instance.</returns>
-    public TransientServiceProvider GetProvider() => _build(serviceProvider);
+    /// <returns>A new <see cref="ITransientServiceProvider"/> instance.</returns>
+    public ITransientServiceProvider GetProvider() => _build(serviceProvider);
 }
