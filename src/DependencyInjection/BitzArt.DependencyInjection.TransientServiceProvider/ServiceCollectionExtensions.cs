@@ -12,9 +12,10 @@ public static class ServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection AddTransientServiceProvider(
         this IServiceCollection services,
-        Func<IServiceProvider, ITransientServiceProvider> build)
+        Action<IServiceCollection> configureServices,
+        Action<ITransientServiceProvider>? configure = null)
     {
-        services.AddSingleton(sp => new TransientServiceProviderFactory(sp, build));
+        services.AddSingleton(sp => new TransientServiceProviderFactory(configureServices, configure));
 
         services.AddTransient(x =>
         {

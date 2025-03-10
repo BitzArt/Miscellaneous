@@ -6,7 +6,7 @@ namespace BitzArt.DependencyInjection;
 /// The default implementation of <see cref="ITransientServiceProvider"/>.
 /// Delegates service resolution to inner <see cref="IServiceProvider"/>.
 /// </summary>
-public class TransientServiceProvider(IServiceProvider innerServiceProvider) : ITransientServiceProvider
+internal class TransientServiceProvider(IServiceProvider innerServiceProvider) : ITransientServiceProvider
 {
     private readonly IServiceProvider _innerServiceProvider = innerServiceProvider;
 
