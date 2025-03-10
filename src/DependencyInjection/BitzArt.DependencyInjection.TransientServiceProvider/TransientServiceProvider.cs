@@ -11,15 +11,9 @@ public class TransientServiceProvider(IServiceProvider innerServiceProvider) : I
     private readonly IServiceProvider _innerServiceProvider = innerServiceProvider;
 
     /// <inheritdoc/>
-    public object? GetService(Type serviceType)
+    object? IServiceProvider.GetService(Type serviceType)
     {
         return _innerServiceProvider.GetService(serviceType);
-    }
-
-    /// <inheritdoc/>
-    public T? GetService<T>()
-    {
-        return (T?)GetService(typeof(T));
     }
 
     /// <inheritdoc/>
