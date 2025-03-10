@@ -8,7 +8,7 @@ namespace BitzArt.DependencyInjection;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Registers the factory as a singleton and adds a transient registration that retrieves a provider from the factory.
+    /// Registers an <see cref="TransientServiceProviderFactory"/>
     /// </summary>
     public static IServiceCollection AddTransientServiceProvider(
         this IServiceCollection services,

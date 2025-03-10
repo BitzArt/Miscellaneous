@@ -3,8 +3,8 @@
 namespace BitzArt.DependencyInjection;
 
 /// <summary>
-/// Provides a transient service provider for creating isolated instances of services that delegates service resolution 
-/// to an inner <see cref="IServiceProvider"/>.
+/// The default implementation of <see cref="ITransientServiceProvider"/>.
+/// Delegates service resolution to inner <see cref="IServiceProvider"/>.
 /// </summary>
 public class TransientServiceProvider(IServiceProvider innerServiceProvider) : ITransientServiceProvider
 {

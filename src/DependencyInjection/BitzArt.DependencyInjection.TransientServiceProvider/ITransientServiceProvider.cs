@@ -1,7 +1,7 @@
 ﻿namespace BitzArt.DependencyInjection;
 
 /// <summary>
-/// Provides a transient service provider for creating isolated instances of services.
+/// Transient service provider for creating isolated instances of services.
 /// </summary>
 public interface ITransientServiceProvider : IServiceProvider
 {
