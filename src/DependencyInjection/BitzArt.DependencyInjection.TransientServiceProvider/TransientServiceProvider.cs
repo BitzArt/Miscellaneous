@@ -15,16 +15,4 @@ public class TransientServiceProvider(IServiceProvider innerServiceProvider) : I
     {
         return _innerServiceProvider.GetService(serviceType);
     }
-
-    /// <inheritdoc/>
-    public object GetRequiredService(Type serviceType)
-    {
-        return _innerServiceProvider.GetRequiredService(serviceType);
-    }
-
-    /// <inheritdoc/>
-    public T GetRequiredService<T>() where T : notnull
-    {
-        return (T)GetRequiredService(typeof(T));
-    }
 }

@@ -3,19 +3,4 @@
 /// <summary>
 /// Transient service provider for creating isolated instances of services.
 /// </summary>
-public interface ITransientServiceProvider : IServiceProvider
-{
-    /// <summary>
-    /// Get service of type <paramref name="serviceType"/> from the inner <see cref="IServiceProvider"/>.
-    /// </summary>
-    /// <param name="serviceType">An object that specifies the type of service object to get.</param>
-    /// <returns>A service object of type <paramref name="serviceType"/>.</returns>
-    public object GetRequiredService(Type serviceType);
-
-    /// <summary>
-    /// Get service of type <typeparamref name="T"/> from the inner <see cref="IServiceProvider"/>.
-    /// </summary>
-    /// <typeparam name="T">The type of service object to get.</typeparam>
-    /// <returns>A service object of type <typeparamref name="T"/>.</returns>
-    public T GetRequiredService<T>() where T : notnull;
-}
+public interface ITransientServiceProvider : IServiceProvider { }
