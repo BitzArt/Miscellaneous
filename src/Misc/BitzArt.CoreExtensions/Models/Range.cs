@@ -55,7 +55,7 @@ public record struct Range<T>
         get
         {
             if (!_start.HasValue)
-                return false;
+                return false; // If the lower bound is null, it cannot be included in the range.
 
             return _includeStart;
         }
@@ -77,7 +77,7 @@ public record struct Range<T>
         get
         {
             if (!_end.HasValue)
-                return false;
+                return false; // If the upper bound is null, it cannot be included in the range.
 
             return _includeEnd;
         }
