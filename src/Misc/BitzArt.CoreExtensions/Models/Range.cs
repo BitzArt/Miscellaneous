@@ -47,17 +47,45 @@ public record struct Range<T>
     /// Whether the lower bound is included in the range.
     /// </summary>
     /// <remarks>
-    /// Default value is <see langword="true"/>.
+    /// Default value is <see langword="true"/>.<br/>
+    /// Always equals to <see langword="false"/> when the lower bound is <see langword="null"/>.
     /// </remarks>
-    public bool IncludeStart { get; set; } = true;
+    public bool IncludeStart
+    {
+        get
+        {
+            if (!_start.HasValue)
+                return false; // If the lower bound is null, it cannot be included in the range.
+
+            return _includeStart;
+        }
+
+        set => _includeStart = value;
+    }
+
+    private bool _includeStart = true;
 
     /// <summary>
     /// Whether the upper bound is included in the range.
     /// </summary>
     /// <remarks>
-    /// Default value is <see langword="true"/>.
+    /// Default value is <see langword="true"/>.<br/>
+    /// Always equals to <see langword="false"/> when the upper bound is <see langword="null"/>.
     /// </remarks>
-    public bool IncludeEnd { get; set; } = true;
+    public bool IncludeEnd
+    {
+        get
+        {
+            if (!_end.HasValue)
+                return false; // If the upper bound is null, it cannot be included in the range.
+
+            return _includeEnd;
+        }
+
+        set => _includeEnd = value;
+    }
+
+    private bool _includeEnd = true;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Range{T}"/>.
@@ -73,8 +101,8 @@ public record struct Range<T>
     {
         _start = start;
         _end = end;
-        IncludeStart = includeStart;
-        IncludeEnd = includeEnd;
+        _includeStart = includeStart;
+        _includeEnd = includeEnd;
         EnsureBoundsOrder();
     }
 
@@ -87,7 +115,7 @@ public record struct Range<T>
         if (inOrder) return;
 
         (_start, _end) = (_end, _start);
-        (IncludeStart, IncludeEnd) = (IncludeEnd, IncludeStart);
+        (_includeStart, _includeEnd) = (_includeEnd, _includeStart);
     }
 
     /// <summary>
