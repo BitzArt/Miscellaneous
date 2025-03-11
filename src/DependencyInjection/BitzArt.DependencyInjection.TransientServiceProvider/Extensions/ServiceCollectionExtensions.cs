@@ -3,12 +3,12 @@
 namespace BitzArt.DependencyInjection;
 
 /// <summary>
-/// Provides DI container extensions.
+/// Extensions methods for <see cref="IServiceCollection"/>
 /// </summary>
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Registers an <see cref="TransientServiceProviderFactory"/>
+    /// Registers <see cref="ITransientServiceProviderFactory"/> and <see cref="ITransientServiceProvider"/> in the service collection.
     /// </summary>
     public static IServiceCollection AddTransientServiceProvider(
         this IServiceCollection services,
