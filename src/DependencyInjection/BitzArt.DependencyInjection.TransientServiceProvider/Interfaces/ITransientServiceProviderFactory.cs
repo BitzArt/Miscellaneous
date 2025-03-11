@@ -1,8 +1,7 @@
 ﻿namespace BitzArt.DependencyInjection;
 
 /// <summary>
-/// Provides thread-safe caching of named transient service providers,
-/// while also enabling on-demand creation of uncached instances.
+/// Provides methods to create transient service providers, or retrieve existing ones.
 /// </summary>
 public interface ITransientServiceProviderFactory
 {
