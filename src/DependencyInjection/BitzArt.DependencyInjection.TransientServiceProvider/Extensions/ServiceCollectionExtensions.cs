@@ -15,11 +15,12 @@ public static class ServiceCollectionExtensions
         Action<IServiceCollection> configureServices,
         Action<ITransientServiceProvider>? configure = null)
     {
-        services.AddSingleton(sp => new TransientServiceProviderFactory(configureServices, configure));
+        services.AddSingleton<ITransientServiceProviderFactory, TransientServiceProviderFactory>(sp =>
+            new TransientServiceProviderFactory(configureServices, configure));
 
         services.AddTransient(x =>
         {
-            var factory = x.GetRequiredService<TransientServiceProviderFactory>();
+            var factory = x.GetRequiredService<ITransientServiceProviderFactory>();
             var provider = factory.GetProvider();
             return provider;
         });
