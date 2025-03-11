@@ -39,8 +39,11 @@ jobs:
           dotnet pack src/BitzArt.LinqExtensions/BitzArt.LinqExtensions.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
           dotnet build src/BitzArt.LinqExtensions.Batching/BitzArt.LinqExtensions.Batching.csproj --configuration Release /p:Version=${VERSION}
           dotnet pack src/BitzArt.LinqExtensions.Batching/BitzArt.LinqExtensions.Batching.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/BitzArt.LinqExtensions.Conditional/BitzArt.LinqExtensions.Conditional.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/BitzArt.LinqExtensions.Conditional/BitzArt.LinqExtensions.Conditional.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
         run: | 
           dotnet nuget push BitzArt.LinqExtensions.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
           dotnet nuget push BitzArt.LinqExtensions.Batching.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
+          dotnet nuget push BitzArt.LinqExtensions.Conditional.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
