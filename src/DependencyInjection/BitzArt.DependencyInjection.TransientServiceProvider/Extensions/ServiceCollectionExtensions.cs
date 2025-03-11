@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
         Action<IServiceCollection> configureServices,
         Action<ITransientServiceProvider>? configure = null)
     {
-        services.AddSingleton<ITransientServiceProviderFactory, TransientServiceProviderFactory>(sp =>
+        services.AddSingleton<ITransientServiceProviderFactory>(sp =>
             new TransientServiceProviderFactory(configureServices, configure));
 
         services.AddTransient<ITransientServiceProvider>(x =>
