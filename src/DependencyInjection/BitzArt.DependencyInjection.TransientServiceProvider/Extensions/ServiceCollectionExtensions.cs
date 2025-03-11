@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
 
 namespace BitzArt.DependencyInjection;
 
@@ -18,10 +19,14 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITransientServiceProviderFactory, TransientServiceProviderFactory>(sp =>
             new TransientServiceProviderFactory(configureServices, configure));
 
-        services.AddTransient(x =>
+        services.AddTransient<ITransientServiceProvider, TransientServiceProvider>(x =>
         {
             var factory = x.GetRequiredService<ITransientServiceProviderFactory>();
-            var provider = factory.GetProvider();
+            var provider = factory.GetProvider() as TransientServiceProvider;
+
+            if (provider is null)
+                throw new UnreachableException("Unable to retrieve an instance of TransientServiceProvider from the factory.");
+
             return provider;
         });
 
