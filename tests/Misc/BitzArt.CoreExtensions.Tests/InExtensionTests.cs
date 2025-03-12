@@ -4,16 +4,16 @@ public class InExtensionTests
 {
     [Theory]
     [MemberData(nameof(GetTestData))]
-    public void In_WithGivenValues_ShouldReturnCorrectResult<T>(T value, T? start, T? end, bool includeStart, bool includeEnd, bool expectedResult)
+    public void In_WithGivenValues_ShouldReturnCorrectResult<T>(T value, T? lowerBound, T? upperBound, bool includeLowerBound, bool includeUpperBound, bool expectedResult)
        where T : struct, IComparable<T>
     {
         // Arrange
         var range = new Range<T>
         {
-            Start = start,
-            End = end,
-            IncludeStart = includeStart,
-            IncludeEnd = includeEnd
+            LowerBound = lowerBound,
+            UpperBound = upperBound,
+            IncludeLowerBound = includeLowerBound,
+            IncludeUpperBound = includeUpperBound
         };
 
         // Act

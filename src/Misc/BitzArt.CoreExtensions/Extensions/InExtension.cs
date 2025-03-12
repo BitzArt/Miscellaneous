@@ -15,20 +15,20 @@ public static class InExtension
     public static bool In<T>(this T value, Range<T> range)
         where T : struct, IComparable<T>
     {
-        if (!range.Start.HasValue && !range.End.HasValue) 
+        if (!range.LowerBound.HasValue && !range.UpperBound.HasValue) 
             return true;
 
-        if (range.Start.HasValue)
+        if (range.LowerBound.HasValue)
         {
-            var startComparisonResult = value.CompareTo(range.Start.Value);
-            var belowStart = range.IncludeStart ? startComparisonResult < 0 : startComparisonResult <= 0;
+            var startComparisonResult = value.CompareTo(range.LowerBound.Value);
+            var belowStart = range.IncludeLowerBound ? startComparisonResult < 0 : startComparisonResult <= 0;
             if (belowStart) return false;
         }
 
-        if (range.End.HasValue)
+        if (range.UpperBound.HasValue)
         {
-            var endComparisonResult = value.CompareTo(range.End.Value);
-            var aboveEnd = range.IncludeEnd ? endComparisonResult > 0 : endComparisonResult >= 0;
+            var endComparisonResult = value.CompareTo(range.UpperBound.Value);
+            var aboveEnd = range.IncludeUpperBound ? endComparisonResult > 0 : endComparisonResult >= 0;
             if (aboveEnd) return false;
         }
 
