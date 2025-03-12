@@ -11,37 +11,37 @@ public record struct Range<T>
     /// The lower bound of the range.
     /// </summary>
     /// <remarks>
-    /// If <see cref="Start"/> is greater than <see cref="End"/>, their values will be automatically swapped.
+    /// If <see cref="LowerBound"/> is greater than <see cref="UpperBound"/>, their values will be automatically swapped.
     /// </remarks>
-    public T? Start
+    public T? LowerBound
     {
-        get => _start;
+        get => _lowerBound;
         set
         {
-            _start = value;
+            _lowerBound = value;
             EnsureBoundsOrder();
         }
     }
 
-    private T? _start;
+    private T? _lowerBound;
 
     /// <summary>
     /// The upper bound of the range.
     /// </summary>
     /// <remarks>
-    /// If <see cref="End"/> is less than <see cref="Start"/>, their values will be automatically swapped.
+    /// If <see cref="UpperBound"/> is less than <see cref="LowerBound"/>, their values will be automatically swapped.
     /// </remarks>
-    public T? End
+    public T? UpperBound
     {
-        get => _end;
+        get => _upperBound;
         set
         {
-            _end = value;
+            _upperBound = value;
             EnsureBoundsOrder();
         }
     }
 
-    private T? _end;
+    private T? _upperBound;
 
     /// <summary>
     /// Whether the lower bound is included in the range.
@@ -50,11 +50,11 @@ public record struct Range<T>
     /// Default value is <see langword="true"/>.<br/>
     /// Always equals to <see langword="false"/> when the lower bound is <see langword="null"/>.
     /// </remarks>
-    public bool IncludeStart
+    public bool IncludeLowerBound
     {
         get
         {
-            if (!_start.HasValue)
+            if (!_lowerBound.HasValue)
                 return false; // If the lower bound is null, it cannot be included in the range.
 
             return _includeStart;
@@ -72,11 +72,11 @@ public record struct Range<T>
     /// Default value is <see langword="true"/>.<br/>
     /// Always equals to <see langword="false"/> when the upper bound is <see langword="null"/>.
     /// </remarks>
-    public bool IncludeEnd
+    public bool IncludeUpperBound
     {
         get
         {
-            if (!_end.HasValue)
+            if (!_upperBound.HasValue)
                 return false; // If the upper bound is null, it cannot be included in the range.
 
             return _includeEnd;
@@ -91,30 +91,30 @@ public record struct Range<T>
     /// Initializes a new instance of the <see cref="Range{T}"/>.
     /// </summary>
     /// <remarks>
-    /// If <paramref name="start"/> is greater than <paramref name="end"/>, their values will be automatically swapped.
+    /// If <paramref name="lowerBound"/> is greater than <paramref name="upperBound"/>, their values will be automatically swapped.
     /// </remarks>
-    /// <param name="start">The lower bound of the range.</param>
-    /// <param name="end">The upper bound of the range.</param>
-    /// <param name="includeStart">Whether the lower bound is included in the range.</param>
-    /// <param name="includeEnd">Whether the upper bound is included in the range.</param>
-    public Range(T? start, T? end, bool includeStart = true, bool includeEnd = true)
+    /// <param name="lowerBound">The lower bound of the range.</param>
+    /// <param name="upperBound">The upper bound of the range.</param>
+    /// <param name="includeLowerBound">Whether the lower bound is included in the range.</param>
+    /// <param name="includeUpperBound">Whether the upper bound is included in the range.</param>
+    public Range(T? lowerBound, T? upperBound, bool includeLowerBound = true, bool includeUpperBound = true)
     {
-        _start = start;
-        _end = end;
-        _includeStart = includeStart;
-        _includeEnd = includeEnd;
+        _lowerBound = lowerBound;
+        _upperBound = upperBound;
+        _includeStart = includeLowerBound;
+        _includeEnd = includeUpperBound;
         EnsureBoundsOrder();
     }
 
     private void EnsureBoundsOrder()
     {
-        if (!_start.HasValue || !_end.HasValue)
+        if (!_lowerBound.HasValue || !_upperBound.HasValue)
             return;
 
-        var inOrder = _start.Value.CompareTo(_end.Value) <= 0;
+        var inOrder = _lowerBound.Value.CompareTo(_upperBound.Value) <= 0;
         if (inOrder) return;
 
-        (_start, _end) = (_end, _start);
+        (_lowerBound, _upperBound) = (_upperBound, _lowerBound);
         (_includeStart, _includeEnd) = (_includeEnd, _includeStart);
     }
 
@@ -123,11 +123,11 @@ public record struct Range<T>
     /// </summary>
     public override string ToString()
     {
-        var openingBracket = Start.HasValue ? IncludeStart ? "[" : "(" : "(";
-        var lowerBound = Start?.ToString() ?? "−∞";
+        var openingBracket = LowerBound.HasValue ? IncludeLowerBound ? "[" : "(" : "(";
+        var lowerBound = LowerBound?.ToString() ?? "−∞";
 
-        var upperBound = End?.ToString() ?? "+∞";
-        var closingBracket = End.HasValue ? IncludeEnd ? "]" : ")" : ")";
+        var upperBound = UpperBound?.ToString() ?? "+∞";
+        var closingBracket = UpperBound.HasValue ? IncludeUpperBound ? "]" : ")" : ")";
 
         return $"{openingBracket}{lowerBound}, {upperBound}{closingBracket}";
     }
