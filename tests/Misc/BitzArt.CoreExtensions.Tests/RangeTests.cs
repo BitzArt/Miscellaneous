@@ -80,21 +80,11 @@ public class RangeTests
         var ranges = new Range<int>[] { new(1, 2), new(2, 3), new(3, 4) };
 
         // Act
-        try
-        {
-            var queryString = dbContext.Set<TestEntity>()
+        var queryString = dbContext.Set<TestEntity>()
             .Where(ranges.GetInclusionExpression<TestEntity, int>(x => x.Id))
             .ToQueryString();
 
-            Assert.NotEmpty(queryString);
-        }
-        catch (Exception ex)
-        {
-
-            throw;
-        }
-
         // Assert
-        
+        Assert.NotEmpty(queryString);
     }
 }
