@@ -61,20 +61,17 @@ public static class RangeExtensions
     [SuppressMessage("Style", "IDE0075:Simplify conditional expression")]
     public static Expression<Func<T, bool>> GetInclusionExpression<T>(this IEnumerable<Range<T>> ranges)
         where T : struct, IComparable<T>
-        => x => ranges.Any(range => true);
-        /*(
-        range.LowerBound.HasValue
-            ? range.IncludeLowerBound
-                ? range.LowerBound!.Value.CompareTo(x) <= 0
-                : range.LowerBound!.Value.CompareTo(x) < 0
-            : true
-        )
-        &&
-        (
-        range.UpperBound.HasValue
-            ? range.IncludeUpperBound
-                ? range.UpperBound!.Value.CompareTo(x) >= 0
-                : range.UpperBound!.Value.CompareTo(x) > 0
-            : true
-        ));*/
+    {
+        var expressions = ranges.Select(range => range.GetInclusionExpression());
+        return expressions.Aggregate((x, y) => x.Or(y));
+    }
+
+    private static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> left, Expression<Func<T, bool>> right)
+    {
+        var parameter = Expression.Parameter(typeof(T));
+        var leftBody = Expression.Invoke(left, parameter);
+        var rightBody = Expression.Invoke(right, parameter);
+        var body = Expression.OrElse(leftBody, rightBody);
+        return Expression.Lambda<Func<T, bool>>(body, parameter);
+    }
 }

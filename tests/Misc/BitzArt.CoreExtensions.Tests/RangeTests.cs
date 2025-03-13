@@ -83,10 +83,7 @@ public class RangeTests
         try
         {
             var queryString = dbContext.Set<TestEntity>()
-            .Where(x =>
-                ranges
-                    .Select(r => new { r.LowerBound!.Value })
-                    .Any(l => l.Value < x.Id))
+            .Where(ranges.GetInclusionExpression<TestEntity, int>(x => x.Id))
             .ToQueryString();
 
             Assert.NotEmpty(queryString);
