@@ -1,6 +1,6 @@
 ﻿namespace BitzArt.CoreExtensions.Tests;
 
-public class InExtensionTests
+public class RangeExtensionsTests
 {
     [Theory]
     [MemberData(nameof(GetTestData))]
@@ -8,7 +8,7 @@ public class InExtensionTests
        where T : struct, IComparable<T>
     {
         // Arrange
-        var range = new Range<T>
+        var range = new Range<T?>
         {
             LowerBound = lowerBound,
             UpperBound = upperBound,
@@ -17,7 +17,7 @@ public class InExtensionTests
         };
 
         // Act
-        var result = value.In(range);
+        var result = range.Contains(value);
 
         // Assert
         Assert.Equal(expectedResult, result);

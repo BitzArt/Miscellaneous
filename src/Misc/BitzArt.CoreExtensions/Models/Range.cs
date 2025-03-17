@@ -5,15 +5,15 @@
 /// </summary>
 /// <typeparam name="T">The type of bound values.</typeparam>
 public record struct Range<T>
-    where T : struct, IComparable<T>
 {
     /// <summary>
     /// The lower bound of the range.
     /// </summary>
     /// <remarks>
-    /// If <see cref="LowerBound"/> is greater than <see cref="UpperBound"/>, their values will be automatically swapped.
+    /// If <typeparamref name="T"/> implements <see cref="IComparable"/> and 
+    /// both <see cref="LowerBound"/> and <see cref="UpperBound"/> are provided, correct boundary order will be ensured (boundary values may be swapped).
     /// </remarks>
-    public T? LowerBound
+    public T LowerBound
     {
         get => _lowerBound;
         set
@@ -23,15 +23,22 @@ public record struct Range<T>
         }
     }
 
-    private T? _lowerBound;
+    private bool _hasLowerBound => _isNullable == false || _lowerBound is not null;
+
+    private bool _isNullable;
+
+    private bool _isComparable;
+
+    private T _lowerBound;
 
     /// <summary>
     /// The upper bound of the range.
     /// </summary>
     /// <remarks>
-    /// If <see cref="UpperBound"/> is less than <see cref="LowerBound"/>, their values will be automatically swapped.
+    /// If <typeparamref name="T"/> implements <see cref="IComparable"/> and 
+    /// both <see cref="LowerBound"/> and <see cref="UpperBound"/> are provided, correct boundary order will be ensured (boundary values may be swapped).
     /// </remarks>
-    public T? UpperBound
+    public T UpperBound
     {
         get => _upperBound;
         set
@@ -41,7 +48,9 @@ public record struct Range<T>
         }
     }
 
-    private T? _upperBound;
+    private bool _hasUpperBound => _isNullable == false || _upperBound is not null;
+
+    private T _upperBound;
 
     /// <summary>
     /// Whether the lower bound is included in the range.
@@ -54,7 +63,7 @@ public record struct Range<T>
     {
         get
         {
-            if (!_lowerBound.HasValue)
+            if (!_hasLowerBound)
                 return false; // If the lower bound is null, it cannot be included in the range.
 
             return _includeStart;
@@ -76,7 +85,7 @@ public record struct Range<T>
     {
         get
         {
-            if (!_upperBound.HasValue)
+            if (!_hasUpperBound)
                 return false; // If the upper bound is null, it cannot be included in the range.
 
             return _includeEnd;
@@ -91,27 +100,38 @@ public record struct Range<T>
     /// Initializes a new instance of the <see cref="Range{T}"/>.
     /// </summary>
     /// <remarks>
-    /// If <paramref name="lowerBound"/> is greater than <paramref name="upperBound"/>, their values will be automatically swapped.
+    /// If <typeparamref name="T"/> implements <see cref="IComparable"/> and 
+    /// both <paramref name="lowerBound"/> and <paramref name="upperBound"/> are provided, correct boundary order is ensured (boundary values may be swapped).
     /// </remarks>
     /// <param name="lowerBound">The lower bound of the range.</param>
     /// <param name="upperBound">The upper bound of the range.</param>
     /// <param name="includeLowerBound">Whether the lower bound is included in the range.</param>
     /// <param name="includeUpperBound">Whether the upper bound is included in the range.</param>
-    public Range(T? lowerBound, T? upperBound, bool includeLowerBound = true, bool includeUpperBound = true)
+    public Range(T lowerBound, T upperBound, bool includeLowerBound = true, bool includeUpperBound = true)
     {
+        _isNullable = typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(Nullable<>);
+
+        var underlyingType = _isNullable ? Nullable.GetUnderlyingType(typeof(T))! : typeof(T);
+        _isComparable = underlyingType.GetInterfaces().Contains(typeof(IComparable));
+
         _lowerBound = lowerBound;
         _upperBound = upperBound;
         _includeStart = includeLowerBound;
         _includeEnd = includeUpperBound;
+
         EnsureBoundsOrder();
     }
 
     private void EnsureBoundsOrder()
     {
-        if (!_lowerBound.HasValue || !_upperBound.HasValue)
+        // Does not implement IComparable, so cannot compare the bounds.
+        if (!_isComparable) return;
+
+        // If the bounds are nullable and at least one of them is null, no need to compare them.
+        if (_isNullable && (_lowerBound is null || _upperBound is null))
             return;
 
-        var inOrder = _lowerBound.Value.CompareTo(_upperBound.Value) <= 0;
+        var inOrder = ((IComparable)_lowerBound!).CompareTo((IComparable)_upperBound!) <= 0;
         if (inOrder) return;
 
         (_lowerBound, _upperBound) = (_upperBound, _lowerBound);
@@ -123,11 +143,11 @@ public record struct Range<T>
     /// </summary>
     public override string ToString()
     {
-        var openingBracket = LowerBound.HasValue ? IncludeLowerBound ? "[" : "(" : "(";
-        var lowerBound = LowerBound?.ToString() ?? "−∞";
+        var openingBracket = _hasLowerBound ? IncludeLowerBound ? '[' : '(' : '(';
+        var lowerBound = LowerBound?.ToString() ?? "unlimited";
 
-        var upperBound = UpperBound?.ToString() ?? "+∞";
-        var closingBracket = UpperBound.HasValue ? IncludeUpperBound ? "]" : ")" : ")";
+        var upperBound = UpperBound?.ToString() ?? "unlimited";
+        var closingBracket = _hasUpperBound ? IncludeUpperBound ? ']' : ')' : ')';
 
         return $"{openingBracket}{lowerBound}, {upperBound}{closingBracket}";
     }
