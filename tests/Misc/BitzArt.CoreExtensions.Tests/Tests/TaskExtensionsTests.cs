@@ -1,4 +1,4 @@
-namespace BitzArt.CoreExtensions.Tests;
+namespace BitzArt.Tests;
 
 public class TaskExtensionsTests
 {

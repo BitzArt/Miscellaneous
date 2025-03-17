@@ -1,4 +1,6 @@
-﻿namespace BitzArt;
+﻿using System.Linq.Expressions;
+
+namespace BitzArt;
 
 /// <summary>
 /// Represents a range within specified bounds.
@@ -109,13 +111,15 @@ public record struct Range<T>
     /// <param name="includeUpperBound">Whether the upper bound is included in the range.</param>
     public Range(T lowerBound, T upperBound, bool includeLowerBound = true, bool includeUpperBound = true)
     {
-        _isNullable = typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(Nullable<>);
+        _isNullable = typeof(T).IsNullable(out var underlyingType);
 
-        var underlyingType = _isNullable ? Nullable.GetUnderlyingType(typeof(T))! : typeof(T);
-        _isComparable = underlyingType.GetInterfaces().Contains(typeof(IComparable));
+        _isComparable = _isNullable
+            ? underlyingType!.GetInterfaces().Contains(typeof(IComparable))
+            : typeof(T).GetInterfaces().Contains(typeof(IComparable));
 
         _lowerBound = lowerBound;
         _upperBound = upperBound;
+
         _includeStart = includeLowerBound;
         _includeEnd = includeUpperBound;
 
