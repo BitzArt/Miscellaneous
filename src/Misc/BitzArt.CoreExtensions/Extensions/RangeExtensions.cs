@@ -11,17 +11,6 @@ namespace BitzArt;
 public static class RangeExtensions
 {
     /// <summary>
-    /// Determines whether the specified value lies within the given range's boundaries.
-    /// </summary>
-    /// <typeparam name="T">The type of the value and range bounds.</typeparam>
-    /// <param name="value">The value to check.</param>
-    /// <param name="range">The range to check against.</param>
-    /// <returns><see langword="true"/> if the value is within the given range's boundaries, otherwise <see langword="false"/>.</returns>
-    public static bool Contains<T>(this Range<T?> range, T value)
-        where T : struct, IComparable<T>
-        => range.GetInclusionExpression().Compile().Invoke(value);
-
-    /// <summary>
     /// Determines whether the specified value lies within any of the given ranges' boundaries.
     /// </summary>
     /// <typeparam name="T">The type of the value and range bounds.</typeparam>
@@ -30,7 +19,32 @@ public static class RangeExtensions
     /// <returns><see langword="true"/> if the value is within any of the given ranges' boundaries, otherwise <see langword="false"/>.</returns>
     public static bool Contains<T>(this IEnumerable<Range<T?>> ranges, T value)
         where T : struct, IComparable<T>
-        => ranges.GetInclusionExpression().Compile().Invoke(value);
+        => ranges.Any(range => range.Contains(value));
+
+    /// <summary>
+    /// Determines whether the specified value lies within the given range's boundaries.
+    /// </summary>
+    /// <typeparam name="T">The type of the value and range bounds.</typeparam>
+    /// <param name="value">The value to check.</param>
+    /// <param name="range">The range to check against.</param>
+    /// <returns><see langword="true"/> if the value is within the given range's boundaries, otherwise <see langword="false"/>.</returns>
+    public static bool Contains<T>(this Range<T?> range, T value)
+        where T : struct, IComparable<T>
+    {
+        if (range.LowerBound is not null)
+        {
+            var startComparisonResult = value.CompareTo(range.LowerBound!.Value);
+            var belowStart = range.IncludeLowerBound ? startComparisonResult < 0 : startComparisonResult <= 0;
+            if (belowStart) return false;
+        }
+        if (range.UpperBound is not null)
+        {
+            var endComparisonResult = value.CompareTo(range.UpperBound!.Value);
+            var aboveEnd = range.IncludeUpperBound ? endComparisonResult > 0 : endComparisonResult >= 0;
+            if (aboveEnd) return false;
+        }
+        return true;
+    }
 
     /// <summary>
     /// Returns an expression that checks if the value is within the given range.
