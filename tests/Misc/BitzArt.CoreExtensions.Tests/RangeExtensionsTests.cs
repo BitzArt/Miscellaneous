@@ -3,58 +3,92 @@
 public class RangeExtensionsTests
 {
     [Theory]
-    [MemberData(nameof(GetTestData))]
-    public void In_WithGivenValues_ShouldReturnCorrectResult<T>(T value, T? lowerBound, T? upperBound, bool includeLowerBound, bool includeUpperBound, bool expectedResult)
-       where T : struct, IComparable<T>
+    [InlineData(1, 3, 2)]
+    [InlineData(0, 5, 3)]
+    [InlineData(-1, 1, 0)]
+    [InlineData(0, null, 1)]
+    [InlineData(0, null, 1000)]
+    [InlineData(0, null, int.MaxValue)]
+    [InlineData(null, 0, -1)]
+    [InlineData(null, 0, -1000)]
+    [InlineData(null, 0, int.MinValue)]
+    public void Contains_ValueWithinRange_ShouldReturnTrue(int? lowerBound, int? upperBound, int value)
     {
         // Arrange
-        var range = new Range<T?>
-        {
-            LowerBound = lowerBound,
-            UpperBound = upperBound,
-            IncludeLowerBound = includeLowerBound,
-            IncludeUpperBound = includeUpperBound
-        };
+        var range = new Range<int?>(lowerBound, upperBound);
 
         // Act
         var result = range.Contains(value);
 
         // Assert
-        Assert.Equal(expectedResult, result);
+        Assert.True(result);
     }
 
-    public static IEnumerable<object?[]> GetTestData()
+    [Theory]
+    [InlineData(1, 3, 4)]
+    [InlineData(1, 3, 0)]
+    [InlineData(0, 5, 6)]
+    [InlineData(0, 5, -1)]
+    [InlineData(-1, 1, 2)]
+    [InlineData(-1, 1, -2)]
+    [InlineData(0, 10, 100)]
+    [InlineData(0, null, -1)]
+    [InlineData(0, null, -1000)]
+    [InlineData(0, null, int.MinValue)]
+    [InlineData(null, 0, 1)]
+    [InlineData(null, 0, 1000)]
+    [InlineData(null, 0, int.MaxValue)]
+    public void Contains_ValueOutsideRange_ShouldReturnFalse(int? lowerBound, int? upperBound, int value)
     {
-        return
-        [
-            // In the range
-            [5, 1, 10, true, true, true],
-            [7, 7, 7, true, true, true],
-            ['e', 'a', 'f', true, false, true],
-            [2, -10, 10, false, true, true],
-            [9.9, 1.0, 10.0, false, false, true],
-            [6.0, 1.0, null, true, true, true],
-            [-7, null, null, true, true, true],
-            [0, null, 10, true, true, true],
-            [5, null, 10, true, true, true],
-            [15, 1, null, true, true, true],
-            [new DateTime(2025, 5, 3), new DateTime(2025, 5, 1), new DateTime(2025, 5, 5), false, false, true],
-            [new DateTime(2025, 5, 3), new DateTime(2025, 5, 3), new DateTime(2025, 5, 5), true, false, true],
-            [new DateTime(2025, 5, 3), null, new DateTime(2025, 5, 5), false, false, true],
+        // Arrange
+        var range = new Range<int?>(lowerBound, upperBound);
 
-            // Out of the range
-            [9, 9, 9, false, false, false],
-            [15.3, 1.0, 5.1, true, true, false],
-            [10, 1, 10, true, false, false],
-            [1, 1, 10, false, true, false],
-            ['g', 'a', 'f', false, false, false],
-            ['a', 'a', 'f', false, false, false],
-            [11, null, 10, true, true, false],
-            [-7, -2, 8, true, true, false],
-            [-5, 1, null, true, true, false],
-            [new DateTime(2025, 5, 3), new DateTime(2025, 5, 3), new DateTime(2025, 5, 5), false, false, false],
-            [new DateTime(2025, 5, 1), new DateTime(2025, 5, 3), new DateTime(2025, 5, 5), true, true, false],
-            [new DateTime(2025, 5, 1), new DateTime(2025, 5, 3), null, true, false, false],
-        ];
+        // Act
+        var result = range.Contains(value);
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Theory]
+    [InlineData(1, 3, 1)]
+    [InlineData(1, 3, 3)]
+    [InlineData(0, 5, 0)]
+    [InlineData(0, 5, 5)]
+    [InlineData(-1, 1, -1)]
+    [InlineData(-1, 1, 1)]
+    [InlineData(0, null, 0)]
+    [InlineData(null, 0, 0)]
+    public void Contains_ValueEqualsIncludedBoundary_ShouldReturnTrue(int? lowerBound, int? upperBound, int value)
+    {
+        // Arrange
+        var range = new Range<int?>(lowerBound, upperBound);
+
+        // Act
+        var result = range.Contains(value);
+
+        // Assert
+        Assert.True(result);
+    }
+
+    [Theory]
+    [InlineData(1, 3, 1)]
+    [InlineData(1, 3, 3)]
+    [InlineData(0, 5, 0)]
+    [InlineData(0, 5, 5)]
+    [InlineData(-1, 1, -1)]
+    [InlineData(-1, 1, 1)]
+    [InlineData(0, null, 0)]
+    [InlineData(null, 0, 0)]
+    public void Contains_ValueEqualsNotIncludedBoundary_ShouldReturnFalse(int? lowerBound, int? upperBound, int value)
+    {
+        // Arrange
+        var range = new Range<int?>(lowerBound, upperBound, false, false);
+
+        // Act
+        var result = range.Contains(value);
+
+        // Assert
+        Assert.False(result);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace BitzArt;
+﻿using System.Linq.Expressions;
+
+namespace BitzArt;
 
 /// <summary>
 /// Represents a range within specified bounds.
