@@ -100,6 +100,10 @@ public static class RangeExtensions
     public static Expression<Func<T, bool>> GetInclusionExpression<T>(this IEnumerable<Range<T?>> ranges)
         where T : struct, IComparable<T>
     {
+        ArgumentNullException.ThrowIfNull(ranges);
+
+        if (!ranges.Any()) return _ => true;
+
         var expressions = ranges.Select(range => range.GetInclusionExpression());
         return expressions.Aggregate((x, y) => x.Or(y));
     }
