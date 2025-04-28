@@ -69,7 +69,7 @@ public static class RangeExtensions
     /// <param name="targetExpression">The expression that selects the value to check.</param>
     /// <param name="range">The range to check against.</param>
     /// <returns>The query filtered by the given range applied to the given expression.</returns>
-    public static IQueryable<TSource> WhereInRange<TSource, TTarget>(
+    public static IQueryable<TSource> Where<TSource, TTarget>(
         this IQueryable<TSource> query,
         Expression<Func<TSource, TTarget>> targetExpression,
         Range<TTarget?> range)
