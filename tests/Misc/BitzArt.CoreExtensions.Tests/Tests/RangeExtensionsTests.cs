@@ -91,4 +91,26 @@ public class RangeExtensionsTests
         // Assert
         Assert.False(result);
     }
+
+    [Fact]
+    public void WhereInRange_QueryContainsValuesInRange_ShouldFilterOut()
+    {
+        var query = Enumerable.Range(0, 3).AsQueryable();
+        var range = new Range<int?>(1, 2);
+
+        var result = query.Where(x => x, range).ToList();
+
+        Assert.NotEmpty(result);
+    }
+
+    [Fact]
+    public void WhereInRange_QueryDoesNotContainsValuesInRange_ShouldReturnEmpty()
+    {
+        var query = Enumerable.Range(0, 3).AsQueryable();
+        var range = new Range<int?>(4, 5);
+
+        var result = query.Where(x => x, range).ToList();
+
+        Assert.Empty(result);
+    }
 }
