@@ -103,9 +103,9 @@ public class RangeExtensionsTests
     [InlineData(null, 5)] // Open lower bound
     [InlineData(4, null)] // Open upper bound
     [InlineData(-1, 10)] // Query completely within range
-    public void Where_CompareWithGetInclusionExpressionResult_ReturnsSame(
-        int? lowerBound,
-        int? upperBound)
+    public void Where_QueryAndInclusionExpressionResults_ShouldMatch(
+           int? lowerBound,
+           int? upperBound)
     {
         // Arrange 
         const int startValue = 0;
