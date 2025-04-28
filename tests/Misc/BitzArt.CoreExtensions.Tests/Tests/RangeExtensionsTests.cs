@@ -92,25 +92,35 @@ public class RangeExtensionsTests
         Assert.False(result);
     }
 
-    [Fact]
-    public void WhereInRange_QueryContainsValuesInRange_ShouldFilterOut()
+    [Theory]
+    // All range values are included
+    [InlineData(1, 3, 0, 9, 3)]
+    // One boundary value is included
+    [InlineData(-1, 0, 0, 9, 1)]
+    // One boundary value is included
+    [InlineData(9, 10, 0, 9, 1)]
+    // All range values are excluded
+    [InlineData(-3, -1, 0, 9, 0)]
+    // All range values are excluded
+    [InlineData(10, 12, 0, 9, 0)]
+    // Range values are partially included
+    [InlineData(7, 12, 0, 9, 3)]
+    // Range values are partially included
+    [InlineData(-2, 2, 0, 9, 3)]
+    public void WhereInRange_IncludedBoundary_ShouldFilterOut(
+        int lowerBound,
+        int upperBound,
+        int start,
+        int end,
+        int expectedCount)
     {
-        var query = Enumerable.Range(0, 3).AsQueryable();
-        var range = new Range<int?>(1, 2);
+        var elementsCount = end - start + 1;
+
+        var query = Enumerable.Range(start, elementsCount).AsQueryable();
+        var range = new Range<int?>(lowerBound, upperBound);
 
         var result = query.Where(x => x, range).ToList();
 
-        Assert.NotEmpty(result);
-    }
-
-    [Fact]
-    public void WhereInRange_QueryDoesNotContainsValuesInRange_ShouldReturnEmpty()
-    {
-        var query = Enumerable.Range(0, 3).AsQueryable();
-        var range = new Range<int?>(4, 5);
-
-        var result = query.Where(x => x, range).ToList();
-
-        Assert.Empty(result);
+        Assert.Equal(expectedCount, result.Count);
     }
 }
