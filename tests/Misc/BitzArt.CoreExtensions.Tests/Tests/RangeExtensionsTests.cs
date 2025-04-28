@@ -93,25 +93,26 @@ public class RangeExtensionsTests
     }
 
     [Theory]
-    [InlineData(1, 5, 0, 10)] // All range values are within query range
-    [InlineData(-3, 0, 0, 10)] // Lower boundary partially overlaps query range
-    [InlineData(9, 12, 0, 10)] // Upper boundary partially overlaps query range
-    [InlineData(-3, -1, 0, 10)] // Range completely outside query range (lower)
-    [InlineData(10, 12, 0, 10)] // Range completely outside query range (upper)
-    [InlineData(7, 12, 0, 10)] // Partial overlap with query range
-    [InlineData(-2, 2, 0, 10)] // Partial overlap with query range
-    [InlineData(null, 5, 0, 10)] // Open lower bound
-    [InlineData(4, null, 0, 10)] // Open upper bound
-    [InlineData(-1, 10, 0, 10)] // Query completely within range
+    [InlineData(1, 5)] // All range values are within query range
+    [InlineData(-3, 0)] // Lower boundary partially overlaps query range
+    [InlineData(9, 12)] // Upper boundary partially overlaps query range
+    [InlineData(-3, -1)] // Range completely outside query range (lower)
+    [InlineData(10, 12)] // Range completely outside query range (upper)
+    [InlineData(7, 12)] // Partial overlap with query range
+    [InlineData(-2, 2)] // Partial overlap with query range
+    [InlineData(null, 5)] // Open lower bound
+    [InlineData(4, null)] // Open upper bound
+    [InlineData(-1, 10)] // Query completely within range
     public void Where_CompareWithGetInclusionExpressionResult_ReturnsSame(
         int? lowerBound,
-        int? upperBound,
-        int start,
-        int elementsCount)
+        int? upperBound)
     {
-        // Arrange  
+        // Arrange 
+        const int startValue = 0;
+        const int elementsCount = 10;
+
         var range = new Range<int?>(lowerBound, upperBound);
-        var query = Enumerable.Range(start, elementsCount).AsQueryable();
+        var query = Enumerable.Range(startValue, elementsCount).AsQueryable();
 
         // Act  
         var whereResult = query.Where(x => x, range).ToList();
