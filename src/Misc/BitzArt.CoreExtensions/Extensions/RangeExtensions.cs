@@ -65,7 +65,7 @@ public static class RangeExtensions
     /// </summary>
     /// <typeparam name="TSource">Queryable data type.</typeparam>
     /// <typeparam name="TTarget">The type of the value and range bounds.</typeparam>
-    /// <param name="query">Queryable data type.</param>
+    /// <param name="query">The queryable data source to filter.</param>
     /// <param name="targetExpression">The expression that selects the value to check.</param>
     /// <param name="range">The range to check against.</param>
     /// <returns>The query filtered by the given range applied to the given expression.</returns>
