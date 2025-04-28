@@ -93,66 +93,62 @@ public class RangeExtensionsTests
     }
 
     [Theory]
-    // All range values are included => All values are included
-    [InlineData(1, 3, 0, 9, 3)]
-    // One boundary value is included => One value is included
-    [InlineData(-1, 0, 0, 9, 1)]
-    // One boundary value is included => One value is included
-    [InlineData(9, 10, 0, 9, 1)]
-    // All range values are excluded => No values are included
-    [InlineData(-3, -1, 0, 9, 0)]
-    // All range values are excluded => No values are included
-    [InlineData(10, 12, 0, 9, 0)]
-    // Range values are partially included => Only values in range are included. Boundary value is included as well
-    [InlineData(7, 12, 0, 9, 3)]
-    // Range values are partially included => Only values in range are included. Boundary value is included as well
-    [InlineData(-2, 2, 0, 9, 3)]
+    [InlineData(1, 3, 0, 9, 3)] // All range values are within query range, including boundaries
+    [InlineData(-1, 0, 0, 9, 1)] // Lower boundary partially overlaps query range
+    [InlineData(9, 10, 0, 9, 1)] // Upper boundary partially overlaps query range
+    [InlineData(-3, -1, 0, 9, 0)] // Range completely outside query range (lower)
+    [InlineData(10, 12, 0, 9, 0)] // Range completely outside query range (upper)
+    [InlineData(7, 12, 0, 9, 3)] // Partial overlap with query range, including boundary
+    [InlineData(-2, 2, 0, 9, 3)] // Partial overlap with query range, including boundary
+    [InlineData(null, 5, 0, 9, 6)] // Open lower bound
+    [InlineData(4, null, 0, 9, 6)] // Open upper bound
+    [InlineData(-1, 10, 0, 9, 10)] // Query completely within range
     public void Where_IncludedBoundary_ShouldFilterOut(
-        int lowerBound,
-        int upperBound,
+        int? lowerBound,
+        int? upperBound,
         int start,
         int end,
         int expectedCount)
     {
-        var elementsCount = end - start + 1;
-
-        var query = Enumerable.Range(start, elementsCount).AsQueryable();
+        // Arrange
+        var rangeLength = end - start + 1;
+        var query = Enumerable.Range(start, rangeLength).AsQueryable();
         var range = new Range<int?>(lowerBound, upperBound);
 
+        // Act
         var result = query.Where(x => x, range).ToList();
 
+        // Assert
         Assert.Equal(expectedCount, result.Count);
     }
 
     [Theory]
-    // All range values are included => All values except boundary values are included
-    [InlineData(1, 5, 0, 9, 3)]
-    // One boundary value is included => No values are included
-    [InlineData(-1, 0, 0, 9, 0)]
-    // One boundary value is included => No values are included
-    [InlineData(9, 10, 0, 9, 0)]
-    // All range values are excluded => No values are included
-    [InlineData(-3, -1, 0, 9, 0)]
-    // All range values are excluded => No values are included
-    [InlineData(10, 12, 0, 9, 0)]
-    // Range values are partially included => Only values in range are included ([8, 9]). Boundary value is not included (7)
-    [InlineData(7, 12, 0, 9, 2)]
-    // Range values are partially included => Only values in range are included ([0, 1]). Boundary value is not included (2)
-    [InlineData(-2, 2, 0, 9, 2)]
+    [InlineData(1, 5, 0, 9, 3)] // All range values are within query range, excluding boundaries
+    [InlineData(-3, 0, 0, 9, 0)] // Lower boundary partially overlaps query range
+    [InlineData(9, 12, 0, 9, 0)] // Upper boundary partially overlaps query range
+    [InlineData(-3, -1, 0, 9, 0)] // Range completely outside query range (lower)
+    [InlineData(10, 12, 0, 9, 0)] // Range completely outside query range (upper)
+    [InlineData(7, 12, 0, 9, 2)] // Partial overlap with query range, excluding boundary. Result is [8, 9]
+    [InlineData(-2, 2, 0, 9, 2)] // Partial overlap with query range, excluding boundary. Result is [0, 1]
+    [InlineData(null, 5, 0, 9, 5)] // Open lower bound
+    [InlineData(4, null, 0, 9, 5)] // Open upper bound
+    [InlineData(-1, 10, 0, 9, 10)] // Query completely within range
     public void Where_NotIncludedBoundary_ShouldFilterOut(
-        int lowerBound,
-        int upperBound,
+        int? lowerBound,
+        int? upperBound,
         int start,
         int end,
         int expectedCount)
     {
-        var elementsCount = end - start + 1;
-
-        var query = Enumerable.Range(start, elementsCount).AsQueryable();
+        // Arrange
+        var rangeLength = end - start + 1;
+        var query = Enumerable.Range(start, rangeLength).AsQueryable();
         var range = new Range<int?>(lowerBound, upperBound, false, false);
 
+        // Act
         var result = query.Where(x => x, range).ToList();
 
+        // Assert
         Assert.Equal(expectedCount, result.Count);
     }
 }
