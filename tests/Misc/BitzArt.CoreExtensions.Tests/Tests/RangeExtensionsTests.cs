@@ -107,7 +107,7 @@ public class RangeExtensionsTests
     [InlineData(7, 12, 0, 9, 3)]
     // Range values are partially included => Only values in range are included. Boundary value is included as well
     [InlineData(-2, 2, 0, 9, 3)]
-    public void WhereInRange_IncludedBoundary_ShouldFilterOut(
+    public void Where_IncludedBoundary_ShouldFilterOut(
         int lowerBound,
         int upperBound,
         int start,
@@ -139,7 +139,7 @@ public class RangeExtensionsTests
     [InlineData(7, 12, 0, 9, 2)]
     // Range values are partially included => Only values in range are included ([0, 1]). Boundary value is not included (2)
     [InlineData(-2, 2, 0, 9, 2)]
-    public void WhereInRange_NotIncludedBoundary_ShouldFilterOut(
+    public void Where_NotIncludedBoundary_ShouldFilterOut(
         int lowerBound,
         int upperBound,
         int start,
