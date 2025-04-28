@@ -93,19 +93,19 @@ public class RangeExtensionsTests
     }
 
     [Theory]
-    // All range values are included
+    // All range values are included => All values are included
     [InlineData(1, 3, 0, 9, 3)]
-    // One boundary value is included
+    // One boundary value is included => One value is included
     [InlineData(-1, 0, 0, 9, 1)]
-    // One boundary value is included
+    // One boundary value is included => One value is included
     [InlineData(9, 10, 0, 9, 1)]
-    // All range values are excluded
+    // All range values are excluded => No values are included
     [InlineData(-3, -1, 0, 9, 0)]
-    // All range values are excluded
+    // All range values are excluded => No values are included
     [InlineData(10, 12, 0, 9, 0)]
-    // Range values are partially included
+    // Range values are partially included => Only values in range are included. Boundary value is included as well
     [InlineData(7, 12, 0, 9, 3)]
-    // Range values are partially included
+    // Range values are partially included => Only values in range are included. Boundary value is included as well
     [InlineData(-2, 2, 0, 9, 3)]
     public void WhereInRange_IncludedBoundary_ShouldFilterOut(
         int lowerBound,
@@ -118,6 +118,38 @@ public class RangeExtensionsTests
 
         var query = Enumerable.Range(start, elementsCount).AsQueryable();
         var range = new Range<int?>(lowerBound, upperBound);
+
+        var result = query.Where(x => x, range).ToList();
+
+        Assert.Equal(expectedCount, result.Count);
+    }
+
+    [Theory]
+    // All range values are included => All values except boundary values are included
+    [InlineData(1, 5, 0, 9, 3)]
+    // One boundary value is included => No values are included
+    [InlineData(-1, 0, 0, 9, 0)]
+    // One boundary value is included => No values are included
+    [InlineData(9, 10, 0, 9, 0)]
+    // All range values are excluded => No values are included
+    [InlineData(-3, -1, 0, 9, 0)]
+    // All range values are excluded => No values are included
+    [InlineData(10, 12, 0, 9, 0)]
+    // Range values are partially included => Only values in range are included ([8, 9]). Boundary value is not included (7)
+    [InlineData(7, 12, 0, 9, 2)]
+    // Range values are partially included => Only values in range are included ([0, 1]). Boundary value is not included (2)
+    [InlineData(-2, 2, 0, 9, 2)]
+    public void WhereInRange_NotIncludedBoundary_ShouldFilterOut(
+        int lowerBound,
+        int upperBound,
+        int start,
+        int end,
+        int expectedCount)
+    {
+        var elementsCount = end - start + 1;
+
+        var query = Enumerable.Range(start, elementsCount).AsQueryable();
+        var range = new Range<int?>(lowerBound, upperBound, false, false);
 
         var result = query.Where(x => x, range).ToList();
 
