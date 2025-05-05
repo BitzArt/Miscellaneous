@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\Publish Json.yml = .github\workflows\Publish Json.yml
 		.github\workflows\Publish MassTransit.ConsumerBase.yml = .github\workflows\Publish MassTransit.ConsumerBase.yml
 		.github\workflows\Publish Patcher.yml = .github\workflows\Publish Patcher.yml
+		.github\workflows\Publish Wolverine.Extensions.yml = .github\workflows\Publish Wolverine.Extensions.yml
 		.github\workflows\Tests.yml = .github\workflows\Tests.yml
 	EndProjectSection
 EndProject
@@ -72,6 +73,24 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{BDCAABCC-D420-4A4D-AAC2-3D254D7932CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.DependencyInjection.TransientServiceProvider", "src\DependencyInjection\BitzArt.DependencyInjection.TransientServiceProvider\BitzArt.DependencyInjection.TransientServiceProvider.csproj", "{5F8768B5-FE6F-42DC-9993-F9F4E5AE38E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wolverine", "Wolverine", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions", "src\Wolverine\BitzArt.Wolverine.Extensions\BitzArt.Wolverine.Extensions.csproj", "{7F1D2936-4A0C-4D8A-8864-E6FD99B44F92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wolverine", "Wolverine", "{EBAE466F-D8D2-447E-B856-DCE1AE248E07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions.Tests", "tests\Wolverine\BitzArt.Wolverine.Extensions.Tests\BitzArt.Wolverine.Extensions.Tests.csproj", "{20578639-EA6A-41F4-A8E6-4A91B64857CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{F15400EB-F874-4081-8A45-C83D25212603}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wolverine", "Wolverine", "{0D68EDE3-C572-433C-A52C-48975AA6B416}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transport", "Transport", "{3BE5F353-9F24-4F72-A55D-E9323FA42A2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions.Sample.Producer", "sample\Wolverine\BitzArt.Wolverine.Extensions.Sample.Producer\BitzArt.Wolverine.Extensions.Sample.Producer.csproj", "{25E75777-1FD7-474A-BC48-0012793221CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions.Sample.Processor", "sample\Wolverine\BitzArt.Wolverine.Extensions.Sample.Processor\BitzArt.Wolverine.Extensions.Sample.Processor.csproj", "{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +154,22 @@ Global
 		{5F8768B5-FE6F-42DC-9993-F9F4E5AE38E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F8768B5-FE6F-42DC-9993-F9F4E5AE38E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F8768B5-FE6F-42DC-9993-F9F4E5AE38E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1D2936-4A0C-4D8A-8864-E6FD99B44F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1D2936-4A0C-4D8A-8864-E6FD99B44F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1D2936-4A0C-4D8A-8864-E6FD99B44F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1D2936-4A0C-4D8A-8864-E6FD99B44F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20578639-EA6A-41F4-A8E6-4A91B64857CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20578639-EA6A-41F4-A8E6-4A91B64857CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20578639-EA6A-41F4-A8E6-4A91B64857CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20578639-EA6A-41F4-A8E6-4A91B64857CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E75777-1FD7-474A-BC48-0012793221CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E75777-1FD7-474A-BC48-0012793221CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E75777-1FD7-474A-BC48-0012793221CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E75777-1FD7-474A-BC48-0012793221CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +200,14 @@ Global
 		{039255F7-8BFF-4A5E-ABB6-602AF5F14AA5} = {A5E6C844-8858-442E-8EAB-2CFD2E59B9EB}
 		{BDCAABCC-D420-4A4D-AAC2-3D254D7932CD} = {2638AACB-7314-4962-87BE-93876EEED788}
 		{5F8768B5-FE6F-42DC-9993-F9F4E5AE38E4} = {BDCAABCC-D420-4A4D-AAC2-3D254D7932CD}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {2638AACB-7314-4962-87BE-93876EEED788}
+		{7F1D2936-4A0C-4D8A-8864-E6FD99B44F92} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{EBAE466F-D8D2-447E-B856-DCE1AE248E07} = {6C59FADC-BAEA-46B7-A69F-DC2AA0A124D6}
+		{20578639-EA6A-41F4-A8E6-4A91B64857CD} = {EBAE466F-D8D2-447E-B856-DCE1AE248E07}
+		{0D68EDE3-C572-433C-A52C-48975AA6B416} = {F15400EB-F874-4081-8A45-C83D25212603}
+		{3BE5F353-9F24-4F72-A55D-E9323FA42A2C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{25E75777-1FD7-474A-BC48-0012793221CF} = {0D68EDE3-C572-433C-A52C-48975AA6B416}
+		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15} = {0D68EDE3-C572-433C-A52C-48975AA6B416}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
