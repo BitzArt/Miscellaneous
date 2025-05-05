@@ -1,0 +1,42 @@
+name: Release Wolverine.Extensions
+
+on:
+  repository_dispatch:
+  push:
+    tags:
+    - "Wolverine.Extensions-v[0-9]+.[0-9]+.[0-9]+"
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NUGET_APIKEY: ${{ secrets.NUGET_APIKEY}}
+
+jobs:
+
+  Release:
+    name: Wolverine.Extensions
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.x'
+
+      - name: Verify commit
+        run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git branch --remote --contains | grep origin/main
+
+      - name: Set version
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\/Wolverine.Extensions-v/}" >> $GITHUB_ENV
+
+      - name: Build
+        run: |
+          dotnet build src/Wolverine/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/Wolverine/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+
+      - name: Push
+        run: dotnet nuget push BitzArt.Wolverine.Extensions.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}

@@ -1,0 +1,6 @@
+@BitzArt.Wolverine.Extensions.Sample.Producer_HostAddress = http://localhost:5298
+
+GET {{BitzArt.Wolverine.Extensions.Sample.Producer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
