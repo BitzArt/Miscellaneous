@@ -35,8 +35,8 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/MassTransit/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION}
-          dotnet pack src/MassTransit/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/Wolverine/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/Wolverine/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
         run: dotnet nuget push BitzArt.Wolverine.Extensions.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
