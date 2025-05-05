@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Wolverine\Transport\BitzArt.Wolverine.Extensions.AzureServiceBus\BitzArt.Wolverine.Extensions.AzureServiceBus.csproj"/>
+    <ProjectReference Include="..\..\..\src\Wolverine\Transport\BitzArt.Wolverine.Extensions.RabbitMq\BitzArt.Wolverine.Extensions.RabbitMq.csproj"/>
+  </ItemGroup>
+
 </Project>
