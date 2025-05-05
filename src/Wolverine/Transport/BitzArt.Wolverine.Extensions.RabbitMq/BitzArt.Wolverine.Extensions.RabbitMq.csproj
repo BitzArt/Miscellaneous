@@ -7,7 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\BitzArt.Wolverine.Extensions\BitzArt.Wolverine.Extensions.csproj" />
+        <ProjectReference Include="..\..\BitzArt.Wolverine.Extensions\BitzArt.Wolverine.Extensions.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="WolverineFx.RabbitMQ" Version="3.13.0"/>
     </ItemGroup>
 
 </Project>
