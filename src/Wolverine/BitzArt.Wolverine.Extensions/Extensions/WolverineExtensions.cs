@@ -2,6 +2,7 @@ using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Wolverine;
 
 namespace BitzArt.Extensions;
 
@@ -14,14 +15,17 @@ public static class WolverineExtensions
     /// Adds messaging capabilities to the host application builder.
     /// </summary>
     /// <param name="builder"></param>
+    /// <param name="configure"></param>
     /// <param name="assemblies"></param>
     /// <returns></returns>
     public static IHostApplicationBuilder AddMessaging(
         this IHostApplicationBuilder builder,
+        Action<IMessagingConfiguration> configure,
         IEnumerable<Assembly>? assemblies = null)
     {
         builder.Services.AddMessaging(
             builder.Configuration,
+            configure,
             assemblies);
 
         return builder;
@@ -32,13 +36,32 @@ public static class WolverineExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <param name="configuration"></param>
+    /// <param name="configure"></param>
     /// <param name="assemblies"></param>
     /// <returns></returns>
     public static IServiceCollection AddMessaging(
         this IServiceCollection services,
         IConfiguration configuration,
+        Action<IMessagingConfiguration> configure,
         IEnumerable<Assembly>? assemblies = null)
     {
+        services.AddWolverine(wolverineOptions =>
+        {
+            // Opt out of Wolverine's default convention of routing messages to the local node's queues
+            // Force messages without explicit routing rules to be sent to external transports even if
+            // the node has a message handler for the message type
+            wolverineOptions.Policies.DisableConventionalLocalRouting();
+            
+            IMessagingConfiguration messagingConfiguration = new MessagingConfiguration
+            {
+                WolverineOptions = wolverineOptions
+            };
+
+            configure(messagingConfiguration);
+        });
+        
+        
+        
         throw new NotImplementedException();
     }
 }
