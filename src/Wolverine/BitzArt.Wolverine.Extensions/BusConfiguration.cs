@@ -1,5 +1,3 @@
-using MediaMars.Messaging;
-
 namespace BitzArt;
 
 /// <summary>
@@ -12,7 +10,7 @@ public interface IBusConfiguration
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    Topic Topic(string name);
+    ITopicBuilder Topic(string name);
 }
 
 /// <summary>
@@ -20,27 +18,12 @@ public interface IBusConfiguration
 /// </summary>
 public class BusConfiguration : IBusConfiguration
 {
-    private readonly List<Topic> _topics = new();
-
-    /// <summary>
-    /// Adds a topic to the bus configuration.
-    /// </summary>
-    /// <param name="topic">The topic to be added to the bus configuration.</param>
-    public void Add(Topic topic)
-    {
-        _topics.Add(topic);
-    }
+    private readonly ITopicBuilder _topicBuilder = new TopicBuilder("");
+   
 
     /// <inheritdoc />
-    public Topic Topic(string name)
+    public ITopicBuilder Topic(string name)
     {
-        var topic = new Topic
-        {
-            Name = name
-        };
-
-        _topics.Add(topic);
-
-        return topic;
+        return _topicBuilder.Topic(name);
     }
 }

@@ -15,7 +15,12 @@ builder.Services.AddMessaging(
         
         messaging.AddBus("my-bus-1", bus =>
         {
-            bus.Topic("some-topic").ToQueue("some-queue");
+            bus
+                .Topic("some-topic")
+                    .ToQueue("some-queue-1")
+                    .ToQueue("some-queue-2")
+                .Topic("some-topic-2")
+                    .ToQueue("some-queue-3");
             
             bus.ConfigureRabbitMq(rabbit =>
             {
