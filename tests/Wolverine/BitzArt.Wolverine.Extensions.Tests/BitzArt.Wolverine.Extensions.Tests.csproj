@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Wolverine\BitzArt.Wolverine.Extensions\BitzArt.Wolverine.Extensions.csproj" />
+  </ItemGroup>
+
 </Project>
