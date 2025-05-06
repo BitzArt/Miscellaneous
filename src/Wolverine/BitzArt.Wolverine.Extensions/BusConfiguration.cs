@@ -22,8 +22,5 @@ public class BusConfiguration : IBusConfiguration
    
 
     /// <inheritdoc />
-    public ITopicBuilder Topic(string name)
-    {
-        return _topicBuilder.Topic(name);
-    }
+    public ITopicBuilder Topic(string name) => _topicBuilder.Topic(name);
 }

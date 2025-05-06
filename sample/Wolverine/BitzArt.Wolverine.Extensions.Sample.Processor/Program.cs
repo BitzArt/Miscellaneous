@@ -12,26 +12,25 @@ builder.Services.AddMessaging(
     {
         // Just for demonstration purposes - how you can use Wolverine's options
         messaging.WolverineOptions.UseNewtonsoftForSerialization();
-        
-        messaging.AddBus("my-bus-1", bus =>
-        {
-            bus
-                .Topic("some-topic")
-                    .ToQueue("some-queue-1")
-                    .ToQueue("some-queue-2")
-                .Topic("some-topic-2")
-                    .ToQueue("some-queue-3");
-            
-            bus.ConfigureRabbitMq(rabbit =>
-            {
-                
-            });
 
-            bus.ConfigureAzureServiceBus(azure =>
+        messaging
+            .AddBus("my-bus-1", bus =>
             {
-                
+                bus
+                    .Topic("some-topic")
+                        .ToQueue("some-queue-1")
+                        .ToQueue("some-queue-2")
+                    .Topic("some-topic-2")
+                        .ToQueue("some-queue-3");
+
+                bus.ConfigureRabbitMq(rabbit => { });
+
+                bus.ConfigureAzureServiceBus(azure => { });
+            })
+            .AddBus("My-bus-2", bus =>
+            {
+                // This bus is not configured to use any transport
             });
-        });
     },
     assemblies: ImmutableList<Assembly>.Empty);
 

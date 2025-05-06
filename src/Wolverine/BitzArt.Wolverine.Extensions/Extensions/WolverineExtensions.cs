@@ -20,7 +20,7 @@ public static class WolverineExtensions
     /// <returns></returns>
     public static IHostApplicationBuilder AddMessaging(
         this IHostApplicationBuilder builder,
-        Action<IMessagingConfiguration> configure,
+        Action<MessagingConfiguration> configure,
         IEnumerable<Assembly>? assemblies = null)
     {
         builder.Services.AddMessaging(
@@ -42,7 +42,7 @@ public static class WolverineExtensions
     public static IServiceCollection AddMessaging(
         this IServiceCollection services,
         IConfiguration configuration,
-        Action<IMessagingConfiguration> configure,
+        Action<MessagingConfiguration> configure,
         IEnumerable<Assembly>? assemblies = null)
     {
         services.AddWolverine(wolverineOptions =>
@@ -52,7 +52,7 @@ public static class WolverineExtensions
             // the node has a message handler for the message type
             wolverineOptions.Policies.DisableConventionalLocalRouting();
             
-            IMessagingConfiguration messagingConfiguration = new MessagingConfiguration
+            var messagingConfiguration = new MessagingConfiguration
             {
                 WolverineOptions = wolverineOptions
             };
