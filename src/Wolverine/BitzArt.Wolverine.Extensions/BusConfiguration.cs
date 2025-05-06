@@ -11,6 +11,11 @@ public interface IBusConfiguration
     /// <param name="name"></param>
     /// <returns></returns>
     ITopicBuilder Topic(string name);
+    
+    /// <summary>
+    /// The options for configuring the messaging system.
+    /// </summary>
+    public string Name { get; init; }
 }
 
 /// <summary>
@@ -19,7 +24,10 @@ public interface IBusConfiguration
 public class BusConfiguration : IBusConfiguration
 {
     private readonly ITopicBuilder _topicBuilder = new TopicBuilder("");
-   
+    
+    /// <inheritdoc />
+    public required string Name { get; init; }
+
 
     /// <inheritdoc />
     public ITopicBuilder Topic(string name) => _topicBuilder.Topic(name);

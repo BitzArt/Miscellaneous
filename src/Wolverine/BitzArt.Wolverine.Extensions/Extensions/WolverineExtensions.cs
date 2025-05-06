@@ -58,6 +58,13 @@ public static class WolverineExtensions
             };
 
             configure(messagingConfiguration);
+
+            var buses = messagingConfiguration.GetBuses();
+            
+            foreach (var (busName, bus) in buses)
+            {
+                    
+            }
         });
         
         

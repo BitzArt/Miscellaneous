@@ -19,11 +19,17 @@ public class MessagingConfiguration
     /// <returns>The updated messaging configuration with the newly added bus.</returns>
     public MessagingConfiguration AddBus(string name, Action<IBusConfiguration> configuration)
     {
-        var busConfiguration = new BusConfiguration();
+        var busConfiguration = new BusConfiguration
+        {
+            Name = name,
+        };
+        
         configuration(busConfiguration);
         
         _buses.Add(name, busConfiguration);
         
         return this;
     }
+
+    public IReadOnlyDictionary<string, IBusConfiguration> GetBuses() => _buses;
 }

@@ -17,5 +17,5 @@ public sealed record RabbitMqOptions : MessagingOptions
     /// </summary>
     public required string Password { get; init; }
 
-    public override string BusType => "RabbitMQ";
+    public const string BusType = "RabbitMQ";
 }

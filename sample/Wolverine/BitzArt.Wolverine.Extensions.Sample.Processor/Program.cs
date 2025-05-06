@@ -17,15 +17,23 @@ builder.Services.AddMessaging(
             .AddBus("my-bus-1", bus =>
             {
                 bus
+                        
                     .Topic("some-topic")
                         .ToQueue("some-queue-1")
                         .ToQueue("some-queue-2")
+                    
                     .Topic("some-topic-2")
                         .ToQueue("some-queue-3");
 
-                bus.ConfigureRabbitMq(rabbit => { });
+                bus.ConfigureRabbitMq(builder.Configuration, messaging.WolverineOptions, rabbit =>
+                {
+                    //
+                });
 
-                bus.ConfigureAzureServiceBus(azure => { });
+                bus.ConfigureAzureServiceBus(builder.Configuration, messaging.WolverineOptions, azure =>
+                {
+                    //
+                });
             })
             .AddBus("My-bus-2", bus =>
             {

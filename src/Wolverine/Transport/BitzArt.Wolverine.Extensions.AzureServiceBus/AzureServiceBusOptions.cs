@@ -7,5 +7,5 @@ public sealed record AzureServiceBusOptions : MessagingOptions
     /// </summary>
     public required string ConnectionString { get; init; }
 
-    public override string BusType => "AzureServiceBus";
+    public const string BusType = "AzureServiceBus";
 }

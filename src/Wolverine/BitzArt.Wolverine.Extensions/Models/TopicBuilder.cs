@@ -74,9 +74,9 @@ public class TopicBuilder : ITopicBuilder
             result[_name] = _queues.Select(q => q.Name).ToList();
         }
 
-        foreach (ITopicBuilder topic in _topics)
+        foreach (var topicBuilder in _topics)
         {
-            if (topic is TopicBuilder builder)
+            if (topicBuilder is TopicBuilder builder)
             {
                 var childResult = builder.Build();
 
