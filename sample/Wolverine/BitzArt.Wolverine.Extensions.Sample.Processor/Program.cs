@@ -6,15 +6,13 @@ using BitzArt.Wolverine.Extensions.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMessaging(
-    configuration: builder.Configuration,
-    configure: messaging =>
+builder.Services.AddMessaging(configure: messaging =>
     {
         // Just for demonstration purposes - how you can use Wolverine's options
         messaging.WolverineOptions.UseNewtonsoftForSerialization();
 
         messaging
-            .AddBus("my-bus-1", bus =>
+            .AddBus("bus-1", bus =>
             {
                 bus
                         

@@ -4,13 +4,13 @@ namespace BitzArt;
 
 public class MessagingConfiguration
 {
-    private Dictionary<string, IBusConfiguration> _buses = new();
-        
+    private readonly List<IBusConfiguration> _buses = new();
+
     /// <summary>
     /// The options for configuring the messaging system.
     /// </summary>
     public required WolverineOptions WolverineOptions { get; init; }
-    
+
     /// <summary>
     /// Adds a new bus to the messaging configuration with the specified name and configuration.
     /// </summary>
@@ -24,12 +24,12 @@ public class MessagingConfiguration
             Name = name,
         };
         
+        _buses.Add(busConfiguration);
+
         configuration(busConfiguration);
-        
-        _buses.Add(name, busConfiguration);
-        
+
         return this;
     }
 
-    public IReadOnlyDictionary<string, IBusConfiguration> GetBuses() => _buses;
+    public IReadOnlyCollection<IBusConfiguration> GetBuses() => _buses;
 }

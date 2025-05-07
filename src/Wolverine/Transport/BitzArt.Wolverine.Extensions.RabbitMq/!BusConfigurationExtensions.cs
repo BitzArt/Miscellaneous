@@ -1,4 +1,3 @@
-using MediaMars.Messaging;
 using Microsoft.Extensions.Configuration;
 using Wolverine;
 using Wolverine.RabbitMQ;
@@ -14,24 +13,7 @@ public static class BusConfigurationExtensions
         WolverineOptions wolverineOptions,
         Action<RabbitMqTransportExpression>? configure = null)
     {
-        var section = configuration
-            .GetSection("Messaging")
-            .GetChildren()
-            .SingleOrDefault(section => section["Name"] == bus.Name && section["Type"] == RabbitMqOptions.BusType);
-
-        if (section == null)
-        {
-            throw new InvalidOperationException($"No configuration found for bus '{bus.Name}'");
-        }
-
-        var rabbitMqOptions = new RabbitMqOptions
-        {
-            Name = section["Name"]!,
-            Host = section["Host"]!,
-            Password = section["Password"]!,
-            Username = section["Username"]!,
-            PrefetchCount = section.GetValue<int?>("PrefetchCount"),
-        };
+        var rabbitMqOptions = GetRabbitMqOptions(bus.Name, configuration);
 
         var rabbitMq = wolverineOptions.UseRabbitMq(cfg =>
             {
@@ -50,5 +32,28 @@ public static class BusConfigurationExtensions
         configure?.Invoke(rabbitMq);
         
         return bus;
+    }
+
+    private static RabbitMqOptions GetRabbitMqOptions(string name, IConfiguration configuration)
+    {
+        var section = configuration
+            .GetSection("Messaging")
+            .GetChildren()
+            .SingleOrDefault(section => section["Name"] == name && section["Type"] == RabbitMqOptions.BusType);
+
+        if (section == null)
+        {
+            throw new InvalidOperationException($"No configuration found for bus '{name}'");
+        }
+
+        var rabbitMqOptions = new RabbitMqOptions
+        {
+            Name = section["Name"]!,
+            Host = section["Host"]!,
+            Password = section["Password"]!,
+            Username = section["Username"]!,
+            PrefetchCount = section.GetValue<int?>("PrefetchCount"),
+        };
+        return rabbitMqOptions;
     }
 }

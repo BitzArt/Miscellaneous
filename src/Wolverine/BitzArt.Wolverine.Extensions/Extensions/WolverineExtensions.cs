@@ -1,5 +1,4 @@
 using System.Reflection;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wolverine;
@@ -23,9 +22,7 @@ public static class WolverineExtensions
         Action<MessagingConfiguration> configure,
         IEnumerable<Assembly>? assemblies = null)
     {
-        builder.Services.AddMessaging(
-            builder.Configuration,
-            configure,
+        builder.Services.AddMessaging(configure,
             assemblies);
 
         return builder;
@@ -35,13 +32,11 @@ public static class WolverineExtensions
     /// Adds messaging capabilities to the service collection.
     /// </summary>
     /// <param name="services"></param>
-    /// <param name="configuration"></param>
     /// <param name="configure"></param>
     /// <param name="assemblies"></param>
     /// <returns></returns>
     public static IServiceCollection AddMessaging(
         this IServiceCollection services,
-        IConfiguration configuration,
         Action<MessagingConfiguration> configure,
         IEnumerable<Assembly>? assemblies = null)
     {
@@ -51,7 +46,15 @@ public static class WolverineExtensions
             // Force messages without explicit routing rules to be sent to external transports even if
             // the node has a message handler for the message type
             wolverineOptions.Policies.DisableConventionalLocalRouting();
-            
+
+            if (assemblies != null)
+            {
+                foreach (var assembly in assemblies)
+                {
+                    wolverineOptions.Discovery.IncludeAssembly(assembly);
+                }
+            }
+
             var messagingConfiguration = new MessagingConfiguration
             {
                 WolverineOptions = wolverineOptions
@@ -59,16 +62,17 @@ public static class WolverineExtensions
 
             configure(messagingConfiguration);
 
-            var buses = messagingConfiguration.GetBuses();
-            
-            foreach (var (busName, bus) in buses)
-            {
-                    
-            }
+            // var buses = messagingConfiguration.GetBuses();
+            //
+            // foreach (var bus in buses)
+            // {
+            //     // bus.
+            // }
         });
-        
-        
-        
-        throw new NotImplementedException();
+
+
+        // throw new NotImplementedException();
+
+        return services;
     }
 }

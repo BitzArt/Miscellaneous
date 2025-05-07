@@ -15,4 +15,25 @@ public static class BusConfigurationExtensions
     {
         return bus;
     }
+    
+    private static AzureServiceBusOptions GetRabbitMqOptions(string name, IConfiguration configuration)
+    {
+        var section = configuration
+            .GetSection("Messaging")
+            .GetChildren()
+            .SingleOrDefault(section => section["Name"] == name && section["Type"] == AzureServiceBusOptions.BusType);
+
+        if (section == null)
+        {
+            throw new InvalidOperationException($"No configuration found for bus '{name}'");
+        }
+
+        var rabbitMqOptions = new AzureServiceBusOptions
+        {
+            Name = section["Name"]!,
+            PrefetchCount = section.GetValue<int?>("PrefetchCount"),
+            ConnectionString = section["ConnectionString"]!,
+        };
+        return rabbitMqOptions;
+    }
 }
