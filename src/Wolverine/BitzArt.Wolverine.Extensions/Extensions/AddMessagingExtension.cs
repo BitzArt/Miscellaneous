@@ -49,9 +49,7 @@ public static class AddMessagingExtension
         var busConfiguration = new BusConfiguration();
         configure?.Invoke(busConfiguration);
 
-        var messagingOptions = configuration
-            .GetRequiredSection(MessagingOptions.SectionName)
-            .Get<MessagingOptions>()!;
+        var messagingOptions = LoadMessagingConfiguration(configuration);
 
         services.AddSingleton(messagingOptions);
 
@@ -120,6 +118,15 @@ public static class AddMessagingExtension
         });
 
         return services;
+    }
+
+    private static MessagingOptions LoadMessagingConfiguration(IConfiguration configuration)
+    {
+        var sections = configuration.GetRequiredSection(MessagingOptions.SectionName).GetChildren();
+        var configurationSection = sections.FirstOrDefault();
+        var options = configurationSection.Get<MessagingOptions>();
+        
+        return options!;
     }
 
     /// <summary>
