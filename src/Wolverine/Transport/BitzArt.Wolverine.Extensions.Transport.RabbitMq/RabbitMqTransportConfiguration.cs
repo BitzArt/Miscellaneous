@@ -3,6 +3,11 @@ namespace BitzArt;
 public record RabbitMqTransportConfiguration
 {
     /// <summary>
+    /// Name of the transport configuration.
+    /// </summary>
+    public required string? Name { get; init; }
+    
+    /// <summary>
     /// RabbitMQ connection host.
     /// </summary>
     public required string? Host { get; init; }

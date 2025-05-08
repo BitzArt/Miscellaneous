@@ -4,7 +4,8 @@ namespace BitzArt;
 
 public static class ConfigurationExtensions
 {
-    public static RabbitMqTransportConfiguration GetRabbitMqTransportConfiguration(this IConfiguration configuration)
+    public static IReadOnlyCollection<RabbitMqTransportConfiguration> GetRabbitMqTransportConfigurations(
+        this IConfiguration configuration)
     {
         var sections = configuration.GetRequiredSection("Messaging").GetChildren();
 
@@ -22,10 +23,11 @@ public static class ConfigurationExtensions
                 Host = section["Host"],
                 Username = section["Username"],
                 Password = section["Password"],
-                PrefetchCount = section.GetValue<int?>("PrefetchCount")
+                PrefetchCount = section.GetValue<int?>("PrefetchCount"),
+                Name = section["Name"]
             });
         }
 
-        return configurations.First();
+        return configurations;
     }
 }

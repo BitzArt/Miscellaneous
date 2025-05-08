@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Wolverine;
 using Wolverine.RabbitMQ;
 
@@ -5,6 +6,19 @@ namespace BitzArt;
 
 public static class WolverineOptionsExtensions
 {
+    public static void ConfigureRabbitMqTransport(
+        this WolverineOptions options,
+        IConfiguration configuration,
+        Action<WolverineOptions, object> implementationConfiguration)
+    {
+        var transportConfigurations = configuration.GetRabbitMqTransportConfigurations();
+        
+        // Currently, only one configuration is supported
+        var transportConfiguration = transportConfigurations.First();
+        
+        options.ConfigureRabbitMqTransport(transportConfiguration, implementationConfiguration);
+    }
+    
     public static void ConfigureRabbitMqTransport(
         this WolverineOptions options,
         RabbitMqTransportConfiguration transportConfiguration,

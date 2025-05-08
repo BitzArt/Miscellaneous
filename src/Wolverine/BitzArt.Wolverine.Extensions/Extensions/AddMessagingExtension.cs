@@ -75,13 +75,11 @@ public static class AddMessagingExtension
             switch (busType)
             {
                 case BusType.AzureServiceBus:
-                    var azureServiceBusTransportConfiguration = configuration.GetAzureServiceBusTransportConfiguration();
-                    options.ConfigureAzureServiceBusTransport(azureServiceBusTransportConfiguration, implementationConfiguration);
+                    options.ConfigureAzureServiceBusTransport(configuration, implementationConfiguration);
                     break;
 
                 case BusType.RabbitMQ:
-                    var rabbitMqTransportConfiguration = configuration.GetRabbitMqTransportConfiguration();
-                    options.ConfigureRabbitMqTransport(rabbitMqTransportConfiguration, implementationConfiguration);
+                    options.ConfigureRabbitMqTransport(configuration, implementationConfiguration);
                     break;
             }
         });

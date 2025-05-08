@@ -18,10 +18,4 @@ public enum BusType : byte
     /// </summary>
     [EnumMember(Value = "RabbitMQ")]
     RabbitMQ = 2,
-    
-    /// <summary>
-    /// Kafka.
-    /// </summary>
-    [EnumMember(Value = "Kafka")]
-    Kafka = 3,
 }

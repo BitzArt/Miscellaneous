@@ -4,7 +4,8 @@ namespace BitzArt;
 
 public static class ConfigurationExtensions
 {
-    public static AzureServiceBusTransportConfiguration GetAzureServiceBusTransportConfiguration(this IConfiguration configuration)
+    public static IReadOnlyCollection<AzureServiceBusTransportConfiguration> GetAzureServiceBusTransportConfigurations(
+        this IConfiguration configuration)
     {
         var sections = configuration.GetRequiredSection("Messaging").GetChildren();
 
@@ -20,10 +21,11 @@ public static class ConfigurationExtensions
             configurations.Add(new AzureServiceBusTransportConfiguration
             {
                 ConnectionString = section["ConnectionString"]!,
-                PrefetchCount = section.GetValue<int?>("PrefetchCount")
+                PrefetchCount = section.GetValue<int?>("PrefetchCount"),
+                Name = section["Name"]
             });
         }
 
-        return configurations.First();
+        return configurations;
     }
 }
