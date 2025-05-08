@@ -92,6 +92,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extension
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions.Sample.Processor", "sample\Wolverine\BitzArt.Wolverine.Extensions.Sample.Processor\BitzArt.Wolverine.Extensions.Sample.Processor.csproj", "{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions.Sample.Common", "sample\Wolverine\BitzArt.Wolverine.Extensions.Sample.Common\BitzArt.Wolverine.Extensions.Sample.Common.csproj", "{A5837BCB-265E-4DCD-80CF-29827AA9E57B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -170,6 +172,10 @@ Global
 		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5837BCB-265E-4DCD-80CF-29827AA9E57B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5837BCB-265E-4DCD-80CF-29827AA9E57B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5837BCB-265E-4DCD-80CF-29827AA9E57B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5837BCB-265E-4DCD-80CF-29827AA9E57B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -208,6 +214,7 @@ Global
 		{3BE5F353-9F24-4F72-A55D-E9323FA42A2C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{25E75777-1FD7-474A-BC48-0012793221CF} = {0D68EDE3-C572-433C-A52C-48975AA6B416}
 		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15} = {0D68EDE3-C572-433C-A52C-48975AA6B416}
+		{A5837BCB-265E-4DCD-80CF-29827AA9E57B} = {0D68EDE3-C572-433C-A52C-48975AA6B416}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}
