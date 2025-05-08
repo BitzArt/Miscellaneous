@@ -96,6 +96,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extension
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions.AzureServiceBus", "src\Wolverine\Transport\BitzArt.Wolverine.Extensions.AzureServiceBus\BitzArt.Wolverine.Extensions.AzureServiceBus.csproj", "{068BAC65-347E-4AE8-A284-8EA60075DF88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extensions.Sample.Common", "sample\Wolverine\BitzArt.Wolverine.Extensions.Sample.Common\BitzArt.Wolverine.Extensions.Sample.Common.csproj", "{BDA1CFCC-7829-47AE-937C-C434F4B513DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,10 @@ Global
 		{068BAC65-347E-4AE8-A284-8EA60075DF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{068BAC65-347E-4AE8-A284-8EA60075DF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{068BAC65-347E-4AE8-A284-8EA60075DF88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA1CFCC-7829-47AE-937C-C434F4B513DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA1CFCC-7829-47AE-937C-C434F4B513DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA1CFCC-7829-47AE-937C-C434F4B513DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA1CFCC-7829-47AE-937C-C434F4B513DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -222,6 +228,7 @@ Global
 		{7637A4EC-17B1-48B2-97C8-DFE7546B9D15} = {0D68EDE3-C572-433C-A52C-48975AA6B416}
 		{AFA026C3-43D6-4964-805A-4C06C3113B52} = {3BE5F353-9F24-4F72-A55D-E9323FA42A2C}
 		{068BAC65-347E-4AE8-A284-8EA60075DF88} = {3BE5F353-9F24-4F72-A55D-E9323FA42A2C}
+		{BDA1CFCC-7829-47AE-937C-C434F4B513DF} = {0D68EDE3-C572-433C-A52C-48975AA6B416}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49BCA0AC-45AF-4DE6-B691-30A0F2959200}

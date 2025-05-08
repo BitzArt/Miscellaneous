@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Wolverine\Transport\BitzArt.Wolverine.Extensions.AzureServiceBus\BitzArt.Wolverine.Extensions.AzureServiceBus.csproj"/>
     <ProjectReference Include="..\..\..\src\Wolverine\Transport\BitzArt.Wolverine.Extensions.RabbitMq\BitzArt.Wolverine.Extensions.RabbitMq.csproj"/>
+    <ProjectReference Include="..\BitzArt.Wolverine.Extensions.Sample.Common\BitzArt.Wolverine.Extensions.Sample.Common.csproj" />
   </ItemGroup>
 
 </Project>
