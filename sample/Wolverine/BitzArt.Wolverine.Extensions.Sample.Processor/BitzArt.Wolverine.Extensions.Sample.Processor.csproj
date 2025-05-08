@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Wolverine\BitzArt.Wolverine.Extensions\BitzArt.Wolverine.Extensions.csproj" />
     <ProjectReference Include="..\BitzArt.Wolverine.Extensions.Sample.Common\BitzArt.Wolverine.Extensions.Sample.Common.csproj" />
   </ItemGroup>
 
