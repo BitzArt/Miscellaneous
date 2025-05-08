@@ -26,8 +26,11 @@
         <PackageReference Include="BitzArt.ApiExceptions" Version="1.22.0"/>
         <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.4"/>
         <PackageReference Include="WolverineFx" Version="3.13.0"/>
-        <PackageReference Include="WolverineFx.RabbitMQ" Version="3.13.0"/>
-        <PackageReference Include="WolverineFx.AzureServiceBus" Version="3.13.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Transport\BitzArt.Wolverine.Extensions.Transport.AzureServiceBus\BitzArt.Wolverine.Extensions.Transport.AzureServiceBus.csproj" />
+      <ProjectReference Include="..\Transport\BitzArt.Wolverine.Extensions.Transport.RabbitMq\BitzArt.Wolverine.Extensions.Transport.RabbitMq.csproj" />
     </ItemGroup>
 
 </Project>
