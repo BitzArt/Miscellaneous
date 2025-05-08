@@ -76,14 +76,11 @@ public static class AddMessagingExtension
             {
                 case BusType.AzureServiceBus:
                     var azureServiceBusTransportConfiguration = configuration.GetAzureServiceBusTransportConfiguration();
-                    services.AddSingleton(azureServiceBusTransportConfiguration);
                     ConfigureAzureServiceBus(options, azureServiceBusTransportConfiguration, implementationConfiguration);
                     break;
 
                 case BusType.RabbitMQ:
                     var rabbitMqTransportConfiguration = configuration.GetRabbitMqTransportConfiguration();
-                    services.AddSingleton(rabbitMqTransportConfiguration);
-                    
                     ConfigureRabbitMq(options, rabbitMqTransportConfiguration, implementationConfiguration);
                     break;
             }
