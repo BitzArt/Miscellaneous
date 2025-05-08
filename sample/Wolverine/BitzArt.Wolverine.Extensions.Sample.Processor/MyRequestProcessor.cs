@@ -1,12 +1,18 @@
 using BitzArt.ApiExceptions;
 using BitzArt.Messages;
 using BitzArt.Wolverine.Extensions.Sample.Common;
+using Microsoft.Extensions.Logging.Abstractions;
 using Wolverine;
 
 namespace BitzArt.Wolverine.Extensions.Sample.Processor;
 
 public class MyRequestProcessor : RequestProcessor<MyRequest>
 {
+    public MyRequestProcessor()
+        : this(new NullLogger<MyMessageHandler>())
+    {
+    }
+
     public MyRequestProcessor(ILogger logger)
         : base(logger)
     {

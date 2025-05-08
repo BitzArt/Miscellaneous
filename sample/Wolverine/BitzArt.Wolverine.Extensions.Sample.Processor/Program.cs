@@ -6,6 +6,16 @@ using Wolverine.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<MyMessageHandler>(p =>
+{
+    return new MyMessageHandler(p.GetRequiredService<ILogger<MyMessageHandler>>());
+});
+
+builder.Services.AddSingleton<MyRequestProcessor>(p =>
+{
+    return new MyRequestProcessor(p.GetRequiredService<ILogger<MyRequestProcessor>>());
+});
+
 builder.Services.AddMessaging(
     configuration: builder.Configuration,
     configure: configuration =>
@@ -13,8 +23,10 @@ builder.Services.AddMessaging(
         configuration.ConfigureRabbitMq((wolverine, rabbitMq) =>
         {
             rabbitMq.BindExchange("msg").ToQueue("messages");
+            rabbitMq.BindExchange("ping-pong").ToQueue("pp");
 
             wolverine.ListenToRabbitQueue("messages");
+            wolverine.ListenToRabbitQueue("pp");
         });
 
         configuration.ConfigureAzureServiceBus((wolverine, serviceBus) =>
