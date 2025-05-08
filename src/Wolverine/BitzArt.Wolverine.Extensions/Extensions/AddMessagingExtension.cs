@@ -88,10 +88,10 @@ public static class AddMessagingExtension
         return services;
     }
 
-    private static void ConfigureAzureServiceBus(WolverineOptions options, MessagingOptions messagingOptions,
+    private static void ConfigureAzureServiceBus(WolverineOptions options, TransportConfiguration transportConfiguration,
         Action<WolverineOptions, object> implementationConfiguration)
     {
-        var azureServiceBus = options.UseAzureServiceBus(messagingOptions.ConnectionString!, cfg =>
+        var azureServiceBus = options.UseAzureServiceBus(transportConfiguration.ConnectionString!, cfg =>
             {
                 cfg.RetryOptions.Mode = ServiceBusRetryMode.Exponential;
             })
@@ -108,14 +108,14 @@ public static class AddMessagingExtension
         implementationConfiguration.Invoke(options, azureServiceBus);
     }
 
-    private static void ConfigureRabbitMq(WolverineOptions options, MessagingOptions messagingOptions,
+    private static void ConfigureRabbitMq(WolverineOptions options, TransportConfiguration transportConfiguration,
         Action<WolverineOptions, object> implementationConfiguration)
     {
         var rabbitMq = options.UseRabbitMq(cfg =>
             {
-                cfg.HostName = messagingOptions.Host!;
-                cfg.UserName = messagingOptions.Username!;
-                cfg.Password = messagingOptions.Password!;
+                cfg.HostName = transportConfiguration.Host!;
+                cfg.UserName = transportConfiguration.Username!;
+                cfg.Password = transportConfiguration.Password!;
             })
 
             // Let Wolverine try to initialize any missing queues
@@ -128,11 +128,11 @@ public static class AddMessagingExtension
         implementationConfiguration.Invoke(options, rabbitMq);
     }
 
-    private static MessagingOptions LoadMessagingConfiguration(IConfiguration configuration)
+    private static TransportConfiguration LoadMessagingConfiguration(IConfiguration configuration)
     {
-        var sections = configuration.GetRequiredSection(MessagingOptions.SectionName).GetChildren();
+        var sections = configuration.GetRequiredSection(TransportConfiguration.SectionName).GetChildren();
         var configurationSection = sections.FirstOrDefault();
-        var options = configurationSection.Get<MessagingOptions>();
+        var options = configurationSection.Get<TransportConfiguration>();
         
         return options!;
     }

@@ -5,7 +5,7 @@ namespace BitzArt;
 /// <summary>
 /// Options for interservice messaging.
 /// </summary>
-public class MessagingOptions
+public class TransportConfiguration
 {
     /// <summary>
     /// Configuration section name.
