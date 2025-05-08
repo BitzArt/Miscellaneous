@@ -19,7 +19,8 @@ public static class ConfigurationExtensions
             
             configurations.Add(new AzureServiceBusTransportConfiguration
             {
-                ConnectionString = section["ConnectionString"]
+                ConnectionString = section["ConnectionString"]!,
+                PrefetchCount = section.GetValue<int?>("PrefetchCount")
             });
         }
 

@@ -21,7 +21,8 @@ public static class ConfigurationExtensions
             {
                 Host = section["Host"],
                 Username = section["Username"],
-                Password = section["Password"]
+                Password = section["Password"],
+                PrefetchCount = section.GetValue<int?>("PrefetchCount")
             });
         }
 

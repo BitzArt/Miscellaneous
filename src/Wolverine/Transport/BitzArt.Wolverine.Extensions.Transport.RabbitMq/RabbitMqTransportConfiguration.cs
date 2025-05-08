@@ -16,4 +16,9 @@ public record RabbitMqTransportConfiguration
     /// RabbitMQ connection password.
     /// </summary>
     public required string? Password { get; init; }
+    
+    /// <summary>
+    /// Prefetch count for the message bus.
+    /// </summary>
+    public int? PrefetchCount { get; set; } = null;
 }

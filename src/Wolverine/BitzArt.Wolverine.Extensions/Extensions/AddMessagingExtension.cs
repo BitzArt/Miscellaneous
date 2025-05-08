@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Azure.Messaging.ServiceBus;
 using BitzArt.TypeInfoResolvers;
+using JasperFx.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -49,9 +50,7 @@ public static class AddMessagingExtension
         var busConfiguration = new BusConfiguration();
         configure?.Invoke(busConfiguration);
 
-        var messagingOptions = LoadMessagingConfiguration(configuration);
-
-        services.AddSingleton(messagingOptions);
+        var busType = GetButType(configuration);
 
         services.AddWolverine(options =>
         {
@@ -71,16 +70,21 @@ public static class AddMessagingExtension
                 options.Discovery.IncludeAssembly(assembly);
             }
 
-            var implementationConfiguration = busConfiguration.ImplementationConfiguration[messagingOptions.BusType];
+            var implementationConfiguration = busConfiguration.ImplementationConfiguration[busType];
 
-            switch (messagingOptions.BusType)
+            switch (busType)
             {
                 case BusType.AzureServiceBus:
-                    ConfigureAzureServiceBus(options, messagingOptions, implementationConfiguration);
+                    var azureServiceBusTransportConfiguration = configuration.GetAzureServiceBusTransportConfiguration();
+                    services.AddSingleton(azureServiceBusTransportConfiguration);
+                    ConfigureAzureServiceBus(options, azureServiceBusTransportConfiguration, implementationConfiguration);
                     break;
 
                 case BusType.RabbitMQ:
-                    ConfigureRabbitMq(options, messagingOptions, implementationConfiguration);
+                    var rabbitMqTransportConfiguration = configuration.GetRabbitMqTransportConfiguration();
+                    services.AddSingleton(rabbitMqTransportConfiguration);
+                    
+                    ConfigureRabbitMq(options, rabbitMqTransportConfiguration, implementationConfiguration);
                     break;
             }
         });
@@ -88,7 +92,9 @@ public static class AddMessagingExtension
         return services;
     }
 
-    private static void ConfigureAzureServiceBus(WolverineOptions options, TransportConfiguration transportConfiguration,
+    private static void ConfigureAzureServiceBus(
+        WolverineOptions options, 
+        AzureServiceBusTransportConfiguration transportConfiguration,
         Action<WolverineOptions, object> implementationConfiguration)
     {
         var azureServiceBus = options.UseAzureServiceBus(transportConfiguration.ConnectionString!, cfg =>
@@ -108,7 +114,9 @@ public static class AddMessagingExtension
         implementationConfiguration.Invoke(options, azureServiceBus);
     }
 
-    private static void ConfigureRabbitMq(WolverineOptions options, TransportConfiguration transportConfiguration,
+    private static void ConfigureRabbitMq(
+        WolverineOptions options,
+        RabbitMqTransportConfiguration transportConfiguration,
         Action<WolverineOptions, object> implementationConfiguration)
     {
         var rabbitMq = options.UseRabbitMq(cfg =>
@@ -128,13 +136,15 @@ public static class AddMessagingExtension
         implementationConfiguration.Invoke(options, rabbitMq);
     }
 
-    private static TransportConfiguration LoadMessagingConfiguration(IConfiguration configuration)
+    private static BusType GetButType(IConfiguration configuration)
     {
-        var sections = configuration.GetRequiredSection(TransportConfiguration.SectionName).GetChildren();
-        var configurationSection = sections.FirstOrDefault();
-        var options = configurationSection.Get<TransportConfiguration>();
-        
-        return options!;
+        var busType = configuration.GetRequiredSection("Messaging")
+            .GetChildren()
+            .Select(o => o["BusType"]!)
+            .First()
+            .ToEnum<BusType>();
+
+        return busType;
     }
 
     /// <summary>
