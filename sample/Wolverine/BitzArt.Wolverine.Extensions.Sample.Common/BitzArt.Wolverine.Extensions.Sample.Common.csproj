@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\src\Wolverine\BitzArt.Wolverine.Extensions\BitzArt.Wolverine.Extensions.csproj" />
+    </ItemGroup>
+
 </Project>
