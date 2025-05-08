@@ -1,7 +1,7 @@
-﻿using BitzArt.ApiExceptions;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using BitzArt.ApiExceptions;
 
-namespace MediaMars.Messaging;
+namespace BitzArt.Messages;
 
 /// <summary>
 /// Represents a response message.

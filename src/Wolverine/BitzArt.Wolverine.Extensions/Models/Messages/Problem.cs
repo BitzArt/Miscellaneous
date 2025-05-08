@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MediaMars.Messaging;
+namespace BitzArt.Messages;
 
 /// <summary>
 /// Represents a Problem response payload,

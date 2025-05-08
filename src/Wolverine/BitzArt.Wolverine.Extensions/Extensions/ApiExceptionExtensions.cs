@@ -1,6 +1,6 @@
 ﻿using BitzArt.ApiExceptions;
 
-namespace MediaMars.Messaging;
+namespace BitzArt.Messages;
 
 internal static class ApiExceptionExtensions
 {

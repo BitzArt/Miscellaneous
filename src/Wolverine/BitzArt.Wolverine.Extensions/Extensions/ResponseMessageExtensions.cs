@@ -1,8 +1,7 @@
 ﻿using BitzArt.ApiExceptions;
-using MediaMars.Messaging;
 using System.Text.Json;
 
-namespace MediaMars;
+namespace BitzArt.Messages;
 
 /// <summary>
 /// Extension methods for the <see cref="ResponseMessage"/> class.

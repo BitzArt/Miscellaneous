@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Wolverine;
-using Wolverine.Runtime;
 
-namespace MediaMars.Messaging;
+namespace BitzArt.Messages;
 
 /// <summary>
 /// A base class for message consumers.<br/>
