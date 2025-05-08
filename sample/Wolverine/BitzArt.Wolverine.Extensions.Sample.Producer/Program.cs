@@ -1,6 +1,7 @@
 using BitzArt;
 using BitzArt.Messages;
 using BitzArt.Wolverine.Extensions.Sample.Common;
+using Scalar.AspNetCore;
 using Wolverine;
 using Wolverine.AzureServiceBus;
 using Wolverine.RabbitMQ;
@@ -24,14 +25,21 @@ builder.Services.AddMessaging(
         });
     });
 
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapOpenApi();
+
+app.MapScalarApiReference("/", options =>
+{
+    options.Theme = ScalarTheme.Mars;
+    options.DarkMode = false;
+});
 
 app.MapGet("/message", (string value, IMessageBus bus) =>
 {
-    MyMessage message = new MyMessage
+    var message = new MyMessage
     {
         Value = value
     };
