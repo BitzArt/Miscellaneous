@@ -76,48 +76,56 @@ public static class AddMessagingExtension
             switch (messagingOptions.BusType)
             {
                 case BusType.AzureServiceBus:
-
-                    var azureServiceBus = options.UseAzureServiceBus(messagingOptions.ConnectionString!, cfg =>
-                        {
-                            cfg.RetryOptions.Mode = ServiceBusRetryMode.Exponential;
-                        })
-
-                        // Let Wolverine try to initialize any missing queues
-                        // on the first usage at runtime
-                        .AutoProvision()
-
-                        // This enables Wolverine to use temporary Azure Service Bus
-                        // queues created at runtime for communication between
-                        // Wolverine nodes
-                        .EnableWolverineControlQueues();
-
-                    implementationConfiguration.Invoke(options, azureServiceBus);
-
+                    ConfigureAzureServiceBus(options, messagingOptions, implementationConfiguration);
                     break;
 
                 case BusType.RabbitMQ:
-
-                    var rabbitMq = options.UseRabbitMq(cfg =>
-                        {
-                            cfg.HostName = messagingOptions.Host!;
-                            cfg.UserName = messagingOptions.Username!;
-                            cfg.Password = messagingOptions.Password!;
-                        })
-
-                        // Let Wolverine try to initialize any missing queues
-                        // on the first usage at runtime
-                        .AutoProvision()
-
-                        // Use Rabbit MQ for inter-node communication
-                        .EnableWolverineControlQueues();
-                    
-                    implementationConfiguration.Invoke(options, rabbitMq);
-
+                    ConfigureRabbitMq(options, messagingOptions, implementationConfiguration);
                     break;
             }
         });
 
         return services;
+    }
+
+    private static void ConfigureAzureServiceBus(WolverineOptions options, MessagingOptions messagingOptions,
+        Action<WolverineOptions, object> implementationConfiguration)
+    {
+        var azureServiceBus = options.UseAzureServiceBus(messagingOptions.ConnectionString!, cfg =>
+            {
+                cfg.RetryOptions.Mode = ServiceBusRetryMode.Exponential;
+            })
+
+            // Let Wolverine try to initialize any missing queues
+            // on the first usage at runtime
+            .AutoProvision()
+
+            // This enables Wolverine to use temporary Azure Service Bus
+            // queues created at runtime for communication between
+            // Wolverine nodes
+            .EnableWolverineControlQueues();
+
+        implementationConfiguration.Invoke(options, azureServiceBus);
+    }
+
+    private static void ConfigureRabbitMq(WolverineOptions options, MessagingOptions messagingOptions,
+        Action<WolverineOptions, object> implementationConfiguration)
+    {
+        var rabbitMq = options.UseRabbitMq(cfg =>
+            {
+                cfg.HostName = messagingOptions.Host!;
+                cfg.UserName = messagingOptions.Username!;
+                cfg.Password = messagingOptions.Password!;
+            })
+
+            // Let Wolverine try to initialize any missing queues
+            // on the first usage at runtime
+            .AutoProvision()
+
+            // Use Rabbit MQ for inter-node communication
+            .EnableWolverineControlQueues();
+
+        implementationConfiguration.Invoke(options, rabbitMq);
     }
 
     private static MessagingOptions LoadMessagingConfiguration(IConfiguration configuration)
