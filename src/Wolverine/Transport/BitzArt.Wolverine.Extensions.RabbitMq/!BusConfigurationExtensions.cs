@@ -34,19 +34,19 @@ public static class BusConfigurationExtensions
         return bus;
     }
 
-    private static RabbitMqOptions GetRabbitMqOptions(string name, IConfiguration configuration)
+    private static RabbitMqTransportConfiguration GetRabbitMqOptions(string name, IConfiguration configuration)
     {
         var section = configuration
             .GetSection("Messaging")
             .GetChildren()
-            .SingleOrDefault(section => section["Name"] == name && section["Type"] == RabbitMqOptions.BusType);
+            .SingleOrDefault(section => section["Name"] == name && section["Type"] == RabbitMqTransportConfiguration.BusType);
 
         if (section == null)
         {
             throw new InvalidOperationException($"No configuration found for bus '{name}'");
         }
 
-        var rabbitMqOptions = new RabbitMqOptions
+        var rabbitMqOptions = new RabbitMqTransportConfiguration
         {
             Name = section["Name"]!,
             Host = section["Host"]!,

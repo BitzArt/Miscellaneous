@@ -1,7 +1,9 @@
 namespace BitzArt.Wolverine.Extensions.RabbitMq;
 
-public sealed record RabbitMqOptions : MessagingOptions
+public sealed record RabbitMqTransportConfiguration : TransportConfiguration
 {
+    public const string BusType = "RabbitMQ";
+    
     /// <summary>
     /// RabbitMQ connection host.
     /// </summary>
@@ -16,6 +18,4 @@ public sealed record RabbitMqOptions : MessagingOptions
     /// RabbitMQ connection password.
     /// </summary>
     public required string Password { get; init; }
-
-    public const string BusType = "RabbitMQ";
 }

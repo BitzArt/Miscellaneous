@@ -3,7 +3,7 @@ namespace BitzArt;
 /// <summary>
 /// Options for interservice messaging.
 /// </summary>
-public abstract record MessagingOptions
+public abstract record TransportConfiguration
 {
     /// <summary>
     /// Name for identifying the messaging configuration.

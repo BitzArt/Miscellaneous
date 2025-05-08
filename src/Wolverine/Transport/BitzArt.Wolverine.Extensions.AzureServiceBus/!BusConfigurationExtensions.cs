@@ -32,19 +32,19 @@ public static class BusConfigurationExtensions
         return bus;
     }
     
-    private static AzureServiceBusOptions GetAzureServiceBusOptions(string name, IConfiguration configuration)
+    private static AzureServiceBusTransportConfiguration GetAzureServiceBusOptions(string name, IConfiguration configuration)
     {
         var section = configuration
             .GetSection("Messaging")
             .GetChildren()
-            .SingleOrDefault(section => section["Name"] == name && section["Type"] == AzureServiceBusOptions.BusType);
+            .SingleOrDefault(section => section["Name"] == name && section["Type"] == AzureServiceBusTransportConfiguration.BusType);
 
         if (section == null)
         {
             throw new InvalidOperationException($"No configuration found for bus '{name}'");
         }
 
-        var rabbitMqOptions = new AzureServiceBusOptions
+        var rabbitMqOptions = new AzureServiceBusTransportConfiguration
         {
             Name = section["Name"]!,
             PrefetchCount = section.GetValue<int?>("PrefetchCount"),
