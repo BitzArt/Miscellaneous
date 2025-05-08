@@ -13,10 +13,26 @@ public static class BusConfigurationExtensions
         WolverineOptions wolverineOptions,
         Action<AzureServiceBusConfiguration>? configure)
     {
+        var azureServiceBusOptions = GetAzureServiceBusOptions(bus.Name, configuration);
+
+        var azureServiceBus = wolverineOptions
+            .UseAzureServiceBus(azureServiceBusOptions.ConnectionString!)
+
+            // Let Wolverine try to initialize any missing queues
+            // on the first usage at runtime
+            .AutoProvision()
+
+            // This enables Wolverine to use temporary Azure Service Bus
+            // queues created at runtime for communication between
+            // Wolverine nodes
+            .EnableWolverineControlQueues();
+
+        configure?.Invoke(azureServiceBus);
+        
         return bus;
     }
     
-    private static AzureServiceBusOptions GetRabbitMqOptions(string name, IConfiguration configuration)
+    private static AzureServiceBusOptions GetAzureServiceBusOptions(string name, IConfiguration configuration)
     {
         var section = configuration
             .GetSection("Messaging")
@@ -34,6 +50,7 @@ public static class BusConfigurationExtensions
             PrefetchCount = section.GetValue<int?>("PrefetchCount"),
             ConnectionString = section["ConnectionString"]!,
         };
+        
         return rabbitMqOptions;
     }
 }
