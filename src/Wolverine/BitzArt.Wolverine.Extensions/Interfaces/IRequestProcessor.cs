@@ -1,6 +1,6 @@
 using Wolverine;
 
-namespace MediaMars.Messaging;
+namespace BitzArt.Messages;
 
 /// <summary>
 /// Defines the contract for a message processor that processes messages
