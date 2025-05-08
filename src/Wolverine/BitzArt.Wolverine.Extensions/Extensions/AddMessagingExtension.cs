@@ -91,7 +91,7 @@ public static class AddMessagingExtension
     {
         var busType = configuration.GetRequiredSection("Messaging")
             .GetChildren()
-            .Select(o => o["BusType"]!)
+            .Select(o => o["Type"]!)
             .First()
             .ToEnum<BusType>();
 
