@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Wolverine;
 
-namespace MediaMars.Messaging;
+namespace BitzArt.Messages;
 
 internal static class MessageLoggingExtensions
 {
