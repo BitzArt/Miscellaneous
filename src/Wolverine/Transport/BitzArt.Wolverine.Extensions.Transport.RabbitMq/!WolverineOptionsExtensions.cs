@@ -11,19 +11,10 @@ public static class WolverineOptionsExtensions
         IConfiguration configuration,
         Action<WolverineOptions, object> implementationConfiguration)
     {
-        var transportConfigurations = configuration.GetRabbitMqTransportConfigurations();
+        var transportConfiguration = configuration
+            .GetRequiredSection("Messaging:0")
+            .Get<RabbitMqTransportConfiguration>()!;
         
-        // Currently, only one configuration is supported
-        var transportConfiguration = transportConfigurations.First();
-        
-        options.ConfigureRabbitMqTransport(transportConfiguration, implementationConfiguration);
-    }
-    
-    public static void ConfigureRabbitMqTransport(
-        this WolverineOptions options,
-        RabbitMqTransportConfiguration transportConfiguration,
-        Action<WolverineOptions, object> implementationConfiguration)
-    {
         var rabbitMq = options.UseRabbitMq(cfg =>
             {
                 cfg.HostName = transportConfiguration.Host!;
