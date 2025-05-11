@@ -51,7 +51,7 @@ app.MapGet("/message", (string value, IMessageBus bus) =>
 
 app.MapGet("/ping", async (string value, IMessageBus bus) =>
 {
-    MyRequest request = new MyRequest
+    var request = new MyRequest
     {
         Value = value
     };
