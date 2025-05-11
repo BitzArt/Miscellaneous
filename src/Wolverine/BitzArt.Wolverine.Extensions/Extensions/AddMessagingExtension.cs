@@ -86,13 +86,10 @@ public static class AddMessagingExtension
 
     private static BusType GetButType(IConfiguration configuration)
     {
-        var busType = configuration.GetRequiredSection("Messaging")
-            .GetChildren()
-            .Select(o => o["Type"]!)
-            .First()
+        return configuration
+            .GetRequiredSection("Messaging:0")
+            .GetValue<string>("Type")!
             .ToEnum<BusType>();
-
-        return busType;
     }
 
     /// <summary>
