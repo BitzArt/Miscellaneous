@@ -10,20 +10,17 @@ public static class ConfigurationExtensions
         var sections = configuration.GetRequiredSection("Messaging").GetChildren();
 
         var configurations = new List<AzureServiceBusTransportConfiguration>();
-        
+
         foreach (var section in sections)
         {
             if (section["Type"] != "AzureServiceBus")
             {
                 continue;
             }
-            
-            configurations.Add(new AzureServiceBusTransportConfiguration
-            {
-                ConnectionString = section["ConnectionString"]!,
-                PrefetchCount = section.GetValue<int?>("PrefetchCount"),
-                Name = section["Name"]
-            });
+
+            var azureServiceBusTransportConfiguration = section.Get<AzureServiceBusTransportConfiguration>()!;
+
+            configurations.Add(azureServiceBusTransportConfiguration);
         }
 
         return configurations;

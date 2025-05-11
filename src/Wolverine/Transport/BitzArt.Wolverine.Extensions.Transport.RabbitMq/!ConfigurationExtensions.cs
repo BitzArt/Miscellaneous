@@ -10,22 +10,17 @@ public static class ConfigurationExtensions
         var sections = configuration.GetRequiredSection("Messaging").GetChildren();
 
         var configurations = new List<RabbitMqTransportConfiguration>();
-        
+
         foreach (var section in sections)
         {
             if (section["Type"] != "RabbitMQ")
             {
                 continue;
             }
-            
-            configurations.Add(new RabbitMqTransportConfiguration
-            {
-                Host = section["Host"],
-                Username = section["Username"],
-                Password = section["Password"],
-                PrefetchCount = section.GetValue<int?>("PrefetchCount"),
-                Name = section["Name"]
-            });
+
+            var rabbitMqTransportConfiguration = section.Get<RabbitMqTransportConfiguration>()!;
+
+            configurations.Add(rabbitMqTransportConfiguration);
         }
 
         return configurations;
