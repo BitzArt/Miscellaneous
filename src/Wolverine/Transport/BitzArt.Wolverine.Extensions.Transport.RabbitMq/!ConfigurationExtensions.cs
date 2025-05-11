@@ -13,7 +13,7 @@ public static class ConfigurationExtensions
 
         foreach (var section in sections)
         {
-            if (section["Type"] != "RabbitMQ")
+            if (section.GetValue<string>("Type") != "RabbitMQ")
             {
                 continue;
             }
