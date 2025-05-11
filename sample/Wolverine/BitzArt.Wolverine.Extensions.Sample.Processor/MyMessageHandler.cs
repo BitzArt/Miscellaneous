@@ -8,8 +8,9 @@ namespace BitzArt.Wolverine.Extensions.Sample.Processor;
 public class MyMessageHandler : HandlerBase<MyMessage>
 {
     public MyMessageHandler()
-        : this(new NullLogger<MyMessageHandler>())
+        : base(new NullLogger<MyMessageHandler>())
     {
+        // This parameterless constructor is used by the DI container
     }
 
     public MyMessageHandler(ILogger logger)

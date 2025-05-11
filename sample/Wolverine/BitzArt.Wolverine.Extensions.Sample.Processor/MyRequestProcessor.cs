@@ -9,8 +9,9 @@ namespace BitzArt.Wolverine.Extensions.Sample.Processor;
 public class MyRequestProcessor : RequestProcessor<MyRequest>
 {
     public MyRequestProcessor()
-        : this(new NullLogger<MyMessageHandler>())
+        : base(new NullLogger<MyMessageHandler>())
     {
+        // This parameterless constructor is used by the DI container 
     }
 
     public MyRequestProcessor(ILogger logger)
