@@ -34,9 +34,16 @@ jobs:
         run: echo "VERSION=${GITHUB_REF/refs\/tags\/Wolverine.Extensions-v/}" >> $GITHUB_ENV
 
       - name: Build
-        run: |
+        run: |          
+          dotnet build src/Wolverine/Transport/BitzArt.Wolverine.Extensions.Transport.AzureServiceBus/BitzArt.Wolverine.Extensions.Transport.AzureServiceBus.csproj --configuration Release /p:Version=${VERSION}
+          dotnet build src/Wolverine/Transport/BitzArt.Wolverine.Extensions.Transport.RabbitMq/BitzArt.Wolverine.Extensions.Transport.RabbitMq.csproj --configuration Release /p:Version=${VERSION}
           dotnet build src/Wolverine/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/Wolverine/Transport/BitzArt.Wolverine.Extensions.Transport.AzureServiceBus/BitzArt.Wolverine.Extensions.Transport.AzureServiceBus.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/Wolverine/Transport/BitzArt.Wolverine.Extensions.Transport.RabbitMq/BitzArt.Wolverine.Extensions.Transport.RabbitMq.csproj --configuration Release /p:Version=${VERSION}
           dotnet pack src/Wolverine/BitzArt.Wolverine.Extensions/BitzArt.Wolverine.Extensions.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
-        run: dotnet nuget push BitzArt.Wolverine.Extensions.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
+        run: |
+          dotnet nuget push BitzArt.Wolverine.Extensions.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
+          dotnet nuget push BitzArt.Wolverine.Extensions.Transport.AzureServiceBus.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
+          dotnet nuget push BitzArt.Wolverine.Extensions.Transport.RabbitMq.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
