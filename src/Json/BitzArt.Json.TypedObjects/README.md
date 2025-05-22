@@ -3,41 +3,26 @@
 
 # Overview
 
-`BitzArt.Json.TypedObjects` is a nuget package that allows retaining actual value types during JSON serialization and deserialization.
-
-Since JSON does not preserve information about specific value types, serialization of such values may lead to this 
-information being lost in cases where the actual type is not known in compile-time.
+`BitzArt.Json.TypedValues` is a nuget package that allows retaining type information when serializing and deserializing values to and from JSON using `System.Text.Json`.
 
 > ⚠️
-> Currently, the library only supports [standard value types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types).
+> Currently, the library only supports persisting type information for [standard value types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types).
 
 ## The Problem
 
-Consider the following example:
-
-```csharp
-List<object> myObjects = [1, 1.234, "string", null, new Apple()];
-```
-
-What will happen if we serialize this list to JSON and then deserialize it back?
-
-```csharp
-var serialized = JsonSerializer.Serialize(myObjects);
-var deserialized = JsonSerializer.Deserialize<List<object>>(serialized);
-```
-
-The resulting list will contain objects of type `JsonElement` instead of their original types, and the information about the objects' actual types will be lost - since the `JsonConverter` does not know the actual types of the objects in the list, and cannot deserialize them correctly.
-
-### Polymorphic Types
-
-Now, let's consider the following class hierarchy:
+Let's consider the following class hierarchy:
 
 ```csharp
 public class Fruit { }
 
 public class Apple : Fruit
 {
-    public string Variety { get; set; }
+    public string AppleVariety { get; set; }
+}
+
+public class Banana : Fruit
+{
+    public string BananaVariety { get; set; }
 }
 ```
 
@@ -46,7 +31,7 @@ The following code will result in the loss of the actual type of the object when
 ```csharp
 var apple = new Apple
 {
-    Variety = "Granny Smith"
+    AppleVariety = "Granny Smith"
 };
 
 var serialized = JsonSerializer.Serialize(apple);
@@ -58,22 +43,21 @@ Since the object was deserialized as `Fruit`, the resulting object will be of ty
 
 ## The Solution
 
-This library implements `TypedObjectJsonConverter` - a custom [JSON converter](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/converters-how-to) 
-that handles serialization and deserialization of polymorphic types, retaining actual value types:
+This library implements `TypedValueJsonConverter` - a custom [JSON converter](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/converters-how-to) 
+that handles serialization and deserialization of polymorphic types, retaining their type information.
 
-Now, let's see how the `TypedObjectJsonConverter` can be used to solve the problem of losing actual types during serialization and deserialization:
+Now, let's see how the `TypedValueJsonConverter` can be used to solve the problem of persisting type information during serialization and deserialization:
 
 ```csharp
-var apple = new Apple
+var fruits = new List<Fruit>
 {
-    Variety = "Granny Smith"
+    new Apple { AppleVariety = "Granny Smith" },
+    new Banana { BananaVariety = "Cavendish" }
 };
-
-var fruit = (Fruit)apple; 
 
 var jsonSerializerOptions = new JsonSerializerOptions
 {
-    Converters = { new TypedObjectJsonConverter<Fruit>() }
+    Converters = { new TypedValueJsonConverter<Fruit>() }
 };
 
 var serialized = JsonSerializer.Serialize(fruit, jsonSerializerOptions);
