@@ -23,7 +23,7 @@ public class Banana : Fruit
 }
 ```
 
-The following code will result in the loss of the actual type of the object when deserialized:
+The following code will result in the loss of objects' actual types when serialized/deserialized:
 
 ```csharp
 var fruits = new List<Fruit>
