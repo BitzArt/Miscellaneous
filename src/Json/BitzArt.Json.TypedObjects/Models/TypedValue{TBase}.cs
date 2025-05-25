@@ -9,7 +9,7 @@ namespace BitzArt.Json;
 /// <typeparam name="TBase">Base value type.</typeparam>
 [JsonConverter(typeof(TypedValueJsonConverter))]
 [DebuggerDisplay("{Value}")]
-public class TypedValue<TBase> : TypedValue
+public sealed class TypedValue<TBase> : TypedValue
 {
     /// <inheritdoc cref="TypedValue.Value"/>
     public new TBase Value { get; set; }

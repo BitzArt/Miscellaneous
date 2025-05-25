@@ -42,7 +42,7 @@ public class TypedValueJsonConverterTests
     public void Serialization_TypedValue_ShouldRetainType(object? value)
     {
         // Arrange
-        var typed = TypedValue.From(value);
+        TypedValue<object?> typed = value;
 
         // Act
         var serialized = JsonSerializer.Serialize(typed);
@@ -61,7 +61,7 @@ public class TypedValueJsonConverterTests
         // Arrange
         var apple = new Apple("red");
         var fruit = (Fruit)apple;
-        var typed = TypedValue.From(fruit);
+        TypedValue<Fruit> typed = fruit;
 
         // Act
         var serialized = JsonSerializer.Serialize(typed);
@@ -83,37 +83,44 @@ public class TypedValueJsonConverterTests
         var deserialized = JsonSerializer.Deserialize<List<TypedValue<Fruit>>>(serialized);
 
         // Assert
-        Assert.Equal(fruits.Count, deserialized?.Count);
+        Assert.Equal(fruits.Count, deserialized!.Count);
         
         for (int i = 0; i < fruits.Count; i++)
         {
             var original = fruits[i];
             var result = deserialized![i];
 
-            Assert.Equal(original.Value.GetType(), result.Value?.GetType());
+            Assert.Equal(original.Value.GetType(), result.Value!.GetType());
             Assert.Equal(original.Value, result.Value);
         }
     }
 
     [Fact]
-    public void Serialization_MarkedClass_ShouldRetainType()
+    public void Serialization_TypedValueDictionary_ShouldRetainTypes()
     {
         // Arrange
-        var text = "Some text";
-        var markedClass = new MarkedClassChild(text);
-        var castDown = (object)markedClass;
+        var fruits = new Dictionary<string, TypedValue<Fruit>>
+        {
+            { "fruit 1", new Apple("red")},
+            { "fruit 2", new Banana() },
+        };
 
         // Act
-        var serialized = JsonSerializer.Serialize(castDown);
-        var deserialized = JsonSerializer.Deserialize<MarkedClassBase>(serialized);
+        var serialized = JsonSerializer.Serialize(fruits);
+        var deserialized = JsonSerializer.Deserialize<Dictionary<string, TypedValue<Fruit>>>(serialized);
 
         // Assert
-        Assert.Equal(markedClass.GetType(), deserialized?.GetType());
-        Assert.Equal(markedClass, deserialized);
+        Assert.Equal(fruits.Count, deserialized!.Count);
+
+        foreach (var kvp in fruits)
+        {
+            var key = kvp.Key;
+
+            var original = kvp.Value;
+            var result = deserialized[key];
+
+            Assert.Equal(original.Value.GetType(), result.Value!.GetType());
+            Assert.Equal(original.Value, result.Value);
+        }
     }
-
-    [JsonConverter(typeof(TypedValueJsonConverter))]
-    private record MarkedClassBase;
-
-    private record MarkedClassChild(string Text) : MarkedClassBase;
 }

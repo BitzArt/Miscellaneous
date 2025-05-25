@@ -33,7 +33,7 @@ public abstract class TypedValue
     /// Initializes a new instance of the <see cref="TypedValue"/> class.
     /// </summary>
     /// <param name="value">The value that requires persisting type information.</param>
-    public TypedValue(object value)
+    internal TypedValue(object value)
     {
         _value = value;
     }
@@ -87,4 +87,21 @@ public abstract class TypedValue
     /// <returns></returns>
     public static TypedValue<T> From<T>(T value)
      => new(value);
+
+    /// <summary>
+    /// Implicitly converts a value of type <see cref="ValueType"/> to a <see cref="TypedValue{ValueType}"/>.
+    /// </summary>
+    /// <param name="value"></param>
+    public static implicit operator TypedValue(ValueType value)
+    {
+        var resultingType = typeof(TypedValue<>).MakeGenericType(value.GetType());
+        return (TypedValue)Activator.CreateInstance(resultingType, value)!;
+    }
+
+    /// <summary>
+    /// Implicitly converts a value of type <see cref="ValueType"/> to a <see cref="TypedValue{ValueType}"/>.
+    /// </summary>
+    /// <param name="value"></param>
+    public static implicit operator TypedValue(string value)
+        => new TypedValue<string>(value);
 }
