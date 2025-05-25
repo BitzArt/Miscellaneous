@@ -35,8 +35,8 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/Json/BitzArt.Json.TypedObjects/BitzArt.Json.TypedObjects.csproj --configuration Release /p:Version=${VERSION}
-          dotnet pack src/Json/BitzArt.Json.TypedObjects/BitzArt.Json.TypedObjects.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/Json/BitzArt.Json.TypedValues/BitzArt.Json.TypedValues.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/Json/BitzArt.Json.TypedValues/BitzArt.Json.TypedValues.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
-        run: dotnet nuget push BitzArt.Json.TypedObjects.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
+        run: dotnet nuget push BitzArt.Json.TypedValues.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}

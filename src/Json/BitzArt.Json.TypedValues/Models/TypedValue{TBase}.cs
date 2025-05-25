@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text.Json.Serialization;
 
-namespace BitzArt.Json;
+namespace System.Text.Json;
 
 /// <summary>
 /// Persists actual type information for a value upon JSON serialization.

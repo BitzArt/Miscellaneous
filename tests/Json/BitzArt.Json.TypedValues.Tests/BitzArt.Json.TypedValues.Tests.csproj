@@ -4,7 +4,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<RootNamespace>BitzArt.Json.TypedObjects.Tests</RootNamespace>
+		<RootNamespace>BitzArt.Json.TypedValues.Tests</RootNamespace>
 
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Json\BitzArt.Json.TypedObjects\BitzArt.Json.TypedObjects.csproj" />
+		<ProjectReference Include="..\..\..\src\Json\BitzArt.Json.TypedValues\BitzArt.Json.TypedValues.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

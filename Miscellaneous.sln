@@ -58,11 +58,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json", "Json", "{6062DBE1-5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{A053045B-CB06-473C-A04E-D54A519B6BBD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.Json.TypedObjects", "src\Json\BitzArt.Json.TypedObjects\BitzArt.Json.TypedObjects.csproj", "{F726FCF1-6D50-4EE5-9D4A-8714C897A967}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.Json.TypedValues", "src\Json\BitzArt.Json.TypedValues\BitzArt.Json.TypedValues.csproj", "{F726FCF1-6D50-4EE5-9D4A-8714C897A967}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json", "Json", "{23E7F528-746A-4A42-8FB3-F89088395933}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.Json.TypedObjects.Tests", "tests\Json\BitzArt.Json.TypedObjects.Tests\BitzArt.Json.TypedObjects.Tests.csproj", "{8F88487B-C78F-4695-B4F3-BF59CCDF6DF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.Json.TypedValues.Tests", "tests\Json\BitzArt.Json.TypedValues.Tests\BitzArt.Json.TypedValues.Tests.csproj", "{8F88487B-C78F-4695-B4F3-BF59CCDF6DF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{A5E6C844-8858-442E-8EAB-2CFD2E59B9EB}"
 EndProject

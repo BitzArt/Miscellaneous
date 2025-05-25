@@ -1,4 +1,4 @@
-﻿namespace BitzArt.Json.TypedObjects.Tests;
+﻿namespace BitzArt.Json.TypedValues.Tests;
 
 public abstract record Fruit
 {

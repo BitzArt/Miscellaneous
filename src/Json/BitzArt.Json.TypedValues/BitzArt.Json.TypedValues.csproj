@@ -7,7 +7,7 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<RootNamespace>BitzArt.Json</RootNamespace>
 
-		<PackageId>BitzArt.Json.TypedObjects</PackageId>
+		<PackageId>BitzArt.Json.TypedValues</PackageId>
 		<Authors>BitzArt</Authors>
 		<Description>Allows retaining actual object types when serializing and deserializing</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
