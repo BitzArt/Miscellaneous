@@ -30,7 +30,7 @@ internal struct TypedValuePayload<T>
     {
         if (root.ValueKind == JsonValueKind.Null) return null;
 
-        var actualTypeName = root.GetProperty("type").GetString()!;
+        var actualTypeName = root.GetProperty(TypePropertyName).GetString()!;
 
         if (string.IsNullOrWhiteSpace(actualTypeName))
         {
@@ -66,7 +66,7 @@ internal struct TypedValuePayload<T>
             throw new JsonException($"The type '{actualTypeName}' is not assignable to '{typeof(T).FullName}'.");
         }
 
-        var value = (T)root.GetProperty("value").Deserialize(actualType, options)!;
+        var value = (T)root.GetProperty(ValuePropertyName).Deserialize(actualType, options)!;
 
         return new(value, actualTypeName);
     }

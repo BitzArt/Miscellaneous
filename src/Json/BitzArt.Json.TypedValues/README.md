@@ -1,5 +1,5 @@
-[![NuGet version](https://img.shields.io/nuget/v/BitzArt.Json.TypedObjects.svg)](https://www.nuget.org/packages/BitzArt.Json.TypedObjects/)
-[![NuGet downloads](https://img.shields.io/nuget/dt/BitzArt.Json.TypedObjects.svg)](https://www.nuget.org/packages/BitzArt.Json.TypedObjects/)
+[![NuGet version](https://img.shields.io/nuget/v/BitzArt.Json.TypedValues.svg)](https://www.nuget.org/packages/BitzArt.Json.TypedValues/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/BitzArt.Json.TypedValues.svg)](https://www.nuget.org/packages/BitzArt.Json.TypedValues/)
 
 # Overview
 
@@ -50,7 +50,7 @@ var fruits = new List<TypedValue<Fruit>>
     new Banana { BananaVariety = "Cavendish" }
 };
 
-var serialized = JsonSerializer.Serialize(fruit);
+var serialized = JsonSerializer.Serialize(fruits);
 
 // Resulting deserialized objects will be deserialized back to their original types.
 var deserialized = JsonSerializer.Deserialize<IEnumerable<TypedValue<Fruit>>>(serialized);
