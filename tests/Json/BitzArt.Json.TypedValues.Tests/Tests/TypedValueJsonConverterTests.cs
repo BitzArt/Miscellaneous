@@ -83,7 +83,7 @@ public class TypedValueJsonConverterTests
 
         // Assert
         Assert.Equal(fruits.Count, deserialized!.Count);
-        
+
         for (int i = 0; i < fruits.Count; i++)
         {
             var original = fruits[i];

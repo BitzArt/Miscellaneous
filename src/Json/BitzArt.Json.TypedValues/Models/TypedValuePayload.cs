@@ -38,7 +38,7 @@ internal struct TypedValuePayload<T>
         }
 
         var actualType = Type.GetType(actualTypeName)!;
-        
+
         if (actualType is null)
         {
             var found = _foundTypes.TryGetValue(actualTypeName, out actualType);
