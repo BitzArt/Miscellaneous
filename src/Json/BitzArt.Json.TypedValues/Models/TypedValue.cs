@@ -62,7 +62,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator ==(TypedValue left, TypedValue right)
-        => ReferenceEquals(left, right) || (left is not null && left.Equals(right));
+        => ReferenceEquals(left, right) || Equals(left, right);
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for inequality.
@@ -80,7 +80,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator ==(TypedValue left, object right)
-        => ReferenceEquals(left, right) || (left is not null && left.Equals(right));
+        => ReferenceEquals(left, right) || Equals(left, right);
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for inequality.
@@ -98,7 +98,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator ==(object left, TypedValue right)
-        => ReferenceEquals(left, right) || (right is not null && right.Equals(left));
+        => ReferenceEquals(left, right) || Equals(left, right);
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for inequality.
@@ -108,6 +108,26 @@ public abstract class TypedValue
     /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator !=(object left, TypedValue right)
         => !(left == right);
+
+    private static bool Equals(object? left, object? right)
+    {
+        if (left is null && right is null)
+        {
+            return true;
+        }
+
+        if (left is TypedValue typedLeft)
+        {
+            return typedLeft.Equals(right);
+        }
+
+        if (right is TypedValue typedRight)
+        {
+            return typedRight.Equals(left);
+        }
+
+        return left == right;
+    }
 
     /// <inheritdoc/>
     public override bool Equals(object? obj)
