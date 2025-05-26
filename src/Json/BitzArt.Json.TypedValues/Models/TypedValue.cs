@@ -62,7 +62,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator ==(TypedValue left, TypedValue right)
-        => left.Equals(right);
+        => ReferenceEquals(left, right) || (left is not null && left.Equals(right));
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for inequality.
@@ -71,7 +71,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator !=(TypedValue left, TypedValue right)
-        => !left.Equals(right);
+        => !(left == right);
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for equality.
@@ -80,7 +80,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator ==(TypedValue left, object right)
-        => left.Equals(right);
+        => ReferenceEquals(left, right) || (left is not null && left.Equals(right));
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for inequality.
@@ -89,7 +89,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator !=(TypedValue left, object right)
-        => !left.Equals(right);
+        => !(left == right);
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for equality.
@@ -98,7 +98,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator ==(object left, TypedValue right)
-        => left.Equals(right);
+        => ReferenceEquals(left, right) || (right is not null && right.Equals(left));
 
     /// <summary>
     /// Compares two <see cref="TypedValue"/> instances for inequality.
@@ -107,7 +107,7 @@ public abstract class TypedValue
     /// <param name="right">Right operand.</param>
     /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>"
     public static bool operator !=(object left, TypedValue right)
-        => !left.Equals(right);
+        => !(left == right);
 
     /// <inheritdoc/>
     public override bool Equals(object? obj)
