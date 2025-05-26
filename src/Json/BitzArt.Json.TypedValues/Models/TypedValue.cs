@@ -60,7 +60,7 @@ public abstract class TypedValue
     /// </summary>
     /// <param name="left">Left operand.</param>
     /// <param name="right">Right operand.</param>
-    /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
+    /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator ==(TypedValue? left, TypedValue? right)
         => ReferenceEquals(left, right) || Equals(left, right);
 
@@ -69,7 +69,7 @@ public abstract class TypedValue
     /// </summary>
     /// <param name="left">Left operand.</param>
     /// <param name="right">Right operand.</param>
-    /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>"
+    /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator !=(TypedValue? left, TypedValue? right)
         => !(left == right);
 
@@ -78,7 +78,7 @@ public abstract class TypedValue
     /// </summary>
     /// <param name="left">Left operand.</param>
     /// <param name="right">Right operand.</param>
-    /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
+    /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator ==(TypedValue? left, object? right)
         => ReferenceEquals(left, right) || Equals(left, right);
 
@@ -87,7 +87,7 @@ public abstract class TypedValue
     /// </summary>
     /// <param name="left">Left operand.</param>
     /// <param name="right">Right operand.</param>
-    /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>"
+    /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator !=(TypedValue? left, object? right)
         => !(left == right);
 
@@ -96,7 +96,7 @@ public abstract class TypedValue
     /// </summary>
     /// <param name="left">Left operand.</param>
     /// <param name="right">Right operand.</param>
-    /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>"
+    /// <returns><see langword="true"/> if instances are equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator ==(object? left, TypedValue? right)
         => ReferenceEquals(left, right) || Equals(left, right);
 
@@ -105,7 +105,7 @@ public abstract class TypedValue
     /// </summary>
     /// <param name="left">Left operand.</param>
     /// <param name="right">Right operand.</param>
-    /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>"
+    /// <returns><see langword="true"/> if instances are not equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator !=(object? left, TypedValue? right)
         => !(left == right);
 
