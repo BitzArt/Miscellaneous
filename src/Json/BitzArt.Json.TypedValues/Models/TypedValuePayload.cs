@@ -6,8 +6,8 @@ internal struct TypedValuePayload<T>
 {
     private static readonly Dictionary<string, Type> _foundTypes = [];
 
-    public const string ValuePropertyName = "value";
     public const string TypePropertyName = "type";
+    public const string ValuePropertyName = "value";
 
     [JsonPropertyName(TypePropertyName)]
     [JsonPropertyOrder(0)]

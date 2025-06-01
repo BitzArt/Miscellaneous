@@ -19,8 +19,16 @@ internal class TypePreservingJsonConverter<T> : JsonConverter<T>
 
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
     {
-        var payload = new TypedValuePayload<T>(value);
-        var converter = (JsonConverter<TypedValuePayload<T>>)options.GetConverter(payload.GetType());
-        converter.Write(writer, payload, options);
+        if (value is null)
+        {
+            writer.WriteNullValue();
+            return;
+        }
+
+        var payloadType = typeof(TypedValuePayload<>).MakeGenericType(value.GetType());
+        var payload = Activator.CreateInstance(payloadType, value)!;
+        var converter = options.GetConverter(payloadType);
+        var write = converter.GetType().GetMethod("Write", [typeof(Utf8JsonWriter), payloadType, typeof(JsonSerializerOptions)])!;
+        write.Invoke(converter, [writer, payload, options]);
     }
 }
