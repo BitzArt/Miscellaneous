@@ -4,14 +4,17 @@ using System.Collections.Concurrent;
 namespace BitzArt.DependencyInjection;
 
 internal class TransientServiceProviderFactory(
-    Action<IServiceCollection> configureServices,
+    IServiceProvider globalServiceProvider,
+    Action<IServiceCollection, IServiceProvider> configureServices,
     Action<ITransientServiceProvider>? configure = null) : ITransientServiceProviderFactory
 {
+    private readonly IServiceProvider _globalServiceProvider = globalServiceProvider;
+
     private readonly ConcurrentDictionary<string, ITransientServiceProvider> _namedProviders = [];
 
     private readonly Lock _lock = new();
 
-    private readonly Action<IServiceCollection> _configureServices = configureServices;
+    private readonly Action<IServiceCollection, IServiceProvider> _configureServices = configureServices;
 
     private readonly Action<ITransientServiceProvider>? _configure = configure;
 
@@ -35,7 +38,7 @@ internal class TransientServiceProviderFactory(
     private TransientServiceProvider BuildServiceProvider()
     {
         var sc = new ServiceCollection();
-        _configureServices(sc);
+        _configureServices(sc, _globalServiceProvider);
 
         var provider = sc.BuildServiceProvider();
 
