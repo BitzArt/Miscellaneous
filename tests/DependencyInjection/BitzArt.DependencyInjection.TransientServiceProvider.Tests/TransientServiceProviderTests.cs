@@ -96,7 +96,7 @@ public class TransientServiceProviderTests
     }
 
     [Fact]
-    public void GetEnumerableService_WithFallbackFalseAndTransientMissingService_ShouldReturnEmtpyEnumerable()
+    public void GetEnumerableService_WithFallbackFalseAndTransientMissingService_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         var globalServiceCollection = new ServiceCollection();

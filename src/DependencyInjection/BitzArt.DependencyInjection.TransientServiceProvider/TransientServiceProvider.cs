@@ -69,12 +69,3 @@ internal class TransientServiceProvider : ITransientServiceProvider
         return service;
     }
 }
-
-
-public class TransientServiceProviderOptions 
-{
-    /// <summary>
-    /// Use global service provider if service missing in transient service provider
-    /// </summary>
-    public bool FallbackToGlobal { get; set; } = false;
-}
