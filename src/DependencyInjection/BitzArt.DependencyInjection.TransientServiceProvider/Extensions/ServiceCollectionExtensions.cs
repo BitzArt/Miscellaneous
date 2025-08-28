@@ -12,10 +12,12 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddTransientServiceProvider(
         this IServiceCollection services,
         Action<IServiceCollection> configureServices,
-        Action<ITransientServiceProvider>? configureProvider = null)
+        Action<ITransientServiceProvider>? configureProvider = null,
+        Action<TransientServiceProviderOptions>? configureOptions = null)
         => services.AddTransientServiceProvider(
             (serviceCollection, _) => configureServices(serviceCollection),
-            configureProvider);
+            configureProvider,
+            configureOptions);
 
     /// <summary>
     /// Registers <see cref="ITransientServiceProviderFactory"/> and <see cref="ITransientServiceProvider"/> in the service collection.
@@ -23,7 +25,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddTransientServiceProvider(
         this IServiceCollection services,
         Action<IServiceCollection, IServiceProvider> configureServices,
-        Action<ITransientServiceProvider>? configureProvider = null)
+        Action<ITransientServiceProvider>? configureProvider = null,
+        Action<TransientServiceProviderOptions>? configureOptions = null)
     {
         if (services.Any(x => x.ServiceType == typeof(ITransientServiceProviderFactory)))
         {
@@ -31,7 +34,7 @@ public static class ServiceCollectionExtensions
         }
 
         services.AddSingleton<ITransientServiceProviderFactory>(globalServiceProvider =>
-            new TransientServiceProviderFactory(globalServiceProvider, configureServices, configureProvider));
+            new TransientServiceProviderFactory(globalServiceProvider, configureServices, configureProvider, configureOptions));
 
         services.AddTransient<ITransientServiceProvider>(x =>
         {
