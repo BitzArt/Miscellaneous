@@ -3,20 +3,31 @@ using System.Collections.Concurrent;
 
 namespace BitzArt.DependencyInjection;
 
-internal class TransientServiceProviderFactory(
-    IServiceProvider globalServiceProvider,
-    Action<IServiceCollection, IServiceProvider> configureServices,
-    Action<ITransientServiceProvider>? configure = null) : ITransientServiceProviderFactory
+internal class TransientServiceProviderFactory : ITransientServiceProviderFactory
 {
-    private readonly IServiceProvider _globalServiceProvider = globalServiceProvider;
+    private readonly IServiceProvider _globalServiceProvider;
+    private readonly ConcurrentDictionary<string, ITransientServiceProvider> _namedProviders;
+    private readonly Lock _lock;
+    private readonly Action<IServiceCollection, IServiceProvider> _configureServices;
+    private readonly Action<ITransientServiceProvider>? _configure;
+    private readonly TransientServiceProviderOptions _options;
 
-    private readonly ConcurrentDictionary<string, ITransientServiceProvider> _namedProviders = [];
+    public TransientServiceProviderFactory(
+        IServiceProvider globalServiceProvider,
+        Action<IServiceCollection, IServiceProvider> configureServices,
+        Action<ITransientServiceProvider>? configure = null,
+        Action<TransientServiceProviderOptions>? configureOptions = null)
+    {
+        _globalServiceProvider = globalServiceProvider;
+        _configureServices = configureServices;
+        _configure = configure;
 
-    private readonly Lock _lock = new();
+        _lock = new();
+        _namedProviders = [];
 
-    private readonly Action<IServiceCollection, IServiceProvider> _configureServices = configureServices;
-
-    private readonly Action<ITransientServiceProvider>? _configure = configure;
+        _options = new TransientServiceProviderOptions();
+        configureOptions?.Invoke(_options);
+    }
 
     public ITransientServiceProvider GetProvider(string name)
     {
@@ -35,16 +46,6 @@ internal class TransientServiceProviderFactory(
 
     public ITransientServiceProvider GetProvider() => BuildServiceProvider();
 
-    private TransientServiceProvider BuildServiceProvider()
-    {
-        var sc = new ServiceCollection();
-        _configureServices(sc, _globalServiceProvider);
+    private TransientServiceProvider BuildServiceProvider() => new(_globalServiceProvider, _configureServices, _configure, _options);
 
-        var provider = sc.BuildServiceProvider();
-
-        var result = new TransientServiceProvider(provider);
-        _configure?.Invoke(result);
-
-        return result;
-    }
 }
