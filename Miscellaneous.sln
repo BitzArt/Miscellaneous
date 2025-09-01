@@ -95,7 +95,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extension
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{B8865CBC-A492-4F26-8961-0F1BFFFEB8F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.DependencyInjection.TransientServiceProvider.Tests", "tests\DependencyInjection\BitzArt.TransientServiceProvider.Tests\BitzArt.DependencyInjection.TransientServiceProvider.Tests.csproj", "{A419BC61-25D7-4E99-8117-FCF4B75F2DCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.TransientServiceProvider.Tests", "tests\DependencyInjection\BitzArt.TransientServiceProvider.Tests\BitzArt.TransientServiceProvider.Tests.csproj", "{A419BC61-25D7-4E99-8117-FCF4B75F2DCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
