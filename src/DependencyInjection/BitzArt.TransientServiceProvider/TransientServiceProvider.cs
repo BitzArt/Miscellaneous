@@ -34,7 +34,7 @@ internal class TransientServiceProvider : ITransientServiceProvider
         if (ImplementsEnumerable(serviceType, out var targetType))
         {
             var method = GetType().GetMethod(nameof(GetEnumerable), BindingFlags.NonPublic | BindingFlags.Instance);
-            var genericMethod = method?.MakeGenericMethod(targetType!);
+            var genericMethod = method!.MakeGenericMethod(targetType!);
             return genericMethod!.Invoke(this, [serviceType]);
         }
 
