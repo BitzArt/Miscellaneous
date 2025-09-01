@@ -1,4 +1,4 @@
-﻿namespace BitzArt.DependencyInjection;
+﻿namespace BitzArt;
 
 /// <summary>
 /// Provides methods to create transient service providers, or retrieve existing ones.

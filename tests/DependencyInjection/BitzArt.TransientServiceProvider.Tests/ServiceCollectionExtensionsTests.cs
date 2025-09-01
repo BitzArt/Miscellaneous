@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace BitzArt.DependencyInjection.TransientServiceProvider.Tests;
+namespace BitzArt.TransientServiceProvider.Tests;
 
 public class ServiceCollectionExtensionsTests
 {

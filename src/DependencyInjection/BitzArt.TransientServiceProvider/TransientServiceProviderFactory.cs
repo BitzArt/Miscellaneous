@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Concurrent;
 
-namespace BitzArt.DependencyInjection;
+namespace BitzArt;
 
 internal class TransientServiceProviderFactory : ITransientServiceProviderFactory
 {

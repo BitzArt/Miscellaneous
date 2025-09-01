@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{9545DA65-B29C-4A40-8010-3E339D138EE9}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\Publish CoreExtensions.yml = .github\workflows\Publish CoreExtensions.yml
+		.github\workflows\Publish DependencyInjection.yml = .github\workflows\Publish DependencyInjection.yml
 		.github\workflows\Publish EnumToMemberValue.yml = .github\workflows\Publish EnumToMemberValue.yml
 		.github\workflows\Publish FluentValidation.Extensions.yml = .github\workflows\Publish FluentValidation.Extensions.yml
 		.github\workflows\Publish Json.yml = .github\workflows\Publish Json.yml
@@ -72,7 +73,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitzArt.CoreExtensions.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{BDCAABCC-D420-4A4D-AAC2-3D254D7932CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.DependencyInjection.TransientServiceProvider", "src\DependencyInjection\BitzArt.DependencyInjection.TransientServiceProvider\BitzArt.DependencyInjection.TransientServiceProvider.csproj", "{5F8768B5-FE6F-42DC-9993-F9F4E5AE38E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.TransientServiceProvider", "src\DependencyInjection\BitzArt.TransientServiceProvider\BitzArt.TransientServiceProvider.csproj", "{5F8768B5-FE6F-42DC-9993-F9F4E5AE38E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wolverine", "Wolverine", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -94,7 +95,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.Wolverine.Extension
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{B8865CBC-A492-4F26-8961-0F1BFFFEB8F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.DependencyInjection.TransientServiceProvider.Tests", "tests\DependencyInjection\BitzArt.DependencyInjection.TransientServiceProvider.Tests\BitzArt.DependencyInjection.TransientServiceProvider.Tests.csproj", "{A419BC61-25D7-4E99-8117-FCF4B75F2DCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitzArt.TransientServiceProvider.Tests", "tests\DependencyInjection\BitzArt.TransientServiceProvider.Tests\BitzArt.TransientServiceProvider.Tests.csproj", "{A419BC61-25D7-4E99-8117-FCF4B75F2DCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
-﻿namespace BitzArt.DependencyInjection;
+﻿namespace BitzArt;
 
 /// <summary>
 /// Transient service provider options.
 /// </summary>
-public class TransientServiceProviderOptions 
+public class TransientServiceProviderOptions
 {
     /// <summary>
     /// Use global service provider if service missing in transient service provider.

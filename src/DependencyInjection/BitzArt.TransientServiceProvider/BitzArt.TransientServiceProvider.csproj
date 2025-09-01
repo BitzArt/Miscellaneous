@@ -3,11 +3,11 @@
 	<PropertyGroup>
 		<TargetFrameworks>net9.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<RootNamespace>BitzArt.DependencyInjection</RootNamespace>
+		<RootNamespace>BitzArt.TransientServiceProvider</RootNamespace>
 		<Nullable>enable</Nullable>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-		<PackageId>BitzArt.DependencyInjection.TransientServiceProvider</PackageId>
+		<PackageId>BitzArt.TransientServiceProvider</PackageId>
 		<Authors>BitzArt</Authors>
 		<Description>This package provides isolated transient service providers</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

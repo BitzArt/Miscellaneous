@@ -35,9 +35,9 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/DependencyInjection/BitzArt.DependencyInjection.TransientServiceProvider/BitzArt.DependencyInjection.TransientServiceProvider.csproj --configuration Release /p:Version=${VERSION}
-          dotnet pack src/DependencyInjection/BitzArt.DependencyInjection.TransientServiceProvider/BitzArt.DependencyInjection.TransientServiceProvider.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/DependencyInjection/BitzArt.TransientServiceProvider/BitzArt.TransientServiceProvider.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/DependencyInjection/BitzArt.TransientServiceProvider/BitzArt.TransientServiceProvider.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
         run: | 
-          dotnet nuget push BitzArt.DependencyInjection.TransientServiceProvider.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
+          dotnet nuget push BitzArt.TransientServiceProvider.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
