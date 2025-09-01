@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace BitzArt.DependencyInjection;
+namespace BitzArt;
 
 /// <summary>
 /// Extensions methods for <see cref="IServiceCollection"/>

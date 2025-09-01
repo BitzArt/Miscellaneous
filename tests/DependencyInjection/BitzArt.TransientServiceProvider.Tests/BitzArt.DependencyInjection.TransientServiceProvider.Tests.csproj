@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\DependencyInjection\BitzArt.DependencyInjection.TransientServiceProvider\BitzArt.DependencyInjection.TransientServiceProvider.csproj" />
+    <ProjectReference Include="..\..\..\src\DependencyInjection\BitzArt.TransientServiceProvider\BitzArt.TransientServiceProvider.csproj" />
   </ItemGroup>
 
   <ItemGroup>
