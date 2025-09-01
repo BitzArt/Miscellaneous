@@ -28,13 +28,14 @@ internal class TransientServiceProvider : ITransientServiceProvider
         configure?.Invoke(this);
     }
 
+    private static readonly MethodInfo GetEnumerableMethod = typeof(TransientServiceProvider).GetMethod(nameof(GetEnumerable), BindingFlags.NonPublic | BindingFlags.Instance)!;
+
     /// <inheritdoc/>
     object? IServiceProvider.GetService(Type serviceType)
     {
         if (ImplementsEnumerable(serviceType, out var targetType))
         {
-            var method = GetType().GetMethod(nameof(GetEnumerable), BindingFlags.NonPublic | BindingFlags.Instance);
-            var genericMethod = method!.MakeGenericMethod(targetType!);
+            var genericMethod = GetEnumerableMethod.MakeGenericMethod(targetType!);
             return genericMethod!.Invoke(this, [serviceType]);
         }
 
