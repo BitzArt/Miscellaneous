@@ -9,4 +9,12 @@ public class Tests(TransientDependency dep)
 
         Assert.True(true);
     }
+
+    [Fact]
+    public void Test2()
+    {
+        Assert.NotNull(dep);
+
+        Assert.True(true);
+    }
 }
