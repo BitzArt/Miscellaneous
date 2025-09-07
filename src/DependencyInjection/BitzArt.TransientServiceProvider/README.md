@@ -52,3 +52,12 @@ Use the resolved `ITransientServiceProvider` similarly to how you would use a no
 ```csharp
 var myTransientService = transientServiceProvider.GetService<MyService>();
 ```
+
+#### 4.1. Use `FallbackToGlobal` flag
+
+You can use the `FallbackToGlobal` flag in the options configuration and inject dependencies directly.
+You need to pass `Action<TransientServiceProviderOptions>` to the `AddTransientServiceProvider` extension method and use `TransientServiceScopeServiceProviderFactory` for `IHostBuilder`.
+
+You can find a configuration example in the [Startup](../../../tests/DependencyInjection/BitzArt.TransientServiceProvider.XUnitDependencyInjectionTests/Startup.cs) file of the BitzArt.TransientServiceProvider.XUnitDependencyInjectionTests project.
+
+The algorithm used to resolve dependencies.
