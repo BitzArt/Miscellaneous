@@ -1,20 +1,12 @@
 ﻿namespace BitzArt.XUnit;
 
-public class Tests(TransientDependency dep)
+// TransientDependency is added to the transient service provider only.
+public class Tests(TransientDependency thisDependency)
 {
     [Fact]
-    public void Test1()
+    public void DependencyInjection_ViaCtor_ShouldProvideTransientDependency()
     {
-        Assert.NotNull(dep);
-
-        Assert.True(true);
-    }
-
-    [Fact]
-    public void Test2()
-    {
-        Assert.NotNull(dep);
-
-        Assert.True(true);
+        // Assert
+        Assert.NotNull(thisDependency);
     }
 }

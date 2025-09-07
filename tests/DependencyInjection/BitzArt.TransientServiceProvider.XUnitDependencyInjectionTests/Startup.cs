@@ -16,6 +16,12 @@ public partial class Startup
         {
             var localId = Guid.NewGuid();
 
+            // Prevent GUID collision (LOL)
+            if (localId == globalId)
+            {
+                localId = Guid.NewGuid();
+            }
+
             t.AddSingleton(new TransientDependency(globalId, localId));
         },
         configureOptions: options =>
