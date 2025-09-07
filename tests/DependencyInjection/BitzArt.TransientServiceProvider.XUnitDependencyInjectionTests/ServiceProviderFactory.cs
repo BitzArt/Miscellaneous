@@ -39,12 +39,17 @@ internal class TransientScopeFactory(IServiceProvider globalServiceProvider) : I
     }
 }
 
-internal class TransientScope(IServiceProvider globalServiceProvider) : IServiceScope
+internal class TransientScope : IServiceScope
 {
-    private readonly IServiceScope _internalScope = globalServiceProvider.CreateScope();
+    private readonly IServiceScope _internalScope;
 
-    public IServiceProvider ServiceProvider
-        => _internalScope.ServiceProvider.GetRequiredService<ITransientServiceProvider>();
+    public IServiceProvider ServiceProvider { get; private init; }
+
+    public TransientScope(IServiceProvider globalServiceProvider)
+    {
+        _internalScope = globalServiceProvider.CreateScope();
+        ServiceProvider = _internalScope.ServiceProvider.GetRequiredService<ITransientServiceProvider>();
+    }
 
     public void Dispose() => _internalScope.Dispose();
 }

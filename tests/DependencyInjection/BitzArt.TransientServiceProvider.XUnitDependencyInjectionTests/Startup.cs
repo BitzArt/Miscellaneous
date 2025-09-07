@@ -19,7 +19,7 @@ public partial class Startup
         {
             var localId = Guid.NewGuid();
 
-            t.AddTransient((_) => new TransientDependency(globalId, localId));
+            t.AddSingleton(new TransientDependency(globalId, localId));
         },
         configureOptions: options =>
         {
