@@ -5,13 +5,10 @@ namespace BitzArt.XUnit;
 
 public partial class Startup
 {
-    public IHost BuildHost(IHostBuilder hostBuilder)
-    {
-        hostBuilder.UseServiceProviderFactory(new ServiceProviderFactory());
-        return hostBuilder.Build();
-    }
+    public static IHost BuildHost(IHostBuilder hostBuilder)
+        => hostBuilder.UseTransientServiceScopeFactory().Build();
 
-    public void ConfigureServices(IServiceCollection services)
+    public static void ConfigureServices(IServiceCollection services)
     {
         var globalId = Guid.NewGuid();
 
