@@ -17,7 +17,7 @@ public partial class Startup
             var localId = Guid.NewGuid();
 
             // Prevent GUID collision (LOL)
-            if (localId == globalId)
+            while (localId == globalId)
             {
                 localId = Guid.NewGuid();
             }
