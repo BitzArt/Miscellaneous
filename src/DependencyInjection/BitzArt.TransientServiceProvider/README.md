@@ -52,3 +52,11 @@ Use the resolved `ITransientServiceProvider` similarly to how you would use a no
 ```csharp
 var myTransientService = transientServiceProvider.GetService<MyService>();
 ```
+
+#### 4.1. Use `FallbackToGlobal` flag
+
+You can use the `FallbackToGlobal` flag in the options configuration and inject dependencies directly.
+If this `FallbackToGlobal` flag is enabled in the configuration, the system will first attempt to obtain the dependency from the `ITransientServiceProvider` container. This is useful when you need to override or isolate certain services in a specific context, for example, for testing or performing specific tasks.
+If the required dependency is not found in `ITransientServiceProvider` and the `FallbackToGlobal` flag is enabled, the search will continue in the global default container.
+
+You can find a configuration example in the [Startup](../../../tests/DependencyInjection/BitzArt.TransientServiceProvider.XUnitDependencyInjectionTests/Startup.cs) file of the BitzArt.TransientServiceProvider.XUnitDependencyInjectionTests project.
