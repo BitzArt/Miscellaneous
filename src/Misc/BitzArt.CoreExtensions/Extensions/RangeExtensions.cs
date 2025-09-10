@@ -76,6 +76,23 @@ public static class RangeExtensions
         where TTarget : struct, IComparable<TTarget>
         => query.Where(range.GetInclusionExpression(targetExpression));
 
+    /// <summary>
+    /// Returns the query filtered by the given list of ranges applied to the given expression.
+    /// The resulting query will include all items that fall within any of the specified ranges.
+    /// </summary>
+    /// <typeparam name="TSource">Queryable data type.</typeparam>
+    /// <typeparam name="TTarget">The type of the value and range bounds.</typeparam>
+    /// <param name="query">The queryable data source to filter.</param>
+    /// <param name="targetExpression">The expression that selects the value to check.</param>
+    /// <param name="range">The list of ranges to check against.</param>
+    /// <returns>The query filtered by the given range applied to the given expression.</returns>
+    public static IQueryable<TSource> Where<TSource, TTarget>(
+        this IQueryable<TSource> query,
+        Expression<Func<TSource, TTarget>> targetExpression,
+        IEnumerable<Range<TTarget?>> range)
+        where TTarget : struct, IComparable<TTarget>
+        => query.Where(range.GetInclusionExpression(targetExpression));
+
     /// <inheritdoc cref="GetInclusionExpression{TSource, TTarget}(Range{TTarget?}, Expression{Func{TSource, TTarget}})"/>
     [SuppressMessage("Style", "IDE0075:Simplify conditional expression")]
     public static Expression<Func<T, bool>> GetInclusionExpression<T>(this Range<T?> range)
