@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '9.x'
 
       - name: Verify commit
         run: |
@@ -34,8 +34,8 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/BitzArt.Probes/BitzArt.Probes.csproj --configuration Release /p:Version=${VERSION}
-          dotnet pack src/BitzArt.Probes/BitzArt.Probes.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/Misc/BitzArt.Probes/BitzArt.Probes.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/Misc/BitzArt.Probes/BitzArt.Probes.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
         run: dotnet nuget push BitzArt.Probes.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
