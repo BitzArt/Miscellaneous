@@ -3,7 +3,7 @@
 /// <summary>
 /// Patch builder.
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">Type of the object being patched.</typeparam>
 public interface IPatchBuilder<T>
 {
     /// <summary>

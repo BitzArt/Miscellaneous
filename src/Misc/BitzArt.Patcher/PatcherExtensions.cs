@@ -61,8 +61,8 @@ public static class PatcherExtensions
     /// <summary>
     /// Updates a specific property of the target object if the corresponding property in the input object is not null.
     /// </summary>
-    /// <typeparam name="TModel"></typeparam>
-    /// <typeparam name="TProperty"></typeparam>
+    /// <typeparam name="TModel">Type of the model being patched.</typeparam>
+    /// <typeparam name="TProperty">Type of the property being patched.</typeparam>
     /// <param name="builder">Patch builder.</param>
     /// <param name="selector">Property selector expression.</param>
     /// <returns>The original patch builder to allow for method chaining.</returns>

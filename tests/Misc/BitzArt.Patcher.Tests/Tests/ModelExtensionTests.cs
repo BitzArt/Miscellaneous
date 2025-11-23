@@ -53,12 +53,12 @@ public class ModelExtensionTests
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
-    public void Model_InputInnerHasAllFields_ShouldPatchAll(bool prepopulateTartget)
+    public void Model_InputInnerHasAllFields_ShouldPatchAll(bool prepopulateTarget)
     {
         // Arrange
         var target = TestModel.GenerateTarget();
 
-        if (prepopulateTartget)
+        if (prepopulateTarget)
         {
             target.Inner = new()
             {
