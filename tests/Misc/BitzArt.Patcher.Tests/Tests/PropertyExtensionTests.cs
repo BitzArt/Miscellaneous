@@ -1,58 +1,42 @@
 namespace BitzArt.Patcher.Tests;
 
-public class PatchTests
+public class PropertyExtensionTests
 {
-    private class TestModel
-    {
-        public string? A { get; set; }
-        public string? B { get; set; }
-        public string? C { get; set; }
-    }
-
-    private static TestModel GenerateTarget() => new()
-    {
-        A = "a",
-        B = "b",
-        C = "c"
-    };
-
-    private static TestModel GenerateInput() => new()
-    {
-        A = "1",
-        B = "2",
-        C = "3"
-    };
-
     [Fact]
-    public void Patch_AllFields_Patches()
+    public void Property_InputHasAllFields_ShouldPatchAll()
     {
-        var target = GenerateTarget();
-        var input = GenerateInput();
+        var target = TestModel.GenerateTarget();
+        var input = TestModel.GenerateInput();
 
+        // Act
         target.Patch(input)
             .Property(x => x.A)
             .Property(x => x.B)
             .Property(x => x.C);
 
+        // Assert
         Assert.Equal(input.A, target.A);
         Assert.Equal(input.B, target.B);
         Assert.Equal(input.C, target.C);
     }
 
     [Fact]
-    public void Patch_WithNullFields_SkipsNull()
+    public void Property_InputHasNullFields_ShouldSkipNull()
     {
-        var target = GenerateTarget();
+        // Arrange
+        var target = TestModel.GenerateTarget();
         var targetC = new string(target.C);
 
-        var input = GenerateInput();
+        var input = TestModel.GenerateInput();
         input.C = null;
 
+        // Act
         target.Patch(input)
             .Property(x => x.A)
             .Property(x => x.B)
             .Property(x => x.C);
 
+        // Assert
         Assert.Equal(input.A, target.A);
         Assert.Equal(input.B, target.B);
 
