@@ -35,8 +35,8 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build src/BitzArt.Patcher/BitzArt.Patcher.csproj --configuration Release /p:Version=${VERSION}
-          dotnet pack src/BitzArt.Patcher/BitzArt.Patcher.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
+          dotnet build src/Misc/BitzArt.Patcher/BitzArt.Patcher.csproj --configuration Release /p:Version=${VERSION}
+          dotnet pack src/Misc/BitzArt.Patcher/BitzArt.Patcher.csproj --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
         run: dotnet nuget push BitzArt.Patcher.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
