@@ -83,7 +83,11 @@ public static class PatcherExtensions
 
     private static PropertyInfo GetPropertyInfo<TModel, TProperty>(Expression<Func<TModel, TProperty>> expression)
     {
-        var expr = (MemberExpression)expression.Body;
+        if (expression.Body is not MemberExpression expr)
+        {
+            throw new ArgumentException("Expression must be a member access", nameof(expression));
+        }
+
         return (PropertyInfo)expr.Member;
     }
 }
