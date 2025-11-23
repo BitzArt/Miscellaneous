@@ -11,10 +11,13 @@ public class ModelExtensionTests
 
         // Act
         target.Patch(input)
-            .Model(x => x.Inner, inner => inner
+            .Model(x => x.Inner, inner =>
+            {
+                inner
                 .Property(x => x.A)
                 .Property(x => x.B)
-                .Property(x => x.C));
+                .Property(x => x.C);
+            });
 
         // Assert
         Assert.Null(input.Inner);
@@ -32,10 +35,13 @@ public class ModelExtensionTests
 
         // Act
         target.Patch(input)
-            .Model(x => x.Inner, inner => inner
+            .Model(x => x.Inner, inner =>
+            {
+                inner
                 .Property(x => x.A)
                 .Property(x => x.B)
-                .Property(x => x.C));
+                .Property(x => x.C);
+            });
 
         // Assert
         Assert.NotNull(input.Inner);
@@ -78,10 +84,13 @@ public class ModelExtensionTests
 
         // Act
         target.Patch(input)
-            .Model(x => x.Inner, inner => inner
+            .Model(x => x.Inner, inner =>
+            {
+                inner
                 .Property(x => x.A)
                 .Property(x => x.B)
-                .Property(x => x.C));
+                .Property(x => x.C);
+            });
 
         // Assert
         Assert.NotNull(input.Inner);
