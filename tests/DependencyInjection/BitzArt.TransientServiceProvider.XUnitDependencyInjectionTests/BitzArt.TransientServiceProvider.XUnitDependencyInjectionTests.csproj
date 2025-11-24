@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<IsPackable>false</IsPackable>
@@ -13,10 +13,10 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-		<PackageReference Include="xunit.v3" Version="3.0.1" />
-		<PackageReference Include="Xunit.DependencyInjection" Version="10.7.0" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.4">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+		<PackageReference Include="xunit.v3" Version="3.2.0" />
+		<PackageReference Include="Xunit.DependencyInjection" Version="11.1.0" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
