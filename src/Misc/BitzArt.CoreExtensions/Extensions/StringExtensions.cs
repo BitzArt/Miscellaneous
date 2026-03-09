@@ -1,10 +1,9 @@
 using System.Text.RegularExpressions;
 
-namespace BitzArt.Extensions;
-
+namespace System;
 
 /// <summary>
-/// Extension methods strings.
+/// Extension methods for strings.
 /// </summary>
 public static partial class StringExtensions
 {
@@ -21,16 +20,10 @@ public static partial class StringExtensions
     /// otherwise, <see langword="false"/>.
     /// </param>
     /// <returns>
-    /// A trimmed string whose internal white-space is optionally normalized,
-    /// or <see langword="null"/> if <paramref name="input"/> is <see langword="null"/>.
+    /// A trimmed string whose internal white-space is optionally normalized.
     /// </returns>
-    public static string? Trim(this string? input, bool normalize)
+    public static string? Trim(this string input, bool normalize)
     {
-        if (string.IsNullOrEmpty(input))
-        {
-            return input;
-        }
-
         return normalize ? MultiSpaceRegex().Replace(input.Trim(), " ") : input.Trim();
     }
 }
